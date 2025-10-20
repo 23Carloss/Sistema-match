@@ -4,6 +4,12 @@
  */
 package entidades;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,11 +19,23 @@ import java.util.Set;
  *
  * @author Sandra
  */
-public class Estudiante {
+@Entity
+public class Estudiante implements Serializable{
 
-    private Long idEstudiante;
-    private String nombre, apellidoMaterno, apellidoPaterno;
-    private String correo, constrasenia;
+    @Id
+    @GeneratedValue(strategy =  GenerationType.AUTO)
+    private Long id;
+    @Column
+    private String nombre;
+    @Column
+    private String apellidoMaterno; 
+    @Column
+    private String apellidoPaterno;
+    @Column
+    private String correo;
+    @Column
+    private String constrasenia;
+    @Column
     private String carrera;
 
 
@@ -32,11 +50,11 @@ private List<Match> matches1 = new ArrayList<>();
  private List<Match> matches2 = new ArrayList<>();
 
     public Long getIdEstudiante() {
-        return idEstudiante;
+        return id;
     }
 
     public void setIdEstudiante(Long idEstudiante) {
-        this.idEstudiante = idEstudiante;
+        this.id = idEstudiante;
     }
 
     public String getNombre() {

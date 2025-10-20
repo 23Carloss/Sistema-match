@@ -4,16 +4,28 @@
  */
 package entidades;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author Sandra
  */
-public class Like {
-    private Long idLike;
+@Entity
+public class Like implements Serializable {
+    @Id
+    @GeneratedValue(strategy =  GenerationType.AUTO)
+    private Long id;
+    @Column
     private Estudiante estudianteOrigen;
+    @Column
     private Estudiante estudianteDestino;
+    @Column
     private LocalDateTime fechaHora;
 
     public Like() {
@@ -25,11 +37,11 @@ public class Like {
     }
 
     public Long getIdLike() {
-        return idLike;
+        return id;
     }
 
     public void setIdLike(Long idLike) {
-        this.idLike = idLike;
+        this.id = idLike;
     }
 
     public Estudiante getEstudianteOrigen() {
