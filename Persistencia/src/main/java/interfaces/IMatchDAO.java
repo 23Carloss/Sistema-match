@@ -1,6 +1,6 @@
 package interfaces;
 
-import entidades.Match;
+import entidades.Matches;
 import exception.PersistenciaException;
 import java.util.List;
 
@@ -10,13 +10,13 @@ import java.util.List;
  */
 public interface IMatchDAO {
 
-    void agregar(Match match) throws PersistenciaException;
+    void agregar(Matches match) throws PersistenciaException;
 
     void eliminar(Long id) throws PersistenciaException;
 
-    void actualizar(Match match) throws PersistenciaException;
+    void actualizar(Matches match) throws PersistenciaException;
 
-    Match obtenerPorId(Long id) throws PersistenciaException;
+    Matches obtenerPorId(Long id) throws PersistenciaException;
 
-    List<Match> obtenerTodos() throws PersistenciaException;
+    List<Matches> obtenerTodos() throws PersistenciaException;
 }

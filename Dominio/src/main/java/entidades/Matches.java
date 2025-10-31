@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
  * @author Sandra
  */
 @Entity
-public class Match implements Serializable{
+public class Matches implements Serializable{
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private Long id;
@@ -28,13 +28,12 @@ public class Match implements Serializable{
     private Estudiante estudiante2;
     @Column
     private LocalDateTime fechaHoraMatch;
-    
-   
 
-    public Match() {
+    public Matches() {
+        
     }
 
-    public Match(Estudiante estudiante1, Estudiante estudiante2) {
+    public Matches(Estudiante estudiante1, Estudiante estudiante2) {
         this.estudiante1 = estudiante1;
         this.estudiante2 = estudiante2;
     }

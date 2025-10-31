@@ -1,6 +1,6 @@
 package daos;
 
-import entidades.Match;
+import entidades.Matches;
 import exception.PersistenciaException;
 import interfaces.IMatchDAO;
 import jakarta.persistence.EntityManager;
@@ -20,7 +20,7 @@ public class MatchDAO implements IMatchDAO {
     }
 
     @Override
-    public void agregar(Match match) throws PersistenciaException {
+    public void agregar(Matches match) throws PersistenciaException {
         try {
             em.getTransaction().begin();
             em.persist(match);
@@ -35,7 +35,7 @@ public class MatchDAO implements IMatchDAO {
     public void eliminar(Long id) throws PersistenciaException {
         try {
             em.getTransaction().begin();
-            Match match = em.find(Match.class, id);
+            Matches match = em.find(Matches.class, id);
             if (match != null) {
                 em.remove(match);
             }
@@ -47,7 +47,7 @@ public class MatchDAO implements IMatchDAO {
     }
 
     @Override
-    public void actualizar(Match match) throws PersistenciaException {
+    public void actualizar(Matches match) throws PersistenciaException {
         try {
             em.getTransaction().begin();
             em.merge(match);
@@ -59,18 +59,18 @@ public class MatchDAO implements IMatchDAO {
     }
 
     @Override
-    public Match obtenerPorId(Long id) throws PersistenciaException {
+    public Matches obtenerPorId(Long id) throws PersistenciaException {
         try {
-            return em.find(Match.class, id);
+            return em.find(Matches.class, id);
         } catch (Exception e) {
             throw new PersistenciaException("Error al obtener Match por ID.", e);
         }
     }
 
     @Override
-    public List<Match> obtenerTodos() throws PersistenciaException {
+    public List<Matches> obtenerTodos() throws PersistenciaException {
         try {
-            TypedQuery<Match> query = em.createQuery("SELECT m FROM Match m", Match.class);
+            TypedQuery<Matches> query = em.createQuery("SELECT m FROM Match m", Matches.class);
             return query.getResultList();
         } catch (Exception e) {
             throw new PersistenciaException("Error al obtener todos los Matches.", e);

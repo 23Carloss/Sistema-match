@@ -9,15 +9,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  *
  * @author Sandra
  */
 @Entity
-public class Like implements Serializable {
+public class Likes implements Serializable {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private Long id;
@@ -27,11 +29,14 @@ public class Like implements Serializable {
     private Estudiante estudianteDestino;
     @Column
     private LocalDateTime fechaHora;
-
-    public Like() {
+    
+    @OneToMany(mappedBy= "like")
+    private List<EstudianteLike> likes;  
+    
+    public Likes() {
     }
 
-    public Like(Estudiante estudianteOrigen, Estudiante estudianteDestino) {
+    public Likes(Estudiante estudianteOrigen, Estudiante estudianteDestino) {
         this.estudianteOrigen = estudianteOrigen;
         this.estudianteDestino = estudianteDestino;
     }

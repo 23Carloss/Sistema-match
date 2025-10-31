@@ -4,16 +4,20 @@
  */
 package entidades;
 
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -37,17 +41,41 @@ public class Estudiante implements Serializable{
     private String constrasenia;
     @Column
     private String carrera;
+    // relacion de likes
+    @OneToMany(mappedBy= "estudiante")
+    private List<EstudianteLike> EstudiantesLikeados;
+    
+    
+    @ElementCollection(targetClass = Hobby.class)
+    @CollectionTable(name = "hobbys_Estudiante", joinColumns = @JoinColumn(name= "idEstudiante"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "hobby")
+    private List<Hobby> hobby;
+    
 
+private List<Likes> likesDados = new ArrayList<>();
 
-private Set<Hobby> hobby = new HashSet<>();
+private List<Likes> likesRecibidos = new ArrayList<>();
 
-private List<Like> likesDados = new ArrayList<>();
+private List<Matches> matches1 = new ArrayList<>();
 
-private List<Like> likesRecibidos = new ArrayList<>();
+ private List<Matches> matches2 = new ArrayList<>();
 
-private List<Match> matches1 = new ArrayList<>();
+    public Estudiante() {
+    }
 
- private List<Match> matches2 = new ArrayList<>();
+    
+    public Estudiante(Long id, String nombre, String apellidoMaterno, String apellidoPaterno, String correo, String constrasenia, String carrera, List<EstudianteLike> EstudiantesLikeados, List<Hobby> hobby) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidoMaterno = apellidoMaterno;
+        this.apellidoPaterno = apellidoPaterno;
+        this.correo = correo;
+        this.constrasenia = constrasenia;
+        this.carrera = carrera;
+        this.EstudiantesLikeados = EstudiantesLikeados;
+        this.hobby = hobby;
+    }
 
     public Long getIdEstudiante() {
         return id;
@@ -105,11 +133,11 @@ private List<Match> matches1 = new ArrayList<>();
         this.carrera = carrera;
     }
 
-    public Set<Hobby> getHobby() {
+    public List<Hobby> getHobby() {
         return hobby;
     }
 
-    public void setHobby(Set<Hobby> hobby) {
+    public void setHobby(List<Hobby> hobby) {
         this.hobby = hobby;
     }
 

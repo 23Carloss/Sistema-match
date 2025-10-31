@@ -1,6 +1,6 @@
 package daos;
 
-import entidades.Like;
+import entidades.Likes;
 import exception.PersistenciaException;
 import interfaces.ILikeDAO;
 import jakarta.persistence.EntityManager;
@@ -20,7 +20,7 @@ public class LikeDAO implements ILikeDAO {
     }
 
     @Override
-    public void agregar(Like like) throws PersistenciaException {
+    public void agregar(Likes like) throws PersistenciaException {
         try {
             em.getTransaction().begin();
             em.persist(like);
@@ -35,7 +35,7 @@ public class LikeDAO implements ILikeDAO {
     public void eliminar(Long id) throws PersistenciaException {
         try {
             em.getTransaction().begin();
-            Like like = em.find(Like.class, id);
+            Likes like = em.find(Likes.class, id);
             if (like != null) {
                 em.remove(like);
             }
@@ -47,7 +47,7 @@ public class LikeDAO implements ILikeDAO {
     }
 
     @Override
-    public void actualizar(Like like) throws PersistenciaException {
+    public void actualizar(Likes like) throws PersistenciaException {
         try {
             em.getTransaction().begin();
             em.merge(like);
@@ -59,18 +59,18 @@ public class LikeDAO implements ILikeDAO {
     }
 
     @Override
-    public Like obtenerPorId(Long id) throws PersistenciaException {
+    public Likes obtenerPorId(Long id) throws PersistenciaException {
         try {
-            return em.find(Like.class, id);
+            return em.find(Likes.class, id);
         } catch (Exception e) {
             throw new PersistenciaException("Error al obtener Like por ID.", e);
         }
     }
 
     @Override
-    public List<Like> obtenerTodos() throws PersistenciaException {
+    public List<Likes> obtenerTodos() throws PersistenciaException {
         try {
-            TypedQuery<Like> query = em.createQuery("SELECT l FROM Like l", Like.class);
+            TypedQuery<Likes> query = em.createQuery("SELECT l FROM Like l", Likes.class);
             return query.getResultList();
         } catch (Exception e) {
             throw new PersistenciaException("Error al obtener todos los Likes.", e);

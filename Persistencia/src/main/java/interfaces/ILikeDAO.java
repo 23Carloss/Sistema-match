@@ -1,6 +1,6 @@
 package interfaces;
 
-import entidades.Like;
+import entidades.Likes;
 import exception.PersistenciaException;
 import java.util.List;
 
@@ -10,13 +10,13 @@ import java.util.List;
  */
 public interface ILikeDAO {
 
-    void agregar(Like like) throws PersistenciaException;
+    void agregar(Likes like) throws PersistenciaException;
 
     void eliminar(Long id) throws PersistenciaException;
 
-    void actualizar(Like like) throws PersistenciaException;
+    void actualizar(Likes like) throws PersistenciaException;
 
-    Like obtenerPorId(Long id) throws PersistenciaException;
+    Likes obtenerPorId(Long id) throws PersistenciaException;
 
-    List<Like> obtenerTodos() throws PersistenciaException;
+    List<Likes> obtenerTodos() throws PersistenciaException;
 }
