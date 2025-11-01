@@ -8,6 +8,8 @@
     <modules>
         <module>Persistencia</module>
         <module>Dominio</module>
+        <module>Presentacion</module>
+        <module>Negocio</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
