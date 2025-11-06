@@ -4,16 +4,19 @@
  */
 package Vistas;
 
+import Aplicacion.Control;
+
 /**
  *
  * @author HP
  */
 public class PanelRegistroDatosPersonales extends javax.swing.JPanel {
-
+private Control control;
     /**
      * Creates new form PanelRegistroDatosPersonales
      */
-    public PanelRegistroDatosPersonales() {
+    public PanelRegistroDatosPersonales(Control control) {
+        this.control = control;
         initComponents();
     }
 
@@ -107,10 +110,12 @@ public class PanelRegistroDatosPersonales extends javax.swing.JPanel {
 
     private void BtnContiuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnContiuarMouseClicked
         // TODO add your handling code here:
+        control.MostrarRegistroInfoGeneral();
     }//GEN-LAST:event_BtnContiuarMouseClicked
 
     private void BtnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCancelarMouseClicked
         // TODO add your handling code here:
+        control.MostrarLogIn();
     }//GEN-LAST:event_BtnCancelarMouseClicked
 
 
