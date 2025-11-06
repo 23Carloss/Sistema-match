@@ -19,7 +19,7 @@ public interface IEstudianteDAO {
 
     Estudiante obtenerPorId(Long id) throws PersistenciaException;
 
-    List<Estudiante> obtenerTodos() throws PersistenciaException;
+    List<Estudiante> listar(int limite) throws PersistenciaException;
 
     List<Estudiante> buscarPorNombre(String nombre) throws PersistenciaException;
 

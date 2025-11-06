@@ -9,7 +9,7 @@ import jakarta.persistence.TypedQuery;
 import java.util.List;
 
 /**
- * 
+ *
  * @author brand
  */
 public class EstudianteDAO implements IEstudianteDAO {
@@ -69,12 +69,16 @@ public class EstudianteDAO implements IEstudianteDAO {
     }
 
     @Override
-    public List<Estudiante> obtenerTodos() throws PersistenciaException {
+    public List<Estudiante> listar(int limite) throws PersistenciaException {
+        if (limite > 100) {
+            throw new PersistenciaException("El límite máximo es 100");
+        }
         try {
             TypedQuery<Estudiante> query = em.createQuery("SELECT e FROM Estudiante e", Estudiante.class);
+            query.setMaxResults(limite);
             return query.getResultList();
         } catch (Exception e) {
-            throw new PersistenciaException("Error al obtener todos los estudiantes.", e);
+            throw new PersistenciaException("Error al listar estudiantes", e);
         }
     }
 
