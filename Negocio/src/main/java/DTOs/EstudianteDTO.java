@@ -1,4 +1,4 @@
-package dtos;
+package DTOs;
 
 import entidades.Hobby;
 import java.util.List;
@@ -17,7 +17,7 @@ public class EstudianteDTO {
     private String correo;
     private String contrasenia;
     private String carrera;
-    private Set<Hobby> hobbies;
+    private List<Hobby> hobbies;
     private List<LikeDTO> likesDados;
     private List<LikeDTO> likesRecibidos;
     private List<MatchDTO> matches1;
@@ -83,11 +83,11 @@ public class EstudianteDTO {
         this.carrera = carrera;
     }
 
-    public Set<Hobby> getHobbies() {
+    public List<Hobby> getHobbies() {
         return hobbies;
     }
 
-    public void setHobbies(Set<Hobby> hobbies) {
+    public void setHobbies(List<Hobby> hobbies) {
         this.hobbies = hobbies;
     }
 
@@ -122,4 +122,10 @@ public class EstudianteDTO {
     public void setMatches2(List<MatchDTO> matches2) {
         this.matches2 = matches2;
     }
+
+    @Override
+    public String toString() {
+        return "EstudianteDTO{" + "id=" + id + ", nombre=" + nombre + ", apellidoMaterno=" + apellidoMaterno + ", apellidoPaterno=" + apellidoPaterno + ", correo=" + correo + ", contrasenia=" + contrasenia + ", carrera=" + carrera + ", hobbies=" + hobbies + ", likesDados=" + likesDados + ", likesRecibidos=" + likesRecibidos + ", matches1=" + matches1 + ", matches2=" + matches2 + '}';
+    }
+    
 }

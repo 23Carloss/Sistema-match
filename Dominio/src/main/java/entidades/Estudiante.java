@@ -38,7 +38,7 @@ public class Estudiante implements Serializable{
     @Column
     private String correo;
     @Column
-    private String constrasenia;
+    private String contrasenia;
     @Column
     private String carrera;
     // relacion de likes
@@ -71,7 +71,7 @@ private List<Matches> matches1 = new ArrayList<>();
         this.apellidoMaterno = apellidoMaterno;
         this.apellidoPaterno = apellidoPaterno;
         this.correo = correo;
-        this.constrasenia = constrasenia;
+        this.contrasenia = constrasenia;
         this.carrera = carrera;
         this.EstudiantesLikeados = EstudiantesLikeados;
         this.hobby = hobby;
@@ -117,12 +117,12 @@ private List<Matches> matches1 = new ArrayList<>();
         this.correo = correo;
     }
 
-    public String getConstrasenia() {
-        return constrasenia;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setConstrasenia(String constrasenia) {
-        this.constrasenia = constrasenia;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public String getCarrera() {
@@ -172,6 +172,12 @@ private List<Matches> matches1 = new ArrayList<>();
     public void setMatches2(List matches2) {
         this.matches2 = matches2;
     }
+
+    @Override
+    public String toString() {
+        return "Estudiante{" + "id=" + id + ", nombre=" + nombre + ", apellidoMaterno=" + apellidoMaterno + ", apellidoPaterno=" + apellidoPaterno + ", correo=" + correo + ", constrasenia=" + contrasenia + ", carrera=" + carrera + ", EstudiantesLikeados=" + EstudiantesLikeados + ", hobby=" + hobby + ", likesDados=" + likesDados + ", likesRecibidos=" + likesRecibidos + ", matches1=" + matches1 + ", matches2=" + matches2 + '}';
+    }
  
+    
  
 }

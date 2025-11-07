@@ -48,7 +48,8 @@ private Control control;
         campoCorreo = new javax.swing.JTextField();
         BtnConfirmar = new javax.swing.JButton();
 
-        setMaximumSize(new java.awt.Dimension(668, 530));
+        setMaximumSize(new java.awt.Dimension(660, 521));
+        setMinimumSize(new java.awt.Dimension(0, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BtnHome.setText("Home");
@@ -57,7 +58,7 @@ private Control control;
                 BtnHomeMouseClicked(evt);
             }
         });
-        add(BtnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 480, -1, -1));
+        add(BtnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, -1, -1));
 
         BtnPublicaciones.setText("Publicaciones");
         add(BtnPublicaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 110, 30));
@@ -105,7 +106,7 @@ private Control control;
                 BtnConfirmarMouseClicked(evt);
             }
         });
-        add(BtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, 100, 40));
+        add(BtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 460, 100, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnEditarPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEditarPerfilMouseClicked
@@ -158,7 +159,8 @@ private Control control;
         BtnConfirmar.setVisible(false);
         
         //falta logica de cargar los datos del usuario control.actualizarUsuario(UsuarioDTO u)
-
+        control.getEstudiante();
+        
     }
     
     private void modoEditar(){

@@ -5,6 +5,10 @@
 package Vistas;
 
 import Aplicacion.Control;
+import DTOs.EstudianteDTO;
+import entidades.Hobby;
+import java.awt.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,6 +16,8 @@ import Aplicacion.Control;
  */
 public class PanelRegistroInfoGeneral extends javax.swing.JPanel {
 private Control control;
+private EstudianteDTO estudianteARegistrar;
+private ArrayList<Hobby> listaHobbys;
     /**
      * Creates new form PanelRegistroInfoGeneral
      */
@@ -31,15 +37,19 @@ private Control control;
 
         BtnCancelar = new javax.swing.JButton();
         BtnContiuar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        campoPasatiempos = new javax.swing.JTextField();
-        campoHobbies = new javax.swing.JTextField();
-        campoSemestre = new javax.swing.JTextField();
         campoCarrera = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        boxMusica = new javax.swing.JCheckBox();
+        boxDeportes = new javax.swing.JCheckBox();
+        boxLibros = new javax.swing.JCheckBox();
+        boxPeliculas = new javax.swing.JCheckBox();
+        boxFotografia = new javax.swing.JCheckBox();
+        boxTecnologia = new javax.swing.JCheckBox();
+        boxCocina = new javax.swing.JCheckBox();
+        boxBaile = new javax.swing.JCheckBox();
+        boxViajes = new javax.swing.JCheckBox();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -63,37 +73,47 @@ private Control control;
         });
         add(BtnContiuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 570, 150, 40));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Pasatiempos:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Carrera:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("Semestre:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("hobbies:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
-
-        campoPasatiempos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        add(campoPasatiempos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 390, 80));
-
-        campoHobbies.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        add(campoHobbies, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 390, 70));
-
-        campoSemestre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        add(campoSemestre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 330, 40));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
         campoCarrera.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         add(campoCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 330, 40));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setText("Registro");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 90, 50));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 90, 50));
+
+        boxMusica.setText("Musica");
+        add(boxMusica, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+
+        boxDeportes.setText("Deportes");
+        add(boxDeportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
+
+        boxLibros.setText("Libros");
+        add(boxLibros, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
+
+        boxPeliculas.setText("Peliculas");
+        add(boxPeliculas, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
+
+        boxFotografia.setText("Fotografia");
+        add(boxFotografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
+
+        boxTecnologia.setText("Tecnologia");
+        add(boxTecnologia, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, -1, -1));
+
+        boxCocina.setText("Cocina");
+        add(boxCocina, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
+
+        boxBaile.setText("Baile");
+        add(boxBaile, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
+
+        boxViajes.setText("Viajes");
+        add(boxViajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCancelarMouseClicked
@@ -103,7 +123,9 @@ private Control control;
 
     private void BtnContiuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnContiuarMouseClicked
         // TODO add your handling code here:
-        control.MostrarMenuPrincipal();
+        obtenerHobbys();
+        crearEstudiante();
+        control.MostrarLogIn();
         
     }//GEN-LAST:event_BtnContiuarMouseClicked
 
@@ -111,14 +133,40 @@ private Control control;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnContiuar;
+    private javax.swing.JCheckBox boxBaile;
+    private javax.swing.JCheckBox boxCocina;
+    private javax.swing.JCheckBox boxDeportes;
+    private javax.swing.JCheckBox boxFotografia;
+    private javax.swing.JCheckBox boxLibros;
+    private javax.swing.JCheckBox boxMusica;
+    private javax.swing.JCheckBox boxPeliculas;
+    private javax.swing.JCheckBox boxTecnologia;
+    private javax.swing.JCheckBox boxViajes;
     private javax.swing.JTextField campoCarrera;
-    private javax.swing.JTextField campoHobbies;
-    private javax.swing.JTextField campoPasatiempos;
-    private javax.swing.JTextField campoSemestre;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
+
+
+    private void obtenerHobbys(){
+        listaHobbys = new ArrayList<>();
+        if (boxBaile.isSelected()) listaHobbys.add(Hobby.BAILE);
+        if (boxCocina.isSelected()) listaHobbys.add(Hobby.COCINA);
+        if (boxDeportes.isSelected()) listaHobbys.add(Hobby. DEPORTES);
+        if (boxFotografia.isSelected()) listaHobbys.add(Hobby.FOTOGRAFIA);
+        if (boxLibros.isSelected()) listaHobbys.add(Hobby.LIBROS);
+        if (boxMusica.isSelected()) listaHobbys.add(Hobby.MUSICA );
+        if (boxPeliculas.isSelected()) listaHobbys.add(Hobby.PELICULAS);
+        if (boxTecnologia.isSelected()) listaHobbys.add(Hobby.TECNOLOGIA);
+        if (boxViajes.isSelected()) listaHobbys.add(Hobby.VIAJES);
+        
+    }
+    private void crearEstudiante(){
+        this.estudianteARegistrar = control.getEstudiante();
+        estudianteARegistrar.setCarrera(campoCarrera.getText());
+        estudianteARegistrar.setHobbies(listaHobbys);
+        control.setEstudiante(estudianteARegistrar);
+        control.agregarEstudiante(estudianteARegistrar);
+    }
 }

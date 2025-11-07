@@ -5,6 +5,8 @@
 
 package Aplicacion;
 
+import DTOs.EstudianteDTO;
+import Implementacion.AdministracionEstudiantes;
 import Vistas.FramePrincipal;
 import Vistas.PanelLogIn;
 import Vistas.PanelRegistroDatosPersonales;
@@ -18,7 +20,8 @@ import javax.swing.JPanel;
  * @author $Luis Carlos Manjarrez Gonzalez
  */
 public class Control {
-
+    
+    private AdministracionEstudiantes moduloEstudiantes;
     private FramePrincipal frame;
     private PanelLogIn panellogIn;
     private PanelRegistroDatosPersonales panelDatosPersonales;
@@ -28,6 +31,9 @@ public class Control {
 
     public Control() {
         frame = new FramePrincipal();
+        
+        //mpdulo estudiantes
+        moduloEstudiantes = new AdministracionEstudiantes();
 //        panellogIn = new PanelLogIn(this);
 //        panelDatosPersonales = new PanelRegistroDatosPersonales(this);
 //        panelInfoGeneral = new PanelRegistroInfoGeneral(this);
@@ -67,6 +73,28 @@ public class Control {
 //        frame.repaint();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+    
+    public boolean iniciarSesion(String correo, String contraenia){
+        if(moduloEstudiantes.iniciarSesion(correo, contraenia) == null){
+            return false;
+        }else{
+            moduloEstudiantes.iniciarSesion(correo, contraenia);
+            setEstudiante(moduloEstudiantes.iniciarSesion(correo, contraenia));
+            return true;
+        }
+        
+    }
+    
+    public void agregarEstudiante(EstudianteDTO estudiante){
+        moduloEstudiantes.AgregarEstudiante(estudiante);
+    }
+    
+    public void setEstudiante(EstudianteDTO estudiante){
+        moduloEstudiantes.setEstudiante(estudiante);
+    }
+    public EstudianteDTO getEstudiante(){
+        return moduloEstudiantes.getEstudiante();
     }
     
 }

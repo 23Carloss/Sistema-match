@@ -30,44 +30,67 @@ private Control control;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BtnPerfil = new javax.swing.JButton();
-        BtnMensajes = new javax.swing.JButton();
+        btnPerfil = new javax.swing.JButton();
+        btnMensajes = new javax.swing.JButton();
         panelPost = new javax.swing.JPanel();
-        BtnHome = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(668, 530));
         setMinimumSize(new java.awt.Dimension(668, 530));
         setPreferredSize(new java.awt.Dimension(668, 530));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BtnPerfil.setText("mi perfil");
-        BtnPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnPerfil.setText("mi perfil");
+        btnPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BtnPerfilMouseClicked(evt);
+                btnPerfilMouseClicked(evt);
             }
         });
-        add(BtnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 490, -1, -1));
+        add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 490, -1, -1));
 
-        BtnMensajes.setText("mensajes");
-        add(BtnMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, -1, -1));
+        btnMensajes.setText("mensajes");
+        add(btnMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, -1, -1));
 
         panelPost.setLayout(new java.awt.CardLayout());
         add(panelPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 540, 450));
 
-        BtnHome.setText("home");
-        add(BtnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 490, -1, -1));
+        btnHome.setText("home");
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, -1, -1));
+
+        btnBuscar.setText("buscar");
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseClicked(evt);
+            }
+        });
+        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 490, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnPerfilMouseClicked
+    private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
         // TODO add your handling code here:
         control.MostrarPerfil();
-    }//GEN-LAST:event_BtnPerfilMouseClicked
+    }//GEN-LAST:event_btnPerfilMouseClicked
+
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnHome;
-    private javax.swing.JButton BtnMensajes;
-    private javax.swing.JButton BtnPerfil;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnMensajes;
+    private javax.swing.JButton btnPerfil;
     private javax.swing.JPanel panelPost;
     // End of variables declaration//GEN-END:variables
 }

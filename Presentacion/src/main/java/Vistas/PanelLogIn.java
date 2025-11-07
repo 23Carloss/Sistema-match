@@ -80,11 +80,14 @@ private Control control;
 
     private void BtnLogInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLogInMouseClicked
         // TODO add your handling code here:
-        control.MostrarMenuPrincipal();
+        if(autenticacion()){
+            control.MostrarMenuPrincipal();
+        }
     }//GEN-LAST:event_BtnLogInMouseClicked
 
     private void BtnRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnRegistroMouseClicked
         // TODO add your handling code here:
+        
        control.MostrarRegistroDatosPersonales();
     }//GEN-LAST:event_BtnRegistroMouseClicked
 
@@ -98,4 +101,8 @@ private Control control;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
+
+    private boolean autenticacion(){
+        return control.iniciarSesion(campoUsuario.getText(), campoPassword.getText());
+    }
 }

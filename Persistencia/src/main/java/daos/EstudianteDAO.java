@@ -7,6 +7,9 @@ import interfaces.IEstudianteDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  * 
@@ -23,6 +26,7 @@ public class EstudianteDAO implements IEstudianteDAO {
     @Override
     public void agregar(Estudiante estudiante) throws PersistenciaException {
         try {
+            System.out.println("Estudiante a registrar -- DAO :  " +  estudiante.toString());
             em.getTransaction().begin();
             em.persist(estudiante);
             em.getTransaction().commit();
@@ -99,6 +103,39 @@ public class EstudianteDAO implements IEstudianteDAO {
             return query.getResultList();
         } catch (Exception e) {
             throw new PersistenciaException("Error al buscar estudiantes por hobby.", e);
+        }
+    }
+
+    @Override
+    public Estudiante autenticar(String correo, String contrasenia) {
+        Estudiante estudianteEncontrado;
+        try {
+            estudianteEncontrado = buscarPorCorreo(correo);
+            if(estudianteEncontrado == null){
+                JOptionPane.showMessageDialog(null,"Estudiante no encontrado","Error" ,JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+            System.out.println("Estudiante encontrado -- DAO: " +estudianteEncontrado.toString() );
+            if(estudianteEncontrado.getCorreo().equals(correo) && estudianteEncontrado.getContrasenia().equals(contrasenia)){
+                return estudianteEncontrado;
+            }else{
+                JOptionPane.showMessageDialog(null,"Error en las credenciales","Error" ,JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (PersistenciaException ex) {
+             JOptionPane.showMessageDialog(null,"Error en las credenciales","Error" ,JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        return null;
+    }
+    
+    private Estudiante buscarPorCorreo(String correo) throws PersistenciaException {
+        try {
+            return em.createQuery("Select e from Estudiante e where e.correo = :correo", Estudiante.class)
+                    .setParameter("correo", correo)
+                    .getSingleResult();
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al buscar estudiantes por correo.", e);
+            
         }
     }
 }

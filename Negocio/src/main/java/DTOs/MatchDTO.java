@@ -1,6 +1,6 @@
-package dtos;
+package DTOs;
 
-import dtos.EstudianteDTO;
+import DTOs.EstudianteDTO;
 import java.time.LocalDateTime;
 
 /**
