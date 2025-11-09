@@ -5,6 +5,10 @@
 package Vistas;
 
 import Aplicacion.Control;
+import DTOs.EstudianteDTO;
+import entidades.Hobby;
+import java.util.List;
+import java.lang.reflect.Array;
 
 /**
  *
@@ -43,10 +47,12 @@ private Control control;
         campoCarrera = new javax.swing.JTextField();
         campoNombre = new javax.swing.JTextField();
         campoApellidoM = new javax.swing.JTextField();
-        campoHobbys = new javax.swing.JTextField();
         campoApellidoP = new javax.swing.JTextField();
         campoCorreo = new javax.swing.JTextField();
-        BtnConfirmar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listHobbys = new javax.swing.JList<>();
+        BtnLogOut = new javax.swing.JButton();
+        btnCrearPost = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(660, 521));
         setMinimumSize(new java.awt.Dimension(0, 0));
@@ -60,7 +66,12 @@ private Control control;
         });
         add(BtnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, -1, -1));
 
-        BtnPublicaciones.setText("Publicaciones");
+        BtnPublicaciones.setText("Mis Post");
+        BtnPublicaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnPublicacionesMouseClicked(evt);
+            }
+        });
         add(BtnPublicaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 110, 30));
 
         labelNombreUsuario.setText("NombreUsuario");
@@ -75,7 +86,7 @@ private Control control;
                 BtnEditarPerfilMouseClicked(evt);
             }
         });
-        add(BtnEditarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 110, 30));
+        add(BtnEditarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 110, 30));
 
         labelApellidoP.setText("Apellido Paterno");
         add(labelApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
@@ -94,50 +105,73 @@ private Control control;
         add(campoCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 220, 30));
         add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 230, 30));
         add(campoApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 230, 30));
-        add(campoHobbys, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 230, 30));
         add(campoApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 220, 30));
         add(campoCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 220, 30));
 
-        BtnConfirmar.setBackground(new java.awt.Color(0, 0, 0));
-        BtnConfirmar.setForeground(new java.awt.Color(255, 255, 255));
-        BtnConfirmar.setText("Confirmar");
-        BtnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+        listHobbys.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { " " };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(listHobbys);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 170, -1));
+
+        BtnLogOut.setText("Log Out  ");
+        BtnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BtnConfirmarMouseClicked(evt);
+                BtnLogOutMouseClicked(evt);
             }
         });
-        add(BtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 460, 100, 40));
+        add(BtnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 470, 100, 30));
+
+        btnCrearPost.setText("Crear Post");
+        btnCrearPost.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCrearPostMouseClicked(evt);
+            }
+        });
+        add(btnCrearPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 110, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnEditarPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEditarPerfilMouseClicked
         // TODO add your handling code here:
-       modoEditar();
+       control.mostrarEditarPerfil();
     }//GEN-LAST:event_BtnEditarPerfilMouseClicked
-
-    private void BtnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnConfirmarMouseClicked
-        // TODO add your handling code here:
-        iniciarPanel();
-        //logica para confirmar los cambios en el usuario, falta armar DTO
-        
-    }//GEN-LAST:event_BtnConfirmarMouseClicked
 
     private void BtnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnHomeMouseClicked
         // TODO add your handling code here:
-        control.MostrarMenuPrincipal();
+        control.mostrarMenuPrincipal();
     }//GEN-LAST:event_BtnHomeMouseClicked
+
+    private void BtnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLogOutMouseClicked
+        // TODO add your handling code here:
+        control.mostrarLogIn();
+    }//GEN-LAST:event_BtnLogOutMouseClicked
+
+    private void BtnPublicacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnPublicacionesMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_BtnPublicacionesMouseClicked
+
+    private void btnCrearPostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearPostMouseClicked
+        // TODO add your handling code here:
+        control.mostrarCrearPublicaciones();
+    }//GEN-LAST:event_btnCrearPostMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnConfirmar;
     private javax.swing.JButton BtnEditarPerfil;
     private javax.swing.JButton BtnHome;
+    private javax.swing.JButton BtnLogOut;
     private javax.swing.JButton BtnPublicaciones;
+    private javax.swing.JButton btnCrearPost;
     private javax.swing.JTextField campoApellidoM;
     private javax.swing.JTextField campoApellidoP;
     private javax.swing.JTextField campoCarrera;
     private javax.swing.JTextField campoCorreo;
-    private javax.swing.JTextField campoHobbys;
     private javax.swing.JTextField campoNombre;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelApellidoM;
     private javax.swing.JLabel labelApellidoP;
     private javax.swing.JLabel labelCarrera;
@@ -145,6 +179,7 @@ private Control control;
     private javax.swing.JLabel labelHobbys;
     private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelNombreUsuario;
+    private javax.swing.JList<String> listHobbys;
     // End of variables declaration//GEN-END:variables
 
     private void iniciarPanel(){
@@ -153,30 +188,42 @@ private Control control;
         campoApellidoM.setEditable(false);
         campoApellidoM.setEditable(false);
         campoCarrera.setEditable(false);
-        campoHobbys.setEditable(false);
+        
         campoCorreo.setEditable(false);
-        
-        BtnConfirmar.setVisible(false);
-        
-        //falta logica de cargar los datos del usuario control.actualizarUsuario(UsuarioDTO u)
-        control.getEstudiante();
-        
+        cargarDatos();  
     }
+
+//    private void modoEditar(){
+//        control.mostrarEditarPerfil();
+//        listHobbys.setVisible(false);
+//        campoNombre.setEditable(true);
+//        campoApellidoP.setEditable(true);
+//        campoApellidoM.setEditable(true);
+//        campoApellidoM.setEditable(true);
+//        campoCarrera.setEditable(true);
+//        campoCorreo.setEditable(true);
+//        
+//        
+//        BtnConfirmar.setVisible(true);
+//        
+//    }
     
-    private void modoEditar(){
-        campoNombre.setEditable(true);
-        campoApellidoP.setEditable(true);
-        campoApellidoM.setEditable(true);
-        campoApellidoM.setEditable(true);
-        campoCarrera.setEditable(true);
-        campoCorreo.setEditable(true);
-        campoHobbys.setEditable(true);
+    public void cargarDatos(){
+        EstudianteDTO estudianteDto = control.getEstudiante();
+        campoNombre.setText(estudianteDto.getNombre());
+        campoApellidoP.setText(estudianteDto.getApellidoPaterno());
+        campoApellidoM.setText(estudianteDto.getApellidoMaterno());
+        campoCarrera.setText(estudianteDto.getCarrera());
+        campoCorreo.setText(estudianteDto.getCorreo());
         
-        BtnConfirmar.setVisible(true);
+        List<String> hobbys = control.getEstudiante().getHobbies();
+        if (hobbys != null && !hobbys.isEmpty()) {
+            listHobbys.setListData(hobbys.toArray(new String[0]));
+        }else {
+            listHobbys.setListData(
+                    new String[]{"Sin hobbies registrados"}
+                    );
+            }
+        }
         
     }
-    
-    public void obtenerDatos(){
-        
-    }
-}

@@ -26,7 +26,6 @@ public class EstudianteDAO implements IEstudianteDAO {
     @Override
     public void agregar(Estudiante estudiante) throws PersistenciaException {
         try {
-            System.out.println("Estudiante a registrar -- DAO :  " +  estudiante.toString());
             em.getTransaction().begin();
             em.persist(estudiante);
             em.getTransaction().commit();
@@ -115,14 +114,15 @@ public class EstudianteDAO implements IEstudianteDAO {
                 JOptionPane.showMessageDialog(null,"Estudiante no encontrado","Error" ,JOptionPane.ERROR_MESSAGE);
                 return null;
             }
-            System.out.println("Estudiante encontrado -- DAO: " +estudianteEncontrado.toString() );
-            if(estudianteEncontrado.getCorreo().equals(correo) && estudianteEncontrado.getContrasenia().equals(contrasenia)){
+            
+            if(estudianteEncontrado.getCorreo().equals(correo) && estudianteEncontrado.getContrasenia().equals(contrasenia)){    
                 return estudianteEncontrado;
             }else{
                 JOptionPane.showMessageDialog(null,"Error en las credenciales","Error" ,JOptionPane.ERROR_MESSAGE);
             }
-        } catch (PersistenciaException ex) {
-             JOptionPane.showMessageDialog(null,"Error en las credenciales","Error" ,JOptionPane.ERROR_MESSAGE);
+        }
+         catch (PersistenciaException ex) {
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.ERROR_MESSAGE);
             return null;
         }
         return null;
@@ -134,7 +134,7 @@ public class EstudianteDAO implements IEstudianteDAO {
                     .setParameter("correo", correo)
                     .getSingleResult();
         } catch (Exception e) {
-            throw new PersistenciaException("Error al buscar estudiantes por correo.", e);
+            throw new PersistenciaException("Correo no encontrado", e);
             
         }
     }

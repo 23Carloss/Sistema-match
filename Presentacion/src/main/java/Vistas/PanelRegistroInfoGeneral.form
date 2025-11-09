@@ -109,11 +109,8 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="boxMusica">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Musica"/>
+        <Property name="text" type="java.lang.String" value="MUSICA"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boxMusicaActionPerformed"/>
-      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="40" y="290" width="-1" height="-1"/>
@@ -122,7 +119,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="boxDeportes">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Deportes"/>
+        <Property name="text" type="java.lang.String" value="DEPORTES"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -132,7 +129,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="boxLibros">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Libros"/>
+        <Property name="text" type="java.lang.String" value="LIBROS"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -142,7 +139,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="boxPeliculas">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Peliculas"/>
+        <Property name="text" type="java.lang.String" value="PELICULAS"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -152,7 +149,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="boxFotografia">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fotografia"/>
+        <Property name="text" type="java.lang.String" value="FOTOGRAFIA"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -162,7 +159,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="boxTecnologia">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Tecnologia"/>
+        <Property name="text" type="java.lang.String" value="TECNOLOGIA"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -172,7 +169,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="boxCocina">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cocina"/>
+        <Property name="text" type="java.lang.String" value="COCINA"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -182,7 +179,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="boxBaile">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Baile"/>
+        <Property name="text" type="java.lang.String" value="BAILE"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -192,7 +189,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="boxViajes">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Viajes"/>
+        <Property name="text" type="java.lang.String" value="VIAJES"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

@@ -125,13 +125,13 @@ private EstudianteDTO estudianteaRegistrar;
         if(campoContrasenhia.getText().equals(campoConfirmarContrasenhia.getText())){
             crearEstudiante();
             control.setEstudiante(estudianteaRegistrar);
-            control.MostrarRegistroInfoGeneral();
+            control.mostrarRegistroInfoGeneral();
         }
     }//GEN-LAST:event_BtnContiuarMouseClicked
 
     private void BtnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCancelarMouseClicked
         // TODO add your handling code here:
-        control.MostrarLogIn();
+        control.mostrarLogIn();
     }//GEN-LAST:event_BtnCancelarMouseClicked
 
 

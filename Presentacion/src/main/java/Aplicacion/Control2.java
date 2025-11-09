@@ -37,7 +37,7 @@ public class Control2 {
 
     public void MostrarInicioSesion() {
         System.out.println("Inicio de sesion");
-        frmInicioSesion = new FrmInicioSesion(this);
+//        frmInicioSesion = new FrmInicioSesion(this);
         CambiarPantalla(frmInicioSesion);
     }
 
@@ -73,15 +73,15 @@ public class Control2 {
 //
 //    }
 
-    public void agregarEstudiante(EstudianteDTO estudiante) {
-        moduloEstudiantes.AgregarEstudiante(estudiante);
-    }
-
-    public void setEstudiante(EstudianteDTO estudiante) {
-        moduloEstudiantes.setEstudiante(estudiante);
-    }
-
-    public EstudianteDTO getEstudiante() {
-        return moduloEstudiantes.getEstudiante();
-    }
+//    public void agregarEstudiante(EstudianteDTO estudiante) {
+//        moduloEstudiantes.AgregarEstudiante(estudiante);
+//    }
+//
+//    public void setEstudiante(EstudianteDTO estudiante) {
+//        moduloEstudiantes.setEstudiante(estudiante);
+//    }
+//
+//    public EstudianteDTO getEstudiante() {
+//        return moduloEstudiantes.getEstudiante();
+//    }
 }

@@ -1,6 +1,7 @@
 package DTOs;
 
 import entidades.Hobby;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +18,8 @@ public class EstudianteDTO {
     private String correo;
     private String contrasenia;
     private String carrera;
-    private List<Hobby> hobbies;
+    private List<String> hobbies;
+    private List<PostDTO> listaPost = new ArrayList<>();
     private List<LikeDTO> likesDados;
     private List<LikeDTO> likesRecibidos;
     private List<MatchDTO> matches1;
@@ -83,11 +85,11 @@ public class EstudianteDTO {
         this.carrera = carrera;
     }
 
-    public List<Hobby> getHobbies() {
+    public List<String> getHobbies() {
         return hobbies;
     }
 
-    public void setHobbies(List<Hobby> hobbies) {
+    public void setHobbies(List<String> hobbies) {
         this.hobbies = hobbies;
     }
 
@@ -123,9 +125,20 @@ public class EstudianteDTO {
         this.matches2 = matches2;
     }
 
+    public List<PostDTO> getListaPost() {
+        return listaPost;
+    }
+
+    public void setListaPost(List<PostDTO> listaPost) {
+        this.listaPost = listaPost;
+    }
+
     @Override
     public String toString() {
-        return "EstudianteDTO{" + "id=" + id + ", nombre=" + nombre + ", apellidoMaterno=" + apellidoMaterno + ", apellidoPaterno=" + apellidoPaterno + ", correo=" + correo + ", contrasenia=" + contrasenia + ", carrera=" + carrera + ", hobbies=" + hobbies + ", likesDados=" + likesDados + ", likesRecibidos=" + likesRecibidos + ", matches1=" + matches1 + ", matches2=" + matches2 + '}';
+        return "EstudianteDTO{" + "id=" + id + ", nombre=" + nombre + ", apellidoMaterno=" + apellidoMaterno + ", apellidoPaterno=" + apellidoPaterno + ", correo=" + correo + ", contrasenia=" + contrasenia + ", carrera=" + carrera + ", hobbies=" + hobbies +  "likesDados=" + likesDados + ", likesRecibidos=" + likesRecibidos + ", matches1=" + matches1 + ", matches2=" + matches2 + '}';
     }
+    
+
+   
     
 }

@@ -135,7 +135,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     String contrasenia = new String(txtContrasenia.getText());
     
     if (control.iniciarSesion(correo, contrasenia)) {
-        control.MostrarMenuPrincipal();
+//        control.MostrarMenuPrincipal();
     } else {
         JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos");
     }
@@ -143,7 +143,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
 
     private void btnPantallaRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPantallaRegistroActionPerformed
         // TODO add your handling code here:
-        control.MostrarRegistroDatosPersonales();
+//        control.MostrarRegistroDatosPersonales();
     }//GEN-LAST:event_btnPantallaRegistroActionPerformed
     private void txtCorreoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusGained
         // TODO add your handling code here:

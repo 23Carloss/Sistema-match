@@ -45,6 +45,8 @@ public class Estudiante implements Serializable{
     @OneToMany(mappedBy= "estudiante")
     private List<EstudianteLike> EstudiantesLikeados;
     
+    @OneToMany(mappedBy = "estudiante")
+    private List<Post> publicaciones;
     
     @ElementCollection(targetClass = Hobby.class)
     @CollectionTable(name = "hobbys_Estudiante", joinColumns = @JoinColumn(name= "idEstudiante"))
@@ -173,11 +175,17 @@ private List<Matches> matches1 = new ArrayList<>();
         this.matches2 = matches2;
     }
 
+    public List<Post> getPublicaciones() {
+        return publicaciones;
+    }
+
+    public void setPublicaciones(List<Post> publicaciones) {
+        this.publicaciones = publicaciones;
+    }
+
     @Override
     public String toString() {
-        return "Estudiante{" + "id=" + id + ", nombre=" + nombre + ", apellidoMaterno=" + apellidoMaterno + ", apellidoPaterno=" + apellidoPaterno + ", correo=" + correo + ", constrasenia=" + contrasenia + ", carrera=" + carrera + ", EstudiantesLikeados=" + EstudiantesLikeados + ", hobby=" + hobby + ", likesDados=" + likesDados + ", likesRecibidos=" + likesRecibidos + ", matches1=" + matches1 + ", matches2=" + matches2 + '}';
+        return "Estudiante{" + "id=" + id + ", nombre=" + nombre + ", apellidoMaterno=" + apellidoMaterno + ", apellidoPaterno=" + apellidoPaterno + ", correo=" + correo + ", contrasenia=" + contrasenia + ", carrera=" + carrera + ", EstudiantesLikeados=" + EstudiantesLikeados + ", publicaciones=" + publicaciones.size() + ", hobby=" + hobby + ", likesDados=" + likesDados + ", likesRecibidos=" + likesRecibidos + ", matches1=" + matches1 + ", matches2=" + matches2 + '}';
     }
- 
     
- 
 }

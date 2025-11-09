@@ -81,14 +81,14 @@ private Control control;
     private void BtnLogInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLogInMouseClicked
         // TODO add your handling code here:
         if(autenticacion()){
-            control.MostrarMenuPrincipal();
+            control.mostrarMenuPrincipal();
         }
     }//GEN-LAST:event_BtnLogInMouseClicked
 
     private void BtnRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnRegistroMouseClicked
         // TODO add your handling code here:
         
-       control.MostrarRegistroDatosPersonales();
+       control.mostrarRegistroDatosPersonales();
     }//GEN-LAST:event_BtnRegistroMouseClicked
 
 

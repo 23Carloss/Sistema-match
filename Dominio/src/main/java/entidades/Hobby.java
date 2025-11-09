@@ -11,6 +11,15 @@ package entidades;
 public enum Hobby {
     
     MUSICA, LIBROS, PELICULAS, FOTOGRAFIA, TECNOLOGIA, DEPORTES, 
-    VIAJES, COCINA, BAILE
+    VIAJES, COCINA, BAILE;
+    
+    public static Hobby fromString(String str) {
+    for (Hobby h : Hobby.values()) {
+        if (h.name().equalsIgnoreCase(str)) {
+            return h;
+        }
+        }
+        throw new IllegalArgumentException("Hobby desconocido: " + str);
+    }
     
 }

@@ -94,7 +94,7 @@ private Control control;
 
     private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
         // TODO add your handling code here:
-        control.MostrarPerfil();
+//        control.MostrarPerfil();
     }//GEN-LAST:event_btnPerfilMouseClicked
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked

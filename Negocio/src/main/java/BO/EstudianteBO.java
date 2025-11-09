@@ -36,10 +36,9 @@ public class EstudianteBO implements IEstudianteBO {
     public void AgregarEstudiante(EstudianteDTO estudiante){
         try{
             estudianteDAO.agregar(mapper.ConvertirAEntity(estudiante));
-            JOptionPane msj = new JOptionPane("Usuario registrado con exito", JOptionPane.OK_OPTION);
-            
+            JOptionPane.showMessageDialog(null,"Usuario registrado con exito","Exito", JOptionPane.OK_OPTION);
         }catch(PersistenciaException e){
-            JOptionPane msj = new JOptionPane("Error al agregar al usuario", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error al agregar al usuario","Error", JOptionPane.ERROR_MESSAGE); 
            
         }
         
@@ -49,9 +48,9 @@ public class EstudianteBO implements IEstudianteBO {
     public void ActualizarEstudiante(EstudianteDTO estudiante){
         try{
             estudianteDAO.actualizar(mapper.ConvertirAEntity(estudiante));
-            JOptionPane msj = new JOptionPane("Usuario actulizado con exito", JOptionPane.OK_OPTION);
+            JOptionPane.showConfirmDialog(null,"Usuario actulizado con exito","Exito", JOptionPane.OK_OPTION);
         }catch(PersistenciaException e){
-            JOptionPane msj = new JOptionPane("Error al actualizar usuario", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error al actualizar usuario","Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     @Override
@@ -68,9 +67,13 @@ public class EstudianteBO implements IEstudianteBO {
     @Override
     public EstudianteDTO BuscarPorId(Long id){
         try {
-            return mapper.ConvertirADto(estudianteDAO.obtenerPorId(id));
+            Estudiante estudiante = estudianteDAO.obtenerPorId(id);
+            if(estudiante == null){
+                return null;
+            }
+            return mapper.ConvertirADto(estudiante);
         } catch (PersistenciaException ex) {
-            JOptionPane msj = new JOptionPane("Error al encontrar al usuario", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error al encontrar al usuario","Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }
@@ -79,7 +82,7 @@ public class EstudianteBO implements IEstudianteBO {
         try {
             return mapper.ConvertirListaADto(estudianteDAO.buscarPorNombre(nombre));
         } catch (PersistenciaException ex) {
-            JOptionPane msj = new JOptionPane("Error al buscar los usuarios", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error al buscar los usuarios", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }

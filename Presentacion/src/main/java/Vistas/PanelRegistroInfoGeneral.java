@@ -6,9 +6,8 @@ package Vistas;
 
 import Aplicacion.Control;
 import DTOs.EstudianteDTO;
-import entidades.Hobby;
-import java.awt.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 public class PanelRegistroInfoGeneral extends javax.swing.JPanel {
 private Control control;
 private EstudianteDTO estudianteARegistrar;
-private ArrayList<Hobby> listaHobbys;
+private List<String> listaHobbys;
     /**
      * Creates new form PanelRegistroInfoGeneral
      */
@@ -88,55 +87,46 @@ private ArrayList<Hobby> listaHobbys;
         jLabel6.setText("Registro");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 90, 50));
 
-        boxMusica.setText("Musica");
-        boxMusica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxMusicaActionPerformed(evt);
-            }
-        });
+        boxMusica.setText("MUSICA");
         add(boxMusica, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
-        boxDeportes.setText("Deportes");
+        boxDeportes.setText("DEPORTES");
         add(boxDeportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
 
-        boxLibros.setText("Libros");
+        boxLibros.setText("LIBROS");
         add(boxLibros, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
 
-        boxPeliculas.setText("Peliculas");
+        boxPeliculas.setText("PELICULAS");
         add(boxPeliculas, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
 
-        boxFotografia.setText("Fotografia");
+        boxFotografia.setText("FOTOGRAFIA");
         add(boxFotografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
 
-        boxTecnologia.setText("Tecnologia");
+        boxTecnologia.setText("TECNOLOGIA");
         add(boxTecnologia, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, -1, -1));
 
-        boxCocina.setText("Cocina");
+        boxCocina.setText("COCINA");
         add(boxCocina, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
 
-        boxBaile.setText("Baile");
+        boxBaile.setText("BAILE");
         add(boxBaile, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
 
-        boxViajes.setText("Viajes");
+        boxViajes.setText("VIAJES");
         add(boxViajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCancelarMouseClicked
         // TODO add your handling code here:
-        control.MostrarLogIn(); // que muestre la info personal con los datos q ya ingreso?
+        control.mostrarLogIn(); // que muestre la info personal con los datos q ya ingreso?
     }//GEN-LAST:event_BtnCancelarMouseClicked
 
     private void BtnContiuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnContiuarMouseClicked
         // TODO add your handling code here:
         obtenerHobbys();
         crearEstudiante();
-        control.MostrarLogIn();
+        control.mostrarLogIn();
         
     }//GEN-LAST:event_BtnContiuarMouseClicked
-
-    private void boxMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMusicaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_boxMusicaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -160,15 +150,22 @@ private ArrayList<Hobby> listaHobbys;
 
     private void obtenerHobbys(){
         listaHobbys = new ArrayList<>();
-        if (boxBaile.isSelected()) listaHobbys.add(Hobby.BAILE);
-        if (boxCocina.isSelected()) listaHobbys.add(Hobby.COCINA);
-        if (boxDeportes.isSelected()) listaHobbys.add(Hobby. DEPORTES);
-        if (boxFotografia.isSelected()) listaHobbys.add(Hobby.FOTOGRAFIA);
-        if (boxLibros.isSelected()) listaHobbys.add(Hobby.LIBROS);
-        if (boxMusica.isSelected()) listaHobbys.add(Hobby.MUSICA );
-        if (boxPeliculas.isSelected()) listaHobbys.add(Hobby.PELICULAS);
-        if (boxTecnologia.isSelected()) listaHobbys.add(Hobby.TECNOLOGIA);
-        if (boxViajes.isSelected()) listaHobbys.add(Hobby.VIAJES);
+        if (boxBaile.isSelected()) 
+            listaHobbys.add("Baile");
+        if (boxCocina.isSelected()) 
+            listaHobbys.add("Cocicna");
+        if (boxDeportes.isSelected()) 
+            listaHobbys.add("Deportes");
+        if (boxFotografia.isSelected()) 
+            listaHobbys.add("Fotografia");
+        if (boxLibros.isSelected()) 
+            listaHobbys.add("Libros");
+        if (boxMusica.isSelected()) listaHobbys.add("Musica");
+        if (boxPeliculas.isSelected()) 
+            listaHobbys.add("Peliculas");
+        if (boxTecnologia.isSelected()) 
+            listaHobbys.add("Tecnologia");
+        if (boxViajes.isSelected()) listaHobbys.add("Viajes");
         
     }
     private void crearEstudiante(){

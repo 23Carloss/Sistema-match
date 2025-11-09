@@ -6,9 +6,12 @@
 package Implementacion;
 
 import BO.EstudianteBO;
-import ConexionDB.conexionDB;
+import BO.PostBO;
 import DTOs.EstudianteDTO;
+import DTOs.PostDTO;
 import Interfaces.IEstudianteBO;
+import Interfaces.IPostBO;
+import java.util.List;
 
 /**
  *
@@ -16,11 +19,13 @@ import Interfaces.IEstudianteBO;
  */
 public class AdministracionEstudiantes {
     private IEstudianteBO estudianteBO;
+    private IPostBO postBO;
     private EstudianteDTO estudiante;
     
     
     public AdministracionEstudiantes(){
         estudianteBO = new EstudianteBO();
+        postBO = new PostBO();
     }
     
     public void ActualizarEstudiante(EstudianteDTO estudiante){
@@ -28,7 +33,7 @@ public class AdministracionEstudiantes {
     }
     public void AgregarEstudiante(EstudianteDTO estudiante){
         estudianteBO.AgregarEstudiante(estudiante);
-        System.out.println("Estudiante a registrar =  " + estudiante.toString());
+        setEstudiante(estudiante);
     }
     
    public void EliminarEstudiante(Long id){
@@ -47,6 +52,17 @@ public class AdministracionEstudiantes {
        return this.estudiante;
    }
    
+   public List<PostDTO> cargarPublicaciones(){
+      return postBO.obtenerPostFeed();
+       
+   }
+   public List<PostDTO> cargarPublicacionesEstudiante(EstudianteDTO estudiante){
+       return estudianteBO.BuscarPorId(estudiante.getId()).getListaPost();
+   }
+   
+   public void guardarPost(PostDTO post){
+      postBO.agregarPost(post);
+   }
    
     
 }
