@@ -6,6 +6,7 @@ package Pantallas;
 
 
 import Aplicacion.Control;
+import java.awt.Color;
 import static java.awt.SystemColor.control;
 import javax.swing.JOptionPane;
 
@@ -50,6 +51,19 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         txtCorreo.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 12)); // NOI18N
         txtCorreo.setText("Correo electrónico");
         txtCorreo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCorreoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCorreoFocusLost(evt);
+            }
+        });
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
 
         txtContrasenia.setText("Contraseña");
 
@@ -131,6 +145,26 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         control.MostrarRegistroDatosPersonales();
     }//GEN-LAST:event_btnPantallaRegistroActionPerformed
+    private void txtCorreoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusGained
+        // TODO add your handling code here:
+         if (txtCorreo.getText().equals("Ingresa tu correo")) {
+            txtCorreo.setText("");
+            txtCorreo.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtCorreoFocusGained
+
+    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
+        // TODO add your handling code here:
+        if (txtCorreo.getText().isEmpty()) {
+            txtCorreo.setText("Ingresa tu correo");
+            txtCorreo.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtCorreoFocusLost
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
+
 
     /**
      * @param args the command line arguments
