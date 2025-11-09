@@ -60,7 +60,7 @@ public class PostBO implements IPostBO{
             JOptionPane.showMessageDialog(null,"Error al obtener post del estudiante","Error", JOptionPane.OK_OPTION);
             return null;
         }
-        
+        // PON SOUT PARA SABER DESDE DONDE SE PIERDE EL ESTUDIANTE, FIJARSE PRIMERO DESDE EL LOG IN HASTA QUE LLEGA A LA BO
     }
     
     @Override

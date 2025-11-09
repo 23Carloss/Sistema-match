@@ -151,6 +151,7 @@ private Control control;
 
     private void BtnPublicacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnPublicacionesMouseClicked
         // TODO add your handling code here:
+        control.mostrarPublicacionesEstudiante();
         
     }//GEN-LAST:event_BtnPublicacionesMouseClicked
 
@@ -210,6 +211,7 @@ private Control control;
     
     public void cargarDatos(){
         EstudianteDTO estudianteDto = control.getEstudiante();
+        System.out.println("estudiante al abrir panel PerfilUsuario:  " + estudianteDto.toString());
         campoNombre.setText(estudianteDto.getNombre());
         campoApellidoP.setText(estudianteDto.getApellidoPaterno());
         campoApellidoM.setText(estudianteDto.getApellidoMaterno());

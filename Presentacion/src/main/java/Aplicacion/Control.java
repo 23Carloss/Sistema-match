@@ -13,10 +13,10 @@ import Vistas.FeedPrincipal;
 import Vistas.FramePrincipal;
 import Vistas.PanelEditarPerfil;
 import Vistas.PanelLogIn;
+import Vistas.PanelPublicaciones;
 import Vistas.PanelRegistroDatosPersonales;
 import Vistas.PanelRegistroInfoGeneral;
 import Vistas.PerfilUsuario;
-import Vistas.menuPrincipal;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -32,10 +32,12 @@ public class Control {
     private PanelRegistroDatosPersonales panelDatosPersonales;
     private PanelRegistroInfoGeneral panelInfoGeneral;
 //    private menuPrincipal menuPrincipal;
+    
     private FeedPrincipal feedPrincipal;
     private PerfilUsuario panelPerfil;
     private PanelEditarPerfil editarPerfil;
     private CrearPost crearPost;
+    private PanelPublicaciones publicacionesEstudiante;
 
     public Control() {
         frame = new FramePrincipal();
@@ -80,6 +82,12 @@ public class Control {
         crearPost = new CrearPost(this);
         cambiarPantalla(crearPost);
     }
+    public void mostrarPublicacionesEstudiante(){
+        publicacionesEstudiante = new PanelPublicaciones(this);
+        cambiarPantalla(publicacionesEstudiante);
+        // aqui falta el panel que implementara la creacion de los Paneles de las publicaciones para mostrarlos 1 uno por 1
+        
+    }
     
     private void cambiarPantalla(JPanel nuevaPantalla) {
         frame.getContentPane().removeAll();
@@ -122,12 +130,18 @@ public class Control {
        return moduloEstudiantes.cargarPublicaciones();
     }
     
-    public List<PostDTO> cargarPostEstudiante(EstudianteDTO estudiante){
-        return moduloEstudiantes.cargarPublicacionesEstudiante(estudiante);
+    public List<PostDTO> cargarPostEstudiante(){
+        return moduloEstudiantes.cargarPublicacionesEstudiante();
     }
     
     public void publicarPost(PostDTO post){
         moduloEstudiantes.guardarPost(post);
+    }
+    public void actulizarPost(PostDTO post){
+        moduloEstudiantes.actualizarPost(post);
+    }
+    public void eliminarPost(PostDTO post){
+        moduloEstudiantes.eliminarPost(post);
     }
     
 }

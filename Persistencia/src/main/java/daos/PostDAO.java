@@ -71,9 +71,13 @@ private EntityManager em;
     @Override
     public List<Post> obtenerPostPorEstudiante(long idEstudiante) throws PersistenciaException {
         try {
+            System.out.println("id q llega a la DAO:  " + idEstudiante);
             TypedQuery<Post> query = em.createQuery(
-                    "SELECT e FROM Post e WHERE (e.id_Estudiante) LIKE (:idEstudiante)", Post.class); // el LIKE LOWER en sql permite que coincida lo que se busca con lo que se ingresa sin que haya una diferencia entre mayúsculas y minúsculas (ejemplo: roBerto y Roberto)
+                    "SELECT p FROM Post p WHERE p.estudiante.id = :idEstudiante", Post.class); 
             query.setParameter("idEstudiante", idEstudiante);
+            for(Post post:query.getResultList() ){
+                System.out.println("Post q vienen desde la DB - DAO:  " + post.toString());
+            }
             return query.getResultList();
         } catch (Exception e) {
             throw new PersistenciaException("Error al buscar post por estudiantes", e);

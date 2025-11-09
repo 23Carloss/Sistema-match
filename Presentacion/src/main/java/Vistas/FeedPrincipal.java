@@ -8,6 +8,7 @@ import Aplicacion.Control;
 import DTOs.PostDTO;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import javax.swing.Box;
@@ -26,6 +27,7 @@ private Control control;
      */
     public FeedPrincipal(Control control) {
         this.control = control;
+        System.out.println("estudiante despues de registro:  " + control.getEstudiante().toString());
         initComponents();
         cargarFeed();
         scrollFeed();
@@ -48,6 +50,17 @@ private Control control;
         barra = new javax.swing.JScrollBar();
         panelContenido = new javax.swing.JPanel();
 
+        setMinimumSize(new java.awt.Dimension(600, 480));
+        setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(600, 480));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                formKeyTyped(evt);
+            }
+        });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnHome.setText("Home");
@@ -59,7 +72,7 @@ private Control control;
         add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 432, -1, -1));
 
         btnMensajes.setText("Mensajes");
-        add(btnMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+        add(btnMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
 
         btnPerfil.setText("Mi perifl");
         btnPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,22 +88,27 @@ private Control control;
         panelFeed.setMaximumSize(new java.awt.Dimension(550, 460));
         panelFeed.setMinimumSize(new java.awt.Dimension(540, 450));
         panelFeed.setPreferredSize(new java.awt.Dimension(550, 460));
+
+        barra.setMaximumSize(new java.awt.Dimension(540, 450));
+        barra.setPreferredSize(new java.awt.Dimension(540, 450));
         panelFeed.setViewportView(barra);
 
-        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 420, 390));
+        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 480, 390));
+
+        panelContenido.setMaximumSize(new java.awt.Dimension(540, 4000));
 
         javax.swing.GroupLayout panelContenidoLayout = new javax.swing.GroupLayout(panelContenido);
         panelContenido.setLayout(panelContenidoLayout);
         panelContenidoLayout.setHorizontalGroup(
             panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGap(0, 480, Short.MAX_VALUE)
         );
         panelContenidoLayout.setVerticalGroup(
             panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 390, Short.MAX_VALUE)
         );
 
-        add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 420, 390));
+        add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 480, 390));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
@@ -102,6 +120,20 @@ private Control control;
         // TODO add your handling code here:
         cargarFeed();
     }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+//        if(evt.getKeyCode()==KeyEvent.VK_DOWN || evt.getKeyCode() == KeyEvent.VK_S){
+//            scrollFeed();
+//        }
+
+        
+    }//GEN-LAST:event_formKeyPressed
+
+    private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -178,5 +210,6 @@ private Control control;
              }
          }));  
      }
+  
 
 }

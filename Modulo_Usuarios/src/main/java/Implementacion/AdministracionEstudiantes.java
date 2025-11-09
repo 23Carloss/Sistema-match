@@ -56,13 +56,22 @@ public class AdministracionEstudiantes {
       return postBO.obtenerPostFeed();
        
    }
-   public List<PostDTO> cargarPublicacionesEstudiante(EstudianteDTO estudiante){
-       return estudianteBO.BuscarPorId(estudiante.getId()).getListaPost();
+   public List<PostDTO> cargarPublicacionesEstudiante(){
+       System.out.println("estudiante cargado en moduloEstudiante:  " + this.estudiante.toString());
+       return postBO.obtenerPostPorEstudiante(this.estudiante);
    }
    
    public void guardarPost(PostDTO post){
       postBO.agregarPost(post);
    }
+   public void actualizarPost(PostDTO post){
+      postBO.actualizarPost(post);
+   }
+   
+   public void eliminarPost(PostDTO post){
+        postBO.eliminarPost(post.getId());
+   }
+   
    
     
 }

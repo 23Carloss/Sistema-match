@@ -4,17 +4,26 @@
  */
 package Vistas;
 
+import Aplicacion.Control;
+import DTOs.PostDTO;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author HP
  */
 public class PublicacionesEstudiante extends javax.swing.JPanel {
-
+private Control control;
+private PostDTO postActual;
     /**
      * Creates new form PublicacionesEstudiante
      */
-    public PublicacionesEstudiante() {
+    public PublicacionesEstudiante(Control control, PostDTO post) {
+        this.control =control;
+        this.postActual = post;
         initComponents();
+        cargarPost();
     }
 
     /**
@@ -28,54 +37,121 @@ public class PublicacionesEstudiante extends javax.swing.JPanel {
 
         labelMensaje = new javax.swing.JLabel();
         labelUsuario = new javax.swing.JLabel();
-        btnMeGusta = new javax.swing.JButton();
         labelCreadoEn = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         labelReacciones = new javax.swing.JLabel();
+        campoTexto = new javax.swing.JTextField();
+        btnConfirmar = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(540, 450));
+        setMinimumSize(new java.awt.Dimension(548, 440));
+        setPreferredSize(new java.awt.Dimension(548, 440));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelMensaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labelMensaje.setText("texto post");
-        add(labelMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 60, 490, 320));
+        labelMensaje.setText("texto");
+        add(labelMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 490, 150));
 
         labelUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelUsuario.setText("nombre usuario");
-        add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
-
-        btnMeGusta.setText("me gusta");
-        btnMeGusta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMeGustaMouseClicked(evt);
-            }
-        });
-        add(btnMeGusta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
+        add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         labelCreadoEn.setText("hora creacion");
-        add(labelCreadoEn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 120, -1));
+        add(labelCreadoEn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 120, -1));
 
-        labelReacciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labelReacciones.setText("0");
-        add(labelReacciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 50, -1));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Mis Publicaciones");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        btnEliminar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\barra-de-basura.png")); // NOI18N
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseClicked(evt);
+            }
+        });
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, -1, -1));
+
+        btnEditar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\lapiz.png")); // NOI18N
+        btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarMouseClicked(evt);
+            }
+        });
+        add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
+
+        btnCancelar.setBackground(new java.awt.Color(0, 0, 0));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseClicked(evt);
+            }
+        });
+        add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 140, 40));
+
+        labelReacciones.setText("reacciones");
+        add(labelReacciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 80, 30));
+        add(campoTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 510, 120));
+
+        btnConfirmar.setText("Confirmar cambios");
+        add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 150, 40));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnMeGustaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMeGustaMouseClicked
+    private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
         // TODO add your handling code here:
-//        if(postActual.isLikeado()){
-//            btnMeGusta.setBackground(Color.red);
-//            postActual.setNumeroReacciones(postActual.getNumeroReacciones() + 1);
-//            postActual.setLikeado(true);
-//        }else{
-//            btnMeGusta.setBackground(Color.GRAY);
-//        }
-    }//GEN-LAST:event_btnMeGustaMouseClicked
+        modoEditar();
+        control.actulizarPost(postActual);
+        control.mostrarPublicacionesEstudiante();
+    }//GEN-LAST:event_btnEditarMouseClicked
+
+    private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
+        // TODO add your handling code here:
+        control.eliminarPost(postActual);
+        control.mostrarPublicacionesEstudiante();
+    }//GEN-LAST:event_btnEliminarMouseClicked
+
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+        // TODO add your handling code here:
+        control.mostrarPerfil();
+    }//GEN-LAST:event_btnCancelarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMeGusta;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JTextField campoTexto;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelCreadoEn;
     private javax.swing.JLabel labelMensaje;
     private javax.swing.JLabel labelReacciones;
     private javax.swing.JLabel labelUsuario;
     // End of variables declaration//GEN-END:variables
+
+
+    private void modoEditar(){
+        labelMensaje.setEnabled(false);
+        labelMensaje.setVisible(false);
+        campoTexto.setEnabled(true);
+        campoTexto.setVisible(true);
+        btnConfirmar.setVisible(true);
+        
+    }
+    public void cargarPost(){
+        campoTexto.setEnabled(false);
+        campoTexto.setVisible(false);
+        btnConfirmar.setVisible(false);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+                                                       .withZone(ZoneId.systemDefault());
+        String fechaFormateada = formatter.format(postActual.getCreadoEn());
+        labelMensaje.setText(postActual.getMensaje());
+        labelCreadoEn.setText(fechaFormateada);
+        labelUsuario.setText(postActual.getEstudiante().getNombre());
+        labelReacciones.setText(postActual.getNumeroReacciones()+ "");
+    }
 }

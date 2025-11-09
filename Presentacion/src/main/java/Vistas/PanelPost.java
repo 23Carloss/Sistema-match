@@ -24,7 +24,7 @@ private PostDTO postActual;
     public PanelPost(Control control, PostDTO post) {
         this.control = control;
         this.postActual = post;
-        setPreferredSize(new Dimension(540, 450));
+        setPreferredSize(new Dimension(480, 390));
         initComponents();
         cargarPost();
     }
