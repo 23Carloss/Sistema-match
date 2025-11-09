@@ -31,10 +31,12 @@ private Control control;
     private void initComponents() {
 
         btnPerfil = new javax.swing.JButton();
-        btnMensajes = new javax.swing.JButton();
+        btnMatches = new javax.swing.JButton();
         panelPost = new javax.swing.JPanel();
-        btnHome = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(668, 530));
         setMinimumSize(new java.awt.Dimension(668, 530));
@@ -42,34 +44,52 @@ private Control control;
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnPerfil.setText("mi perfil");
+        btnPerfil.setBorder(null);
         btnPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPerfilMouseClicked(evt);
             }
         });
-        add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 490, -1, -1));
-
-        btnMensajes.setText("mensajes");
-        add(btnMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, -1, -1));
-
-        panelPost.setLayout(new java.awt.CardLayout());
-        add(panelPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 540, 450));
-
-        btnHome.setText("home");
-        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnHomeMouseClicked(evt);
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
             }
         });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, -1, -1));
+        add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 70, 30));
+
+        btnMatches.setText("Matches");
+        btnMatches.setBorder(null);
+        btnMatches.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMatchesActionPerformed(evt);
+            }
+        });
+        add(btnMatches, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 60, 30));
+
+        panelPost.setLayout(new java.awt.CardLayout());
+        add(panelPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 330, 260));
 
         btnBuscar.setText("buscar");
+        btnBuscar.setBorder(null);
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarMouseClicked(evt);
             }
         });
-        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 490, -1, -1));
+        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 60, 30));
+
+        jButton1.setText("No me interesa");
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 330, 130, -1));
+
+        jButton2.setBackground(new java.awt.Color(0, 204, 255));
+        jButton2.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Me interesa");
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 130, -1));
+
+        jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        jLabel1.setText("Explorar");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
@@ -77,20 +97,26 @@ private Control control;
         control.MostrarPerfil();
     }//GEN-LAST:event_btnPerfilMouseClicked
 
-    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHomeMouseClicked
-
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarMouseClicked
 
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPerfilActionPerformed
+
+    private void btnMatchesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatchesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMatchesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnMensajes;
+    private javax.swing.JButton btnMatches;
     private javax.swing.JButton btnPerfil;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel panelPost;
     // End of variables declaration//GEN-END:variables
 }

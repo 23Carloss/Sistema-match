@@ -89,6 +89,11 @@ private ArrayList<Hobby> listaHobbys;
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 90, 50));
 
         boxMusica.setText("Musica");
+        boxMusica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxMusicaActionPerformed(evt);
+            }
+        });
         add(boxMusica, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
         boxDeportes.setText("Deportes");
@@ -128,6 +133,10 @@ private ArrayList<Hobby> listaHobbys;
         control.MostrarLogIn();
         
     }//GEN-LAST:event_BtnContiuarMouseClicked
+
+    private void boxMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMusicaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxMusicaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
