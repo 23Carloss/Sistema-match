@@ -34,6 +34,20 @@ public class LikeBO implements ILikeBO {
         postMapper =new PostMapper();
     }
     
+    private boolean validarLike(LikeDTO like){
+        if (like.getPost() == null || like.getPost().getId() == null || like.getPost().getId() <=0) {
+            JOptionPane.showMessageDialog(null, "Se debe seleccionar un post v[alido", "Error al validar", JOptionPane.ERROR_MESSAGE);
+        }
+        if (like.getEstudianteDestino() == null || like.getEstudianteDestino().getId() == null || like.getEstudianteDestino().getId() <= 0) {
+            JOptionPane.showMessageDialog(null, "Se debe seleccionar un estudiante v[alido", "Error al validar", JOptionPane.ERROR_MESSAGE);
+
+        }
+        if (like.getEstudianteOrigen()== null || like.getEstudianteOrigen().getId() == null || like.getEstudianteOrigen().getId() <= 0) {
+            JOptionPane.showMessageDialog(null, "Se debe seleccionar un estudiante v[alido", "Error al validar", JOptionPane.ERROR_MESSAGE);
+        }
+        return true;
+    }
+    
 
     @Override
     public LikeDTO agregarLike(LikeDTO like){

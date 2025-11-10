@@ -28,6 +28,13 @@ public class EstudianteLikeBO implements IEstudianteLikeBO{
         mapper =new EstudianteLikeMapper();
     }
     
+    private boolean validarEstudianteLike(EstudianteLikeDTO like){
+        if (true) {
+            
+        }
+        return true;
+    }
+    
     @Override
     public EstudianteLikeDTO agregarEstudianteLike(EstudianteLikeDTO estudianteLike) {
         try {
