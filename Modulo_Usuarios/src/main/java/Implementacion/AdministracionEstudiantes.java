@@ -64,7 +64,7 @@ public class AdministracionEstudiantes {
    
    public void setEstudianteBuscado(EstudianteDTO estudiante){
        this.estudianteLikeado = estudiante;
-       System.out.println("Estudinte q lleg  modulo "  + estudiante.toString());
+//       System.out.println("Estudinte q lleg  modulo "  + estudiante.toString());
    }
    public EstudianteDTO getEstudianteBuscado(){
        return this.estudianteLikeado;
@@ -135,10 +135,11 @@ public class AdministracionEstudiantes {
        this.estudianteLike= estudianteLikeBO.agregarEstudianteLike(estudianteLike);
    }
    public void eliminarEstudianteLike(EstudianteLikeDTO estudianteLike){
+       System.out.println("Estudinte en modulo: eliminr: " + estudianteLike.toString());
        estudianteLikeBO.eliminarEstudianteLike(estudianteLike.getId());
    }
    public EstudianteLikeDTO getEstudianteLike(){
-       return this.estudianteLike;
+       return estudianteLikeBO.obtenerEstudianteLike(estudiante, estudianteLikeado);
    }
    public boolean verificarEstudianteLike(EstudianteDTO estudianteActual, EstudianteDTO origen){
        return estudianteLikeBO.existeEstudianteLike(estudianteActual, origen);

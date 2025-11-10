@@ -34,35 +34,43 @@ private PostDTO postCreado;
 
         campoMensaje = new javax.swing.JTextField();
         btnPublicar = new javax.swing.JButton();
-        btnDescartar = new javax.swing.JButton();
+        btnPerfil = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnHome = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(563, 470));
         setPreferredSize(new java.awt.Dimension(563, 470));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(campoMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 487, 280));
+        add(campoMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 520, 280));
 
-        btnPublicar.setBackground(new java.awt.Color(0, 0, 0));
         btnPublicar.setForeground(new java.awt.Color(255, 255, 255));
-        btnPublicar.setText("Publicar");
+        btnPublicar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\nuevopost.png")); // NOI18N
         btnPublicar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPublicarMouseClicked(evt);
             }
         });
-        add(btnPublicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 100, 30));
+        add(btnPublicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, 70, 40));
 
-        btnDescartar.setText("Descartar");
-        btnDescartar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnPerfil.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\miperfil.png")); // NOI18N
+        btnPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnDescartarMouseClicked(evt);
+                btnPerfilMouseClicked(evt);
             }
         });
-        add(btnDescartar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 100, 30));
+        add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 60, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Crear Publicacion");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 160, 30));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 160, 30));
+
+        btnHome.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\hogar.png")); // NOI18N
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 60, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPublicarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPublicarMouseClicked
@@ -72,14 +80,20 @@ private PostDTO postCreado;
         control.mostrarMenuPrincipal();
     }//GEN-LAST:event_btnPublicarMouseClicked
 
-    private void btnDescartarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDescartarMouseClicked
+    private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
+        // TODO add your handling code here:
+        control.mostrarPerfil();
+    }//GEN-LAST:event_btnPerfilMouseClicked
+
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
         // TODO add your handling code here:
         control.mostrarMenuPrincipal();
-    }//GEN-LAST:event_btnDescartarMouseClicked
+    }//GEN-LAST:event_btnHomeMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDescartar;
+    private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnPublicar;
     private javax.swing.JTextField campoMensaje;
     private javax.swing.JLabel jLabel1;

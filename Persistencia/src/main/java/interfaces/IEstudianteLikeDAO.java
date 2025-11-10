@@ -21,4 +21,6 @@ public interface IEstudianteLikeDAO {
     EstudianteLike buscarPorId(Long id) throws PersistenciaException;
     
     public boolean existeEstudianteLike(long idOrigen, long idDestino) throws PersistenciaException;
+
+    public EstudianteLike buscarLike(Long idOrigen, Long idDestino) throws PersistenciaException;
 }

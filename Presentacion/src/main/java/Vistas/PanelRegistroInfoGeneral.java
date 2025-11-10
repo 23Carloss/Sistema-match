@@ -53,24 +53,23 @@ private List<String> listaHobbys;
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BtnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        BtnCancelar.setText("Cancelar");
+        BtnCancelar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\perfil-del-usuario.png")); // NOI18N
         BtnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnCancelarMouseClicked(evt);
             }
         });
-        add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 150, 40));
+        add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 100, 50));
 
-        BtnContiuar.setBackground(new java.awt.Color(0, 0, 0));
         BtnContiuar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         BtnContiuar.setForeground(new java.awt.Color(255, 255, 255));
-        BtnContiuar.setText("Confirmar");
+        BtnContiuar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\salvar.png")); // NOI18N
         BtnContiuar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnContiuarMouseClicked(evt);
             }
         });
-        add(BtnContiuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 570, 150, 40));
+        add(BtnContiuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 580, 110, 50));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Carrera:");
@@ -153,7 +152,7 @@ private List<String> listaHobbys;
         if (boxBaile.isSelected()) 
             listaHobbys.add("Baile");
         if (boxCocina.isSelected()) 
-            listaHobbys.add("Cocicna");
+            listaHobbys.add("Cocina");
         if (boxDeportes.isSelected()) 
             listaHobbys.add("Deportes");
         if (boxFotografia.isSelected()) 

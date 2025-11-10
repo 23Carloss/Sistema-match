@@ -86,13 +86,13 @@ private PostDTO postActual;
         add(labelReacciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 80, 30));
         add(campoTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 510, 120));
 
-        btnConfirmar.setText("Confirmar cambios");
+        btnConfirmar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\salvar.png")); // NOI18N
         btnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnConfirmarMouseClicked(evt);
             }
         });
-        add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 150, 40));
+        add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 100, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked

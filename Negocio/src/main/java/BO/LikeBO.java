@@ -53,8 +53,8 @@ public class LikeBO implements ILikeBO {
     public LikeDTO agregarLike(LikeDTO like){
         try {
             LikeDTO likeDto = mapper.convertirADto(likeDAO.agregar(mapper.convertirAEntity(like)));
-            JOptionPane.showMessageDialog(null,"Like enviado con exito","Exito", JOptionPane.OK_OPTION);
-            System.out.println("Like desde DAO :" + likeDto.toString());
+//            JOptionPane.showMessageDialog(null,"Like enviado con exito","Exito", JOptionPane.OK_OPTION);
+//            System.out.println("Like desde DAO :" + likeDto.toString());
             return likeDto;
             
             
@@ -68,7 +68,7 @@ public class LikeBO implements ILikeBO {
     public void eliminarLike(long id) {
         try {
             likeDAO.eliminar(id);
-            JOptionPane.showMessageDialog(null,"Like eliminado con exito","Exito", JOptionPane.OK_OPTION);
+//            JOptionPane.showMessageDialog(null,"Like eliminado con exito","Exito", JOptionPane.OK_OPTION);
         } catch (PersistenciaException ex) {
             JOptionPane.showMessageDialog(null,"Like no fue eliminado","Error", JOptionPane.OK_OPTION);
         }
@@ -78,8 +78,8 @@ public class LikeBO implements ILikeBO {
     public boolean verificarReaccionEstudiante(PostDTO post, long idEstudiante) {
         try {
             Post postEncontrdo = conexionDB.getEntityManager().find(Post.class, post.getId());
-            System.out.println("post encontrdo: " + postEncontrdo.toString());
-            System.out.println("id encontrdo: " + idEstudiante);
+//            System.out.println("post encontrdo: " + postEncontrdo.toString());
+//            System.out.println("id encontrdo: " + idEstudiante);
             return likeDAO.verificarReaccionEstudiante(postEncontrdo, idEstudiante);
         } catch (PersistenciaException ex) {
             JOptionPane.showMessageDialog(null,"Error al verificar like","Error", JOptionPane.OK_OPTION);

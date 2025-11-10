@@ -15,4 +15,5 @@ public interface IEstudianteLikeBO {
     public EstudianteLikeDTO agregarEstudianteLike(EstudianteLikeDTO estudianteLike);
     public void eliminarEstudianteLike(long id);
     public boolean existeEstudianteLike(EstudianteDTO origen, EstudianteDTO destino);
+    public EstudianteLikeDTO obtenerEstudianteLike(EstudianteDTO origen, EstudianteDTO destino);
 }

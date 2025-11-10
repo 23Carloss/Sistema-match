@@ -58,38 +58,37 @@ private Control control;
         setPreferredSize(new java.awt.Dimension(660, 541));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnHome.setText("Home");
+        btnHome.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\hogar.png")); // NOI18N
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnHomeMouseClicked(evt);
             }
         });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, -1, -1));
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 40, 40));
 
         btnMensajes.setText("Mensajes");
         add(btnMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, -1, -1));
 
-        btnPerfil.setText("Mi perifl");
+        btnPerfil.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\miperfil.png")); // NOI18N
         btnPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPerfilMouseClicked(evt);
             }
         });
-        add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 490, -1, -1));
+        add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 480, 50, 40));
 
-        btnBuscar.setText("Buscar");
+        btnBuscar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\vaso.png")); // NOI18N
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarMouseClicked(evt);
             }
         });
-        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 490, -1, -1));
+        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 480, 50, 40));
 
         panelFeed.setMaximumSize(new java.awt.Dimension(550, 440));
         panelFeed.setMinimumSize(new java.awt.Dimension(550, 440));
         panelFeed.setPreferredSize(new java.awt.Dimension(550, 440));
 
-        barra.setMaximumSize(new java.awt.Dimension(580, 100));
         barra.setPreferredSize(new java.awt.Dimension(580, 420));
         panelFeed.setViewportView(barra);
 

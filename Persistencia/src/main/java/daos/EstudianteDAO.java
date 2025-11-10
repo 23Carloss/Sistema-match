@@ -125,15 +125,15 @@ public class EstudianteDAO implements IEstudianteDAO {
         }
     }
 
-    private Estudiante buscarPorCorreo(String correo) throws PersistenciaException {
-        try {
-            TypedQuery<Estudiante> query = em.createQuery("Select e from Estudiante e where e.correo = :correo", Estudiante.class)
-                    .setParameter("correo", correo);
-            List<Estudiante> resultados = query.getResultList();
-            return resultados.isEmpty() ? null : resultados.get(0);
-        } catch (Exception e) {
-            throw new PersistenciaException("Correo no encontrado", e);
-        }
-    }
+//    private Estudiante buscarPorCorreo(String correo) throws PersistenciaException {
+//        try {
+//            TypedQuery<Estudiante> query = em.createQuery("Select e from Estudiante e where e.correo = :correo", Estudiante.class)
+//                    .setParameter("correo", correo);
+//            List<Estudiante> resultados = query.getResultList();
+//            return resultados.isEmpty() ? null : resultados.get(0);
+//        } catch (Exception e) {
+//            throw new PersistenciaException("Correo no encontrado", e);
+//        }
+//    }
 
 }

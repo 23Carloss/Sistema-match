@@ -192,7 +192,7 @@ public class Control {
         moduloEstudiantes.registrarEstudianteLike(estudianteLike);
     }
     public void eliminarEstudianteLike(EstudianteLikeDTO estudianteLike){
-        moduloEstudiantes.registrarEstudianteLike(estudianteLike);
+        moduloEstudiantes.eliminarEstudianteLike(estudianteLike);
     }
     public EstudianteLikeDTO getEstudianteLike(){
         return moduloEstudiantes.getEstudianteLike();

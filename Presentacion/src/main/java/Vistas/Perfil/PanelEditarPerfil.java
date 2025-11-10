@@ -59,12 +59,14 @@ private List<String> listaHobbys;
         boxBaile = new javax.swing.JCheckBox();
         boxLibros = new javax.swing.JCheckBox();
         boxDeportes = new javax.swing.JCheckBox();
+        btnCncelr = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(686, 521));
         setMinimumSize(new java.awt.Dimension(686, 521));
         setPreferredSize(new java.awt.Dimension(686, 521));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        labelNombreUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelNombreUsuario.setText("NombreUsuario");
         add(labelNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
@@ -91,15 +93,14 @@ private List<String> listaHobbys;
         add(campoApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 220, 30));
         add(campoCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 220, 30));
 
-        BtnConfirmar.setBackground(new java.awt.Color(0, 0, 0));
         BtnConfirmar.setForeground(new java.awt.Color(255, 255, 255));
-        BtnConfirmar.setText("Confirmar");
+        BtnConfirmar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\salvar.png")); // NOI18N
         BtnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnConfirmarMouseClicked(evt);
             }
         });
-        add(BtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 400, 100, 40));
+        add(BtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 450, 90, 60));
 
         panelBoxes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -131,6 +132,14 @@ private List<String> listaHobbys;
         panelBoxes.add(boxDeportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
 
         add(panelBoxes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 320, 140));
+
+        btnCncelr.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\volver-flecha.png")); // NOI18N
+        btnCncelr.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCncelrMouseClicked(evt);
+            }
+        });
+        add(btnCncelr, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 80, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnConfirmarMouseClicked
@@ -140,6 +149,11 @@ private List<String> listaHobbys;
         //logica para confirmar los cambios en el usuario, falta armar DTO
 
     }//GEN-LAST:event_BtnConfirmarMouseClicked
+
+    private void btnCncelrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCncelrMouseClicked
+        // TODO add your handling code here:
+        control.mostrarPerfil();
+    }//GEN-LAST:event_btnCncelrMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -153,6 +167,7 @@ private List<String> listaHobbys;
     private javax.swing.JCheckBox boxPeliculas;
     private javax.swing.JCheckBox boxTecnologia;
     private javax.swing.JCheckBox boxViajes;
+    private javax.swing.JButton btnCncelr;
     private javax.swing.JTextField campoApellidoM;
     private javax.swing.JTextField campoApellidoP;
     private javax.swing.JTextField campoCarrera;
@@ -205,7 +220,7 @@ private List<String> listaHobbys;
         if (boxBaile.isSelected()) 
             listaHobbys.add("Baile");
         if (boxCocina.isSelected()) 
-            listaHobbys.add("Cocicna");
+            listaHobbys.add("Cocina");
         if (boxDeportes.isSelected()) 
             listaHobbys.add("Deportes");
         if (boxFototgrafia.isSelected()) 

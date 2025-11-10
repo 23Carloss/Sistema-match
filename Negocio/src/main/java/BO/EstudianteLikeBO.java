@@ -11,6 +11,7 @@ import DTOs.EstudianteLikeDTO;
 import Interfaces.IEstudianteLikeBO;
 import Mappers.EstudianteLikeMapper;
 import daos.EstudianteLikeDAO;
+import entidades.EstudianteLike;
 import exception.PersistenciaException;
 import interfaces.IEstudianteLikeDAO;
 import javax.swing.JOptionPane;
@@ -62,14 +63,26 @@ public class EstudianteLikeBO implements IEstudianteLikeBO{
     @Override
     public boolean existeEstudianteLike(EstudianteDTO origen, EstudianteDTO destino) {
        try {
-            estudianteLikeDAO.existeEstudianteLike(origen.getId(), destino.getId());
+            
             JOptionPane.showMessageDialog(null,"Like al estudiante eliminado con exito","Exito", JOptionPane.OK_OPTION);
-            return true;
+            return estudianteLikeDAO.existeEstudianteLike(origen.getId(), destino.getId());
         } catch (PersistenciaException e) {
             JOptionPane.showMessageDialog(null,"Error al eliminar Like al estudiante ","Error", JOptionPane.OK_OPTION);
             return false;
         }
     }
-    
 
+    @Override
+    public EstudianteLikeDTO obtenerEstudianteLike(EstudianteDTO origen, EstudianteDTO destino) {
+        try {
+            EstudianteLike entity = estudianteLikeDAO.buscarLike(origen.getId(), destino.getId());
+            if (entity == null) {
+                return null;
+            }
+            return mapper.convertirADto(entity);
+        } catch (PersistenciaException e) {
+            JOptionPane.showMessageDialog(null,"Error al obtner Like del estudiante ","Error", JOptionPane.OK_OPTION);
+            return null;
+            }
+        }
 }

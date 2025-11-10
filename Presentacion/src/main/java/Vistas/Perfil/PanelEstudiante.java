@@ -7,7 +7,6 @@ package Vistas.Perfil;
 import Aplicacion.Control;
 import DTOs.EstudianteDTO;
 import DTOs.EstudianteLikeDTO;
-import DTOs.LikeDTO;
 import DTOs.PostDTO;
 import Vistas.Post.PanelPost;
 import java.awt.Component;
@@ -18,6 +17,7 @@ import java.time.Instant;
 import java.util.List;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JScrollPane;
 import javax.swing.Timer;
 
@@ -36,7 +36,9 @@ private EstudianteLikeDTO estudianteLike;
     public PanelEstudiante(Control control, EstudianteDTO estudiante) {
         this.control = control;
         this.estudiante = estudiante;
+        
         initComponents();
+        cargarListHobbys();
         cargarFeed();
         scrollFeed();
         verificarEstadoLike();
@@ -59,29 +61,31 @@ private EstudianteLikeDTO estudianteLike;
         lblNombre = new javax.swing.JLabel();
         panelContenido = new javax.swing.JPanel();
         btnDisLike = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listHobby = new javax.swing.JList<>();
+        btnVolver = new javax.swing.JButton();
 
-        setMaximumSize(new java.awt.Dimension(664, 550));
-        setMinimumSize(new java.awt.Dimension(664, 550));
-        setPreferredSize(new java.awt.Dimension(664, 550));
+        setMaximumSize(new java.awt.Dimension(757, 614));
+        setMinimumSize(new java.awt.Dimension(757, 614));
+        setPreferredSize(new java.awt.Dimension(757, 614));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelFeed.setMaximumSize(new java.awt.Dimension(600, 440));
-        panelFeed.setMinimumSize(new java.awt.Dimension(580, 420));
-        panelFeed.setPreferredSize(new java.awt.Dimension(520, 440));
+        panelFeed.setMaximumSize(new java.awt.Dimension(539, 440));
+        panelFeed.setMinimumSize(new java.awt.Dimension(539, 440));
+        panelFeed.setPreferredSize(new java.awt.Dimension(539, 440));
 
-        barra.setMinimumSize(new java.awt.Dimension(520, 440));
         barra.setPreferredSize(new java.awt.Dimension(540, 450));
         panelFeed.setViewportView(barra);
 
-        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 520, 440));
+        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 520, 440));
 
-        btnHome.setText("Home");
+        btnHome.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\hogar.png")); // NOI18N
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnHomeMouseClicked(evt);
             }
         });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, -1, -1));
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 550, 60, 50));
 
         btnLike.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\corazon.png")); // NOI18N
         btnLike.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,11 +93,11 @@ private EstudianteLikeDTO estudianteLike;
                 btnLikeMouseClicked(evt);
             }
         });
-        add(btnLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 50, 30));
+        add(btnLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 50, 40));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblNombre.setText("nombre estudinte");
-        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 500, -1));
 
         panelContenido.setMaximumSize(new java.awt.Dimension(600, 32767));
         panelContenido.setMinimumSize(new java.awt.Dimension(600, 440));
@@ -110,15 +114,33 @@ private EstudianteLikeDTO estudianteLike;
             .addGap(0, 440, Short.MAX_VALUE)
         );
 
-        add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 520, 420));
+        add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 520, 420));
 
-        btnDisLike.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\corazon (1).png")); // NOI18N
+        btnDisLike.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\corazon.png")); // NOI18N
         btnDisLike.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDisLikeMouseClicked(evt);
             }
         });
-        add(btnDisLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 500, 40, 30));
+        add(btnDisLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 560, 50, 40));
+
+        listHobby.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        listHobby.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { " " };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(listHobby);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 140, 260));
+
+        btnVolver.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\volver-flecha.png")); // NOI18N
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolverMouseClicked(evt);
+            }
+        });
+        add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 70, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
@@ -134,10 +156,17 @@ private EstudianteLikeDTO estudianteLike;
 
     private void btnDisLikeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDisLikeMouseClicked
         // TODO add your handling code here:
+       EstudianteLikeDTO like = control.getEstudianteLike(); // ← consulta actual
+        if (like != null) {
+            control.eliminarEstudianteLike(like);
+        }
         verificarEstadoLike();
-        
-        eliminarLike();
     }//GEN-LAST:event_btnDisLikeMouseClicked
+
+    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
+        // TODO add your handling code here:
+        control.mostrarBuscarEstudiante();
+    }//GEN-LAST:event_btnVolverMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -145,7 +174,10 @@ private EstudianteLikeDTO estudianteLike;
     private javax.swing.JButton btnDisLike;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLike;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JList<String> listHobby;
     private javax.swing.JPanel panelContenido;
     private javax.swing.JScrollPane panelFeed;
     // End of variables declaration//GEN-END:variables
@@ -155,19 +187,23 @@ private EstudianteLikeDTO estudianteLike;
         EstudianteLikeDTO estudianteLike = new EstudianteLikeDTO();
         estudianteLike.setEstudianteDestino(control.getEstudianteBuscado());
         estudianteLike.setEstudianteOrigen(control.getEstudiante());
-        estudianteLike.setCreadoEn(Instant.now());    
+        estudianteLike.setCreadoEn(Instant.now());  
         control.registrarEstudianteLike(estudianteLike);
         
  
     }
 
     public void eliminarLike(){
+        System.out.println("Lo intent??");
         this.estudianteLike = control.getEstudianteLike();
         control.eliminarEstudianteLike(estudianteLike);
-        
     }
+    
     public void cargarFeed(){
-        
+        EstudianteDTO estudianteBuscado = control.getEstudianteBuscado();
+        String nombreC = estudianteBuscado.getNombre() + " " +estudianteBuscado.getApellidoPaterno() + " " +estudianteBuscado.getApellidoMaterno();
+        verificarEstadoLike();
+        lblNombre.setText(nombreC);
         panelContenido.removeAll();
         panelContenido.setLayout(new BoxLayout(panelContenido, BoxLayout.Y_AXIS));
         List<PostDTO> posts = control.cargarPostEstudiante(estudiante);
@@ -235,17 +271,20 @@ private EstudianteLikeDTO estudianteLike;
   
   public void verificarEstadoLike() {
         EstudianteLikeDTO like = control.getEstudianteLike();
-        if (like != null) {
-            btnLike.setVisible(false);
-            btnLike.setEnabled(false);
-            btnDisLike.setVisible(true);
-            btnDisLike.setEnabled(true);
-        } else {
-            btnDisLike.setVisible(false);
-            btnDisLike.setEnabled(false);
-            btnLike.setVisible(true);
-            btnLike.setEnabled(true);
-        }
+        boolean yaLikeado = (like != null);
+        btnLike.setVisible(!yaLikeado);
+        btnLike.setEnabled(!yaLikeado);
+        btnDisLike.setVisible(yaLikeado);
+        btnDisLike.setEnabled(yaLikeado);
     }
+  public void cargarListHobbys(){
+       List<String> hobbies = control.getEstudianteBuscado().getHobbies();
+       DefaultListModel<String> list = new DefaultListModel<>();
+       for (String h : hobbies) {
+           list.addElement(h);
+       }
+       listHobby.setModel(list);
+        
+  }
 
 }

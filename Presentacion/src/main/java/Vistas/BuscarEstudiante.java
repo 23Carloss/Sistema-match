@@ -73,29 +73,29 @@ private Control control;
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 480, 410));
 
-        btnPerfil.setText("Perfil");
+        btnPerfil.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\miperfil.png")); // NOI18N
         btnPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPerfilMouseClicked(evt);
             }
         });
-        add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 530, -1, -1));
+        add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 530, 40, -1));
 
-        btnHome.setText("Home");
+        btnHome.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\hogar.png")); // NOI18N
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnHomeMouseClicked(evt);
             }
         });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, -1, -1));
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, 40, -1));
 
-        btnBuscar.setText("Buscar");
+        btnBuscar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\vaso.png")); // NOI18N
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarMouseClicked(evt);
             }
         });
-        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, -1, -1));
+        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 530, 40, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Busqueda de estudiantes");
@@ -143,7 +143,9 @@ private Control control;
             EstudianteDTO estudianteSeleccionado = control.cargarEstudiantesPorNombre(campoBuscar.getText()).get(modelRow);
             System.out.println("Estudiante seleccionado:  " + estudianteSeleccionado.toString());
             control.setEstudianteBuscado(estudianteSeleccionado);
+            
         }
+        
         
     }
     public void CargarTabla(){

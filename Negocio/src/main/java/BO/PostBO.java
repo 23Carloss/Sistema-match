@@ -13,6 +13,7 @@ import daos.PostDAO;
 import entidades.Post;
 import exception.PersistenciaException;
 import interfaces.IPostDAO;
+import java.time.Instant;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -33,16 +34,10 @@ public class PostBO implements IPostBO {
     @Override
     public void agregarPost(PostDTO post) {
         try {
-            if (post == null) {
-                JOptionPane.showMessageDialog(null, "El post no puede ser nulo", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+            if(validarPost(post)){
+                postDAO.agregarPost(mapper.convertirAEntity(post));
+                JOptionPane.showMessageDialog(null, "Post publicado con exito", "Exito", JOptionPane.YES_OPTION);
             }
-            if (post.getEstudiante() == null) {
-                JOptionPane.showMessageDialog(null, "El post debe tener un estudiante asociado", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            postDAO.agregarPost(mapper.convertirAEntity(post));
-            JOptionPane.showMessageDialog(null, "Post publicado con exito", "Exito", JOptionPane.OK_OPTION);
         } catch (PersistenciaException ex) {
             JOptionPane.showMessageDialog(null, "Error al publicar post", "Error", JOptionPane.OK_OPTION);
         }
@@ -51,15 +46,13 @@ public class PostBO implements IPostBO {
     @Override
     public PostDTO actualizarPost(PostDTO post) {
         try {
-            if (post == null || post.getId() == null) {
-                JOptionPane.showMessageDialog(null, "El post no existe", "Error", JOptionPane.ERROR_MESSAGE);
-                return null;
-            }
-            
-            Post postActualizado = postDAO.actualizarPost(mapper.convertirAEntity(post));
-            JOptionPane.showMessageDialog(null, "Post publicado con exito", "Exito", JOptionPane.OK_OPTION);
+            if(validarPost(post)){
+                Post postActualizado = postDAO.actualizarPost(mapper.convertirAEntity(post));
+                JOptionPane.showMessageDialog(null, "Post publicado con exito", "Exito", JOptionPane.YES_OPTION);
 
-            return mapper.convertirADto(postActualizado);
+                return mapper.convertirADto(postActualizado);
+            }
+            return null;
         } catch (PersistenciaException ex) {
             JOptionPane.showMessageDialog(null, "Error al actualizar post", "Error", JOptionPane.OK_OPTION);
             return null;
@@ -101,7 +94,7 @@ public class PostBO implements IPostBO {
                 return;
             }
             postDAO.eliminarPost(id);
-            JOptionPane.showMessageDialog(null, "Post eliminado con exito", "Exito", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Post eliminado con exito", "Exito", JOptionPane.YES_OPTION);
         } catch (PersistenciaException ex) {
             JOptionPane.showMessageDialog(null, "Error al eliminar post", "Error", JOptionPane.OK_OPTION);
         }
@@ -110,17 +103,11 @@ public class PostBO implements IPostBO {
     @Override
     public PostDTO actualizarReacciones(PostDTO post) {
         try {
-            if (post == null || post.getId() == null) {
-                JOptionPane.showMessageDialog(null, "El post no es válido", "Error", JOptionPane.ERROR_MESSAGE);
-                return null;
+            if(validarPost(post)){
+                PostDTO postDto = mapper.convertirADto(postDAO.actulizarReaccion(mapper.convertirAEntity(post)));;
+                return postDto;
             }
-            if (post.getNumeroReacciones() < 0) {
-                JOptionPane.showMessageDialog(null, "El numero de reacciones debe ser positivo", "Erro", JOptionPane.ERROR_MESSAGE);
-                return post;
-            }
-
-            PostDTO postDto = mapper.convertirADto(postDAO.actulizarReaccion(mapper.convertirAEntity(post)));
-            return postDto;
+            return null;
         } catch (PersistenciaException ex) {
             JOptionPane.showMessageDialog(null, "Error al actualizar post", "Error", JOptionPane.OK_OPTION);
             return null;
@@ -130,20 +117,37 @@ public class PostBO implements IPostBO {
     @Override
     public boolean verificarReaccionEstudiante(PostDTO post, long idEstudiante) {
         try {
-            if (post == null || post.getId() == null) {
-                JOptionPane.showMessageDialog(null, "El post no existe", "Error", JOptionPane.ERROR_MESSAGE);
-                return false;
+            if(validarPost(post)){
+                 return postDAO.verificarReaccionEstudiante(mapper.convertirAEntity(post), idEstudiante);
             }
-            if (idEstudiante <= 0) {
-                JOptionPane.showMessageDialog(null, "ID de estudiante inválido", "Error", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-
-            return postDAO.verificarReaccionEstudiante(mapper.convertirAEntity(post), idEstudiante);
+            return false;
         } catch (PersistenciaException ex) {
             JOptionPane.showMessageDialog(null, "Error al verififcar like", "Error", JOptionPane.OK_OPTION);
             return false;
         }
+    }
+    private boolean validarPost(PostDTO post) {
+        if (post == null) {
+            JOptionPane.showMessageDialog(null, "El post no puede ser nulo", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (post.getMensaje() == null || post.getMensaje().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El mensaje del post no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (post.getCreadoEn() == null || post.getCreadoEn().isAfter(Instant.now())) {
+            JOptionPane.showMessageDialog(null, "La fecha de creacion no es valida", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (post.getNumeroReacciones() < 0) {
+            JOptionPane.showMessageDialog(null, "El numero de reacciones debe ser positivo", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (post.getEstudiante() == null || post.getEstudiante().getId() == null || post.getEstudiante().getId() <= 0) {
+            JOptionPane.showMessageDialog(null, "El post debe tener un estudiante valido", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
     }
 
 }

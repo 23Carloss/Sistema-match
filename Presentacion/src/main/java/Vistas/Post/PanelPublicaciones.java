@@ -50,6 +50,8 @@ private EstudianteDTO estudiante;
         barra = new javax.swing.JScrollBar();
         panelContenido = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(604, 508));
         setMinimumSize(new java.awt.Dimension(604, 508));
@@ -80,15 +82,29 @@ private EstudianteDTO estudiante;
 
         add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 570, 410));
 
-        btnCancelar.setBackground(new java.awt.Color(0, 0, 0));
-        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\miperfil.png")); // NOI18N
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCancelarMouseClicked(evt);
             }
         });
-        add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 120, 40));
+        add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, 50, 40));
+
+        btnHome.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\hogar.png")); // NOI18N
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 50, 40));
+
+        btnBuscar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\vaso.png")); // NOI18N
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseClicked(evt);
+            }
+        });
+        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, 50, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
@@ -96,10 +112,22 @@ private EstudianteDTO estudiante;
         control.mostrarPerfil();
     }//GEN-LAST:event_btnCancelarMouseClicked
 
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        // TODO add your handling code here:
+        control.mostrarMenuPrincipal();
+    }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+        // TODO add your handling code here:
+        control.mostrarBuscarEstudiante();
+    }//GEN-LAST:event_btnBuscarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollBar barra;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnHome;
     private javax.swing.JPanel panelContenido;
     private javax.swing.JScrollPane panelFeed;
     // End of variables declaration//GEN-END:variables

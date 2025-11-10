@@ -48,65 +48,91 @@ private boolean likeado;
 
         labelMensaje = new javax.swing.JLabel();
         labelUsuario = new javax.swing.JLabel();
-        btnMeGusta = new javax.swing.JButton();
+        btnLikeado = new javax.swing.JButton();
         labelCreadoEn = new javax.swing.JLabel();
         labelReacciones = new javax.swing.JLabel();
+        btnMegusta = new javax.swing.JButton();
+        labelReacciones1 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(540, 450));
         setMinimumSize(new java.awt.Dimension(540, 450));
         setPreferredSize(new java.awt.Dimension(540, 450));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelMensaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelMensaje.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelMensaje.setText("texto post");
-        add(labelMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 90, 490, 260));
+        labelMensaje.setMaximumSize(new java.awt.Dimension(490, 240));
+        add(labelMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 90, 480, -1));
 
-        labelUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelUsuario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelUsuario.setText("nombre usuario");
         add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        btnMeGusta.setText("like");
-        btnMeGusta.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnLikeado.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\corazon.png")); // NOI18N
+        btnLikeado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMeGustaMouseClicked(evt);
+                btnLikeadoMouseClicked(evt);
             }
         });
-        add(btnMeGusta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 60, 40));
+        add(btnLikeado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 60, 40));
 
         labelCreadoEn.setText("hora creacion");
-        add(labelCreadoEn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 120, -1));
+        add(labelCreadoEn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 120, -1));
 
         labelReacciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelReacciones.setText("0");
         add(labelReacciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 50, -1));
+
+        btnMegusta.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\me-gusta.png")); // NOI18N
+        btnMegusta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMegustaMouseClicked(evt);
+            }
+        });
+        add(btnMegusta, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 60, 40));
+
+        labelReacciones1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelReacciones1.setText("0");
+        add(labelReacciones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 50, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnMeGustaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMeGustaMouseClicked
+    private void btnLikeadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLikeadoMouseClicked
         // TODO add your handling code here:  
-            if (likeado) {
                 likedto = control.obtenerLike(postActual, control.getEstudiante());
                 if (likedto != null) {
                     eliminarLike();
-                    btnMeGusta.setBackground(Color.GRAY);
+                    btnLikeado.setBackground(Color.GRAY);
                     postActual.setLikeado(false);
                     actualizarReacciones();
                     cargarPost();
+                    comprobrarLike();
                 }
-            } else {
-                crearLike();
-                btnMeGusta.setBackground(Color.RED);
-                postActual.setLikeado(true);
-                actualizarReacciones();
-                cargarPost();
-            }
-    }//GEN-LAST:event_btnMeGustaMouseClicked
+            
+    }//GEN-LAST:event_btnLikeadoMouseClicked
+
+    private void btnMegustaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMegustaMouseClicked
+        // TODO add your handling code here:
+        crearLike();
+        btnLikeado.setBackground(Color.RED);
+        postActual.setLikeado(true);
+        actualizarReacciones();
+        cargarPost();
+        comprobrarLike();
+//        eliminarLike();
+//        btnLikeado.setBackground(Color.GRAY);
+//        postActual.setLikeado(false);
+//        actualizarReacciones();
+//        cargarPost();
+    }//GEN-LAST:event_btnMegustaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMeGusta;
+    private javax.swing.JButton btnLikeado;
+    private javax.swing.JButton btnMegusta;
     private javax.swing.JLabel labelCreadoEn;
     private javax.swing.JLabel labelMensaje;
     private javax.swing.JLabel labelReacciones;
+    private javax.swing.JLabel labelReacciones1;
     private javax.swing.JLabel labelUsuario;
     // End of variables declaration//GEN-END:variables
 
@@ -119,11 +145,12 @@ private boolean likeado;
         labelCreadoEn.setText(fechaFormateada);
         labelUsuario.setText(postActual.getEstudiante().getNombre());
         labelReacciones.setText(postActual.getNumeroReacciones()+ "");
+        labelReacciones1.setText(postActual.getNumeroReacciones()+ "");
         
     }
     
     public PostDTO actualizarReacciones(){
-        
+       
         return control.actualizarReacciones(postActual);
     }
     
@@ -142,11 +169,19 @@ private boolean likeado;
     }
     
     public void comprobrarLike(){
-        if(likeado){
-            btnMeGusta.setBackground(Color.red);
-//            btnMeGusta.setEnabled(false);
+        if(control.verificarLikeEstudiante(postActual)){
+            btnLikeado.setBackground(Color.red);
+            btnLikeado.setVisible(true);
+            btnMegusta.setVisible(false);
+            labelReacciones1.setVisible(false);
+            labelReacciones.setVisible(true);
+//          btnMeGusta.setEnabled(false);
         }else{
-            btnMeGusta.setBackground(Color.GRAY);
+            btnLikeado.setBackground(Color.GRAY);
+            btnLikeado.setVisible(false);
+            labelReacciones.setVisible(false);
+            labelReacciones1.setVisible(true);
+            btnMegusta.setVisible(true);
         }
     }
     

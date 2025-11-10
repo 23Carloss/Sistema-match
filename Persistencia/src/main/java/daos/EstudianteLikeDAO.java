@@ -31,6 +31,7 @@ public class EstudianteLikeDAO implements IEstudianteLikeDAO {
     @Override
     public void eliminar(Long id) throws PersistenciaException {
         try {
+            System.out.println("Lo intent eliminr>>");
             em.getTransaction().begin();
             EstudianteLike entity = em.find(EstudianteLike.class, id);
             if (entity != null) {
@@ -78,6 +79,7 @@ public class EstudianteLikeDAO implements IEstudianteLikeDAO {
     @Override
     public boolean existeEstudianteLike(long idOrigen, long idDestino) throws PersistenciaException {
         try {
+            System.out.println("Lleg  l do?");
             TypedQuery<EstudianteLike> query = em.createQuery(
                 "SELECT el FROM EstudianteLike el WHERE el.estudianteOrigen.id = :idOrigen AND el.estudianteDestino.id = :idDestino",
                 EstudianteLike.class
@@ -89,5 +91,20 @@ public class EstudianteLikeDAO implements IEstudianteLikeDAO {
             throw new PersistenciaException("Error al verificar EstudianteLike", e);
         }
     }   
+    
+    @Override
+    public EstudianteLike buscarLike(Long idOrigen, Long idDestino) throws PersistenciaException {
+        try {
+            TypedQuery<EstudianteLike> query = em.createQuery(
+                "SELECT el FROM EstudianteLike el WHERE el.estudianteOrigen.id = :idOrigen AND el.estudianteDestino.id = :idDestino",
+                EstudianteLike.class
+            );
+            query.setParameter("idOrigen", idOrigen);
+            query.setParameter("idDestino", idDestino);
 
+            return query.getResultStream().findFirst().orElse(null);
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al buscar EstudianteLike", e);
+        }
+    }
 }

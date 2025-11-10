@@ -36,19 +36,21 @@ public class EstudianteBO implements IEstudianteBO {
 
     private boolean validarEstudiante(EstudianteDTO estudiante) {
         if (estudiante == null) {
-            JOptionPane.showMessageDialog(null, "Estudiante no puede estar vacío", "Error en validación", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Estudiante no puede estar vacio", "Error en validacipn", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        if (estudiante.getNombre() == null || estudiante.getNombre().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El campo nombre no puede estar vac[io", "Error al validar", JOptionPane.ERROR_MESSAGE);
+        if (estudiante.getNombre() == null || estudiante.getNombre().trim().isEmpty() 
+                || estudiante.getApellidoPaterno().trim().isEmpty()
+                || estudiante.getApellidoMaterno().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo nombre no puede estar vacio", "Error al validar", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         if (estudiante.getCorreo() == null || estudiante.getCorreo().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El correo no puede estar vac[io", "Error en validacion", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El correo no puede estar vacio", "Error en validacion", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         if (estudiante.getContrasenia() == null || estudiante.getContrasenia().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "La contraseña no puede estar vac[ia", "Error en validacion", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "La contraseña no puede estar vacia", "Error en validacion", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         if (estudiante.getContrasenia().length() < 8) {
@@ -56,12 +58,12 @@ public class EstudianteBO implements IEstudianteBO {
             return false;
         }
         if (estudiante.getCarrera()== null) {
-            JOptionPane.showMessageDialog(null, "Ingrese la carrera que est[a cursando", "Error al validar", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ingrese la carrera que esta cursando", "Error al validar", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         String regexCorreo = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         if (!Pattern.matches(regexCorreo, estudiante.getCorreo())) {
-            JOptionPane.showMessageDialog(null, "El formato del correo no es válido.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El formato del correo no es valido.", "Error de validacion", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
@@ -72,8 +74,10 @@ public class EstudianteBO implements IEstudianteBO {
     @Override
     public void AgregarEstudiante(EstudianteDTO estudiante) {
         try {
-            estudianteDAO.agregar(mapper.ConvertirAEntity(estudiante));
-            JOptionPane.showMessageDialog(null, "Usuario registrado con exito", "Exito", JOptionPane.OK_OPTION);
+            if(validarEstudiante(estudiante)){
+                 estudianteDAO.agregar(mapper.ConvertirAEntity(estudiante));
+                JOptionPane.showMessageDialog(null, "Usuario registrado con exito", "Exito", JOptionPane.YES_OPTION);
+            }           
         } catch (PersistenciaException e) {
             JOptionPane.showMessageDialog(null, "Error al agregar al usuario", "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -84,8 +88,11 @@ public class EstudianteBO implements IEstudianteBO {
     @Override
     public void ActualizarEstudiante(EstudianteDTO estudiante) {
         try {
-            estudianteDAO.actualizar(mapper.ConvertirAEntity(estudiante));
-            JOptionPane.showConfirmDialog(null, "Usuario actulizado con exito", "Exito", JOptionPane.OK_OPTION);
+            if(validarEstudiante(estudiante)){
+                estudianteDAO.actualizar(mapper.ConvertirAEntity(estudiante));
+                JOptionPane.showMessageDialog(null, "Usuario actulizado con exito", "Exito", JOptionPane.YES_OPTION);
+            }  
+            
         } catch (PersistenciaException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar usuario", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -94,17 +101,26 @@ public class EstudianteBO implements IEstudianteBO {
     @Override
     public void EliminarEstudiante(Long id) {
         try {
+            if (id <= 0) {
+                JOptionPane.showMessageDialog(null, "ID inválido", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             estudianteDAO.eliminar(id);
-            JOptionPane msj = new JOptionPane("Usuario eliminado con exito", JOptionPane.OK_OPTION);
-
+            JOptionPane.showMessageDialog(null, "Usuario eliminado con exito", "Error", JOptionPane.YES_OPTION);
+  
         } catch (PersistenciaException ex) {
-            JOptionPane msj = new JOptionPane("Error al eliminar al usuario", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al eliminar al usuario", "Error",JOptionPane.ERROR_MESSAGE);
+            
         }
     }
 
     @Override
     public EstudianteDTO BuscarPorId(Long id) {
         try {
+            if (id <= 0) {
+                JOptionPane.showMessageDialog(null, "ID inválido", "Error", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
             Estudiante estudiante = estudianteDAO.obtenerPorId(id);
             if (estudiante == null) {
                 return null;
@@ -126,23 +142,12 @@ public class EstudianteBO implements IEstudianteBO {
         }
     }
 
-//    @Override
-//    public List<EstudianteDTO> ObtenerTodos(){
-//        try {
-//            return mapper.ConvertirListaADto(estudianteDAO.obtenerTodos());
-//        } catch (PersistenciaException ex) {
-//            JOptionPane msj = new JOptionPane("Error al buscar los usuarios", JOptionPane.ERROR_MESSAGE);
-//            return null;
-//        }
-//        
-//    }
-//    
     @Override
     public List<EstudianteDTO> BuscarPorHobby(Hobby hobby) {
         try {
             return mapper.ConvertirListaADto(estudianteDAO.buscarPorHobby(hobby));
         } catch (PersistenciaException ex) {
-            JOptionPane msj = new JOptionPane("Error al buscar los usuarios", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al buscar los usuarios", "Error al validar", JOptionPane.ERROR_MESSAGE);
             return null;
         }
 
@@ -153,6 +158,7 @@ public class EstudianteBO implements IEstudianteBO {
         try {
             Estudiante estudiante = estudianteDAO.autenticar(correo, contrasenia);
             if (estudiante == null) {
+                JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
                 return null;
             }
             return mapper.ConvertirADto(estudianteDAO.autenticar(correo, contrasenia));

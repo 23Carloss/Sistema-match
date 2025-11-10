@@ -53,40 +53,42 @@ private Control control;
         listHobbys = new javax.swing.JList<>();
         BtnLogOut = new javax.swing.JButton();
         btnCrearPost = new javax.swing.JButton();
+        btnBuscr = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(660, 521));
         setMinimumSize(new java.awt.Dimension(0, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BtnHome.setText("Home");
+        BtnHome.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\hogar.png")); // NOI18N
         BtnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnHomeMouseClicked(evt);
             }
         });
-        add(BtnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, -1, -1));
+        add(BtnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 60, 50));
 
-        BtnPublicaciones.setText("Mis Post");
+        BtnPublicaciones.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\mispost.png")); // NOI18N
         BtnPublicaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnPublicacionesMouseClicked(evt);
             }
         });
-        add(BtnPublicaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 110, 30));
+        add(BtnPublicaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 80, 50));
 
+        labelNombreUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelNombreUsuario.setText("NombreUsuario");
-        add(labelNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        add(labelNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 350, -1));
 
         labelNombre.setText("Nombre");
         add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
-        BtnEditarPerfil.setText("Editar perfil");
+        BtnEditarPerfil.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\editar-perfil.png")); // NOI18N
         BtnEditarPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnEditarPerfilMouseClicked(evt);
             }
         });
-        add(BtnEditarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 110, 30));
+        add(BtnEditarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, 80, 50));
 
         labelApellidoP.setText("Apellido Paterno");
         add(labelApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
@@ -115,23 +117,31 @@ private Control control;
         });
         jScrollPane1.setViewportView(listHobbys);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 170, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 180, 160));
 
-        BtnLogOut.setText("Log Out  ");
+        BtnLogOut.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\cerrar-sesion.png")); // NOI18N
         BtnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnLogOutMouseClicked(evt);
             }
         });
-        add(BtnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 470, 100, 30));
+        add(BtnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 460, 60, 50));
 
-        btnCrearPost.setText("Crear Post");
+        btnCrearPost.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\nuevopost.png")); // NOI18N
         btnCrearPost.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCrearPostMouseClicked(evt);
             }
         });
-        add(btnCrearPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 110, 30));
+        add(btnCrearPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 80, 50));
+
+        btnBuscr.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\vaso.png")); // NOI18N
+        btnBuscr.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscrMouseClicked(evt);
+            }
+        });
+        add(btnBuscr, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, 60, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnEditarPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEditarPerfilMouseClicked
@@ -160,12 +170,18 @@ private Control control;
         control.mostrarCrearPublicaciones();
     }//GEN-LAST:event_btnCrearPostMouseClicked
 
+    private void btnBuscrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscrMouseClicked
+        // TODO add your handling code here:
+        control.mostrarBuscarEstudiante();
+    }//GEN-LAST:event_btnBuscrMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnEditarPerfil;
     private javax.swing.JButton BtnHome;
     private javax.swing.JButton BtnLogOut;
     private javax.swing.JButton BtnPublicaciones;
+    private javax.swing.JButton btnBuscr;
     private javax.swing.JButton btnCrearPost;
     private javax.swing.JTextField campoApellidoM;
     private javax.swing.JTextField campoApellidoP;

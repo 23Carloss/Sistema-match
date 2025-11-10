@@ -92,24 +92,23 @@ private EstudianteDTO estudianteaRegistrar;
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 90, 50));
 
         BtnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        BtnCancelar.setText("Cancelar");
+        BtnCancelar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\perfil-del-usuario.png")); // NOI18N
         BtnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnCancelarMouseClicked(evt);
             }
         });
-        add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, 150, 40));
+        add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 90, 50));
 
-        BtnContiuar.setBackground(new java.awt.Color(0, 0, 0));
         BtnContiuar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         BtnContiuar.setForeground(new java.awt.Color(255, 255, 255));
-        BtnContiuar.setText("Continuar");
+        BtnContiuar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\continuar.png")); // NOI18N
         BtnContiuar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnContiuarMouseClicked(evt);
             }
         });
-        add(BtnContiuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 590, 150, 40));
+        add(BtnContiuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 590, 80, 50));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Apellido Materno:");
