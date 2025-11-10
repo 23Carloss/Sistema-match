@@ -9,9 +9,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import java.io.Serializable;
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 
 /**
@@ -23,9 +24,11 @@ public class Matches implements Serializable{
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private Long id;
-    @Column
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "estudiante_origen_id")
     private Estudiante estudianteOrigen;
-    @Column
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "estudiante_destino_id")
     private Estudiante estudianteLikeado;
     @Column
     private Instant fechaHoraMatch;

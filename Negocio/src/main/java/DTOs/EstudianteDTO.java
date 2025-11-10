@@ -18,12 +18,12 @@ public class EstudianteDTO {
     private String correo;
     private String contrasenia;
     private String carrera;
-    private List<String> hobbies;
+    private List<String> hobbies= new ArrayList<>();
     private List<PostDTO> listaPost = new ArrayList<>();
-    private List<LikeDTO> likesDados;
-    private List<LikeDTO> likesRecibidos;
-    private List<MatchDTO> matches1;
-    private List<MatchDTO> matches2;
+    private List<LikeDTO> likesDados= new ArrayList<>();
+    private List<LikeDTO> likesRecibidos= new ArrayList<>();
+    private List<MatchDTO> matches1= new ArrayList<>();
+    private List<MatchDTO> matches2= new ArrayList<>();
 
     public EstudianteDTO() {
     }

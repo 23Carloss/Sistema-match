@@ -4,15 +4,19 @@
  */
 package Interfaces;
 
+import DTOs.EstudianteDTO;
 import DTOs.LikeDTO;
+import DTOs.PostDTO;
 
 /**
  *
  * @author HP
  */
 public interface ILikeBO {
-    public void agregarLike(LikeDTO like);
+    public LikeDTO agregarLike(LikeDTO like);
     public void eliminarLike(long id);
-    
+    public boolean verificarReaccionEstudiante(PostDTO post, long idEstudiante);
+    public LikeDTO obtenerLike(PostDTO post, EstudianteDTO estudiante);
+       
     
 }

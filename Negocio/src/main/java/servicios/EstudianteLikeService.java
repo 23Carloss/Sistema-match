@@ -22,9 +22,9 @@ public class EstudianteLikeService {
     }
 
     public void agregar(EstudianteLikeDTO dto) throws NegocioException {
-        if (dto == null || dto.getEstudiante() == null || dto.getLike() == null) {
-            throw new NegocioException("La relación debe tener estudiante y like.");
-        }
+//        if (dto == null || dto.getEstudiante() == null || dto.getLike() == null) {
+//            throw new NegocioException("La relación debe tener estudiante y like.");
+//        }
         try {
             estudianteLikeDAO.agregar(mapper.convertirAEntity(dto));
         } catch (PersistenciaException e) {

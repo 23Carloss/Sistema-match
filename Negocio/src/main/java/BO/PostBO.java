@@ -92,6 +92,7 @@ public class PostBO implements IPostBO {
             if(post.getNumeroReacciones() == 0){
                 return post;
             }
+           
             PostDTO postDto = mapper.convertirADto(postDAO.actulizarReaccion(mapper.convertirAEntity(post)));
             return postDto;
         } catch (PersistenciaException ex) {

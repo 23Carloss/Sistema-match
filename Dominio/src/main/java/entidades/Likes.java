@@ -9,10 +9,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.io.Serializable;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -21,27 +22,37 @@ import java.util.List;
  */
 @Entity
 public class Likes implements Serializable {
+    
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private Long id;
-    @Column
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "estudiante_origen_id")
     private Estudiante estudianteOrigen;
-    @Column
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "estudiante_destino_id")
     private Estudiante estudianteDestino;
-    @Column
+    
+    
     private Instant fechaHora;
     
-    @OneToMany(mappedBy= "like")
-    private List<EstudianteLike> likes;  
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "post_id")
+    private Post post;
+//    @OneToMany(mappedBy= "like")
+//    private List<EstudianteLike> likes;  
     
     public Likes() {
     }
 
-    public Likes(Estudiante estudianteOrigen, Estudiante estudianteDestino) {
+    public Likes(Long id, Estudiante estudianteOrigen, Estudiante estudianteDestino, Instant fechaHora, List<EstudianteLike> likes) {
+        this.id = id;
         this.estudianteOrigen = estudianteOrigen;
         this.estudianteDestino = estudianteDestino;
-    }
+        this.fechaHora = fechaHora;
 
+    }
+    
     public Long getIdLike() {
         return id;
     }
@@ -74,15 +85,18 @@ public class Likes implements Serializable {
         this.fechaHora = fechaHora;
     }
 
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
     @Override
     public String toString() {
-        return "Likes{" + "id=" + id + ", estudianteOrigen=" + estudianteOrigen + ", estudianteDestino=" + estudianteDestino + ", fechaHora=" + fechaHora + ", likes=" + likes + '}';
+        return "Likes{" + "id=" + id + ", estudianteOrigen=" + estudianteOrigen + ", estudianteDestino=" + estudianteDestino + ", fechaHora=" + fechaHora + ", post=" + post + '}';
     }
-    
-    
-    
-    
-    
     
 }
 

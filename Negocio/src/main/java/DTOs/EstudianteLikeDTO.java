@@ -1,5 +1,7 @@
 package DTOs;
 
+import java.time.Instant;
+
 /**
  * 
  * @author brand
@@ -7,8 +9,11 @@ package DTOs;
 public class EstudianteLikeDTO {
 
     private Long id;
-    private EstudianteDTO estudiante;
-    private LikeDTO like;
+    private EstudianteDTO estudianteOrigen;
+    private EstudianteDTO estudianteDestino;
+    private Instant creadoEn;
+    
+  
 
     public EstudianteLikeDTO() {
     }
@@ -21,19 +26,38 @@ public class EstudianteLikeDTO {
         this.id = id;
     }
 
-    public EstudianteDTO getEstudiante() {
-        return estudiante;
+    public EstudianteDTO geteEstudianteOrigen() {
+        return estudianteOrigen;
     }
 
-    public void setEstudiante(EstudianteDTO estudiante) {
-        this.estudiante = estudiante;
+    public void setEstudianteOrigen(EstudianteDTO estudiante) {
+        this.estudianteOrigen = estudiante;
     }
 
-    public LikeDTO getLike() {
-        return like;
+    public EstudianteDTO getEstudianteDestino() {
+        return estudianteDestino;
     }
 
-    public void setLike(LikeDTO like) {
-        this.like = like;
+    public void setEstudianteDestino(EstudianteDTO estudianteDestino) {
+        this.estudianteDestino = estudianteDestino;
     }
+
+    public Instant getCreadoEn() {
+        return creadoEn;
+    }
+
+    public void setCreadoEn(Instant creadoEn) {
+        this.creadoEn = creadoEn;
+    }
+
+    @Override
+    public String toString() {
+        return "EstudianteLikeDTO{" + "id=" + id + ", estudianteOrigen=" + estudianteOrigen + ", estudianteDestino=" + estudianteDestino + ", creadoEn=" + creadoEn + '}';
+    }
+
+   
+    
+    
+
+    
 }

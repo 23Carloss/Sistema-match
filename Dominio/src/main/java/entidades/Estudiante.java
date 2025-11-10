@@ -39,7 +39,7 @@ public class Estudiante implements Serializable{
     private String carrera;
     
     // relacion de likes
-    @OneToMany(mappedBy= "estudiante")
+    @OneToMany(mappedBy= "estudianteOrigen")
     private List<EstudianteLike> EstudiantesLikeados;
     
     @OneToMany(mappedBy = "estudiante")

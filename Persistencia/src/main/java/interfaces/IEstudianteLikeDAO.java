@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface IEstudianteLikeDAO {
 
-    void agregar(EstudianteLike entity) throws PersistenciaException;
+    EstudianteLike agregar(EstudianteLike entity) throws PersistenciaException;
 
     void eliminar(Long id) throws PersistenciaException;
 
@@ -19,4 +19,6 @@ public interface IEstudianteLikeDAO {
     List<EstudianteLike> listarPorLike(Long likeId) throws PersistenciaException;
 
     EstudianteLike buscarPorId(Long id) throws PersistenciaException;
+    
+    public boolean existeEstudianteLike(long idOrigen, long idDestino) throws PersistenciaException;
 }

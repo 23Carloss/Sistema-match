@@ -6,15 +6,16 @@ package Vistas.Perfil;
 
 import Aplicacion.Control;
 import DTOs.EstudianteDTO;
+import DTOs.EstudianteLikeDTO;
 import DTOs.LikeDTO;
 import DTOs.PostDTO;
 import Vistas.Post.PanelPost;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.time.Instant;
+import java.util.List;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
@@ -27,7 +28,7 @@ import javax.swing.Timer;
 public class PanelEstudiante extends javax.swing.JPanel {
 private Control control;
 private EstudianteDTO estudiante;
-private LikeDTO like;
+private EstudianteLikeDTO estudianteLike;
 
     /**
      * Creates new form PanelEstudiante
@@ -35,11 +36,10 @@ private LikeDTO like;
     public PanelEstudiante(Control control, EstudianteDTO estudiante) {
         this.control = control;
         this.estudiante = estudiante;
-        this.like = new LikeDTO();
         initComponents();
         cargarFeed();
         scrollFeed();
-        valoresDefault();
+        verificarEstadoLike();
         
     }
 
@@ -56,7 +56,7 @@ private LikeDTO like;
         barra = new javax.swing.JScrollBar();
         btnHome = new javax.swing.JButton();
         btnLike = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         panelContenido = new javax.swing.JPanel();
         btnDisLike = new javax.swing.JButton();
 
@@ -65,13 +65,15 @@ private LikeDTO like;
         setPreferredSize(new java.awt.Dimension(664, 550));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelFeed.setMaximumSize(new java.awt.Dimension(480, 390));
-        panelFeed.setPreferredSize(new java.awt.Dimension(480, 390));
+        panelFeed.setMaximumSize(new java.awt.Dimension(600, 440));
+        panelFeed.setMinimumSize(new java.awt.Dimension(580, 420));
+        panelFeed.setPreferredSize(new java.awt.Dimension(520, 440));
 
+        barra.setMinimumSize(new java.awt.Dimension(520, 440));
         barra.setPreferredSize(new java.awt.Dimension(540, 450));
         panelFeed.setViewportView(barra);
 
-        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 460, 370));
+        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 520, 440));
 
         btnHome.setText("Home");
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -79,7 +81,7 @@ private LikeDTO like;
                 btnHomeMouseClicked(evt);
             }
         });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 510, -1, -1));
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, -1, -1));
 
         btnLike.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\corazon.png")); // NOI18N
         btnLike.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -87,27 +89,28 @@ private LikeDTO like;
                 btnLikeMouseClicked(evt);
             }
         });
-        add(btnLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 50, 30));
+        add(btnLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 50, 30));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("nombre estudinte");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNombre.setText("nombre estudinte");
+        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        panelContenido.setMaximumSize(new java.awt.Dimension(540, 32767));
-        panelContenido.setMinimumSize(new java.awt.Dimension(540, 450));
+        panelContenido.setMaximumSize(new java.awt.Dimension(600, 32767));
+        panelContenido.setMinimumSize(new java.awt.Dimension(600, 440));
+        panelContenido.setPreferredSize(new java.awt.Dimension(600, 440));
 
         javax.swing.GroupLayout panelContenidoLayout = new javax.swing.GroupLayout(panelContenido);
         panelContenido.setLayout(panelContenidoLayout);
         panelContenidoLayout.setHorizontalGroup(
             panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         panelContenidoLayout.setVerticalGroup(
             panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 440, Short.MAX_VALUE)
         );
 
-        add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 460, 370));
+        add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 520, 420));
 
         btnDisLike.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\corazon (1).png")); // NOI18N
         btnDisLike.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,7 +118,7 @@ private LikeDTO like;
                 btnDisLikeMouseClicked(evt);
             }
         });
-        add(btnDisLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 460, 40, 30));
+        add(btnDisLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 500, 40, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
@@ -125,19 +128,14 @@ private LikeDTO like;
 
     private void btnLikeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLikeMouseClicked
         // TODO add your handling code here:
-        crearLike();
-        btnLike.setEnabled(false);
-        btnLike.setVisible(false);
-        btnDisLike.setVisible(true);
-        btnDisLike.setEnabled(true);
+        crearEstudianteLike();
+        verificarEstadoLike();
     }//GEN-LAST:event_btnLikeMouseClicked
 
     private void btnDisLikeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDisLikeMouseClicked
         // TODO add your handling code here:
-        btnLike.setEnabled(true);
-        btnLike.setVisible(true);
-        btnDisLike.setVisible(false);
-        btnDisLike.setEnabled(false);
+        verificarEstadoLike();
+        
         eliminarLike();
     }//GEN-LAST:event_btnDisLikeMouseClicked
 
@@ -147,41 +145,38 @@ private LikeDTO like;
     private javax.swing.JButton btnDisLike;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLike;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JPanel panelContenido;
     private javax.swing.JScrollPane panelFeed;
     // End of variables declaration//GEN-END:variables
 
 
-    public void crearLike(){
-        like.setEstudianteDestino(control.getEstudianteBuscado());
-        like.setEstudianteOrigen(control.getEstudiante());
-        like.setFechaHora(Instant.now());
-        System.out.println("Like antes de registrar:  " + like.toString());
-        control.registrarLike(like);
+    public void crearEstudianteLike(){
+        EstudianteLikeDTO estudianteLike = new EstudianteLikeDTO();
+        estudianteLike.setEstudianteDestino(control.getEstudianteBuscado());
+        estudianteLike.setEstudianteOrigen(control.getEstudiante());
+        estudianteLike.setCreadoEn(Instant.now());    
+        control.registrarEstudianteLike(estudianteLike);
         
-        
-        
+ 
     }
-    public void valoresDefault(){
-        btnDisLike.setVisible(false);
-        btnDisLike.setEnabled(false);
-    }
-    
+
     public void eliminarLike(){
-        
-        control.eliminarLike(like);
+        this.estudianteLike = control.getEstudianteLike();
+        control.eliminarEstudianteLike(estudianteLike);
         
     }
     public void cargarFeed(){
-        panelContenido.setLayout(new BoxLayout(panelContenido, BoxLayout.Y_AXIS));
+        
         panelContenido.removeAll();
-        panelContenido.setPreferredSize(new Dimension(540, control.cargarPostEstudiante(this.estudiante).size()*(450+10)));
-        for(PostDTO post: control.cargarPostEstudiante(this.estudiante)){
-            System.out.println(post.toString());
-            PanelPost publicacion = new PanelPost(control, post);   
+        panelContenido.setLayout(new BoxLayout(panelContenido, BoxLayout.Y_AXIS));
+        List<PostDTO> posts = control.cargarPostEstudiante(estudiante);
+        panelContenido.setPreferredSize(new Dimension(600, posts.size() * (440 + 10)));
 
-            panelContenido.add(publicacion);         
+        for (PostDTO post : posts) {
+            boolean likeado = control.verificarLikeEstudiante(post);
+            PanelPost publicacion = new PanelPost(control, post, likeado);
+            panelContenido.add(publicacion);
             panelContenido.add(Box.createVerticalStrut(10));
         }
             panelContenido.revalidate();
@@ -237,5 +232,20 @@ private LikeDTO like;
              }
          }));  
      }
+  
+  public void verificarEstadoLike() {
+        EstudianteLikeDTO like = control.getEstudianteLike();
+        if (like != null) {
+            btnLike.setVisible(false);
+            btnLike.setEnabled(false);
+            btnDisLike.setVisible(true);
+            btnDisLike.setEnabled(true);
+        } else {
+            btnDisLike.setVisible(false);
+            btnDisLike.setEnabled(false);
+            btnLike.setVisible(true);
+            btnLike.setEnabled(true);
+        }
+    }
 
 }

@@ -5,11 +5,14 @@
 package Vistas.Post;
 
 import Aplicacion.Control;
+import DTOs.LikeDTO;
 import DTOs.PostDTO;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import static org.hibernate.query.restriction.Restriction.like;
 
 /**
  *
@@ -18,15 +21,20 @@ import java.time.format.DateTimeFormatter;
 public class PanelPost extends javax.swing.JPanel {
 private Control control;
 private PostDTO postActual;
+private LikeDTO likedto;
+private boolean likeado;
     /**
      * Creates new form PanelPost
      */
-    public PanelPost(Control control, PostDTO post) {
+    public PanelPost(Control control, PostDTO post, boolean likeado) {
         this.control = control;
         this.postActual = post;
+        this.likeado = likeado;
         setPreferredSize(new Dimension(480, 390));
         initComponents();
         cargarPost();
+        comprobrarLike();
+       
     }
 
     /**
@@ -74,30 +82,23 @@ private PostDTO postActual;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMeGustaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMeGustaMouseClicked
-        // TODO add your handling code here:
-        boolean reaccion = control.verificarLikeEstudiante(postActual);
-        
-        if(reaccion){
-            
-            btnMeGusta.setBackground(Color.red);
-            postActual.setNumeroReacciones(postActual.getNumeroReacciones() + 1);
-            postActual.setLikeado(true);
-            System.out.println("Post cundo le ds like : " + postActual.toString());
-            actualizarReacciones();
-            cargarPost(); 
-        }else{            
-            btnMeGusta.setBackground(Color.GRAY);
-            postActual.setNumeroReacciones(postActual.getNumeroReacciones() - 1);
-            postActual.setLikeado(false);
-            this.postActual  = actualizarReacciones();
-            cargarPost();btnMeGusta.setBackground(Color.GRAY);
-            postActual.setNumeroReacciones(postActual.getNumeroReacciones() - 1);
-            postActual.setLikeado(false);
-            this.postActual  = actualizarReacciones();
-            cargarPost();
-            // est logic un no es necesria, falta hacer una DAO para la reaccion
-        }
-
+        // TODO add your handling code here:  
+            if (likeado) {
+                likedto = control.obtenerLike(postActual, control.getEstudiante());
+                if (likedto != null) {
+                    eliminarLike();
+                    btnMeGusta.setBackground(Color.GRAY);
+                    postActual.setLikeado(false);
+                    actualizarReacciones();
+                    cargarPost();
+                }
+            } else {
+                crearLike();
+                btnMeGusta.setBackground(Color.RED);
+                postActual.setLikeado(true);
+                actualizarReacciones();
+                cargarPost();
+            }
     }//GEN-LAST:event_btnMeGustaMouseClicked
 
 
@@ -110,6 +111,7 @@ private PostDTO postActual;
     // End of variables declaration//GEN-END:variables
 
     public void cargarPost(){
+        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
                                                        .withZone(ZoneId.systemDefault());
         String fechaFormateada = formatter.format(postActual.getCreadoEn());
@@ -121,7 +123,31 @@ private PostDTO postActual;
     }
     
     public PostDTO actualizarReacciones(){
+        
         return control.actualizarReacciones(postActual);
+    }
+    
+    public void crearLike(){
+        likedto = new LikeDTO();
+        postActual.setNumeroReacciones(postActual.getNumeroReacciones() + 1);
+        likedto.setEstudianteDestino(postActual.getEstudiante());
+        likedto.setEstudianteOrigen(control.getEstudiante());
+        likedto.setFechaHora(Instant.now());
+        likedto.setPost(postActual);
+        control.registrarLike(likedto);
+    }
+    public void eliminarLike(){
+        postActual.setNumeroReacciones(postActual.getNumeroReacciones() - 1);
+        control.eliminarLike(likedto);
+    }
+    
+    public void comprobrarLike(){
+        if(likeado){
+            btnMeGusta.setBackground(Color.red);
+//            btnMeGusta.setEnabled(false);
+        }else{
+            btnMeGusta.setBackground(Color.GRAY);
+        }
     }
     
 }

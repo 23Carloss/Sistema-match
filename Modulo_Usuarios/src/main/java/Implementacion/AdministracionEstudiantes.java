@@ -6,12 +6,15 @@
 package Implementacion;
 
 import BO.EstudianteBO;
+import BO.EstudianteLikeBO;
 import BO.LikeBO;
 import BO.PostBO;
 import DTOs.EstudianteDTO;
+import DTOs.EstudianteLikeDTO;
 import DTOs.LikeDTO;
 import DTOs.PostDTO;
 import Interfaces.IEstudianteBO;
+import Interfaces.IEstudianteLikeBO;
 import Interfaces.ILikeBO;
 import Interfaces.IPostBO;
 import java.util.List;
@@ -24,14 +27,19 @@ public class AdministracionEstudiantes {
     private IEstudianteBO estudianteBO;
     private IPostBO postBO;
     private ILikeBO likeBO;
+    private IEstudianteLikeBO estudianteLikeBO;
     private EstudianteDTO estudiante;
     private EstudianteDTO estudianteLikeado;
+    private LikeDTO like;
+    private PostDTO post;
+    private EstudianteLikeDTO estudianteLike;
     
     
     public AdministracionEstudiantes(){
         estudianteBO = new EstudianteBO();
         postBO = new PostBO();
         likeBO = new LikeBO();
+        estudianteLikeBO = new EstudianteLikeBO();
     }
     
     public void ActualizarEstudiante(EstudianteDTO estudiante){
@@ -71,7 +79,7 @@ public class AdministracionEstudiantes {
        
    }
    public List<PostDTO> cargarPublicacionesEstudiante(EstudianteDTO estudiante){
-       System.out.println("estudiante en parametro en moduloEstudiante:  " + estudiante.toString());
+//       System.out.println("estudiante en parametro en moduloEstudiante:  " + estudiante.toString());
        return postBO.obtenerPostPorEstudiante(estudiante);
    }
    
@@ -80,6 +88,7 @@ public class AdministracionEstudiantes {
    }
    public void actualizarPost(PostDTO post){
       postBO.actualizarPost(post);
+      
    }
    
    public void eliminarPost(PostDTO post){
@@ -87,12 +96,19 @@ public class AdministracionEstudiantes {
    }
    
    public PostDTO actualizarReaccion(PostDTO post){
+       this.post = post;
        return postBO.actualizarReacciones(post);
+   }
+   public PostDTO getPost(){
+       return this.post;  
+   }
+   public void setPost(PostDTO post){
+       this.post = post;  
    }
    
    public boolean verificarReaccionEstudiante(PostDTO post, EstudianteDTO estudiante){
-       System.out.println("Estudiante que llega a modulo:  " + estudiante.toString());
-       return  postBO.verificarReaccionEstudiante(post, estudiante.getId());
+    
+       return likeBO.verificarReaccionEstudiante(post, estudiante.getId());
    }
    
    public List<EstudianteDTO>buscarEstudiantePorNombre(String nombre){
@@ -100,10 +116,32 @@ public class AdministracionEstudiantes {
    }
    
    public void guardarLike(LikeDTO like){
-       likeBO.agregarLike(like);
+       this.like=likeBO.agregarLike(like);
    }
    public void eliminarLike(LikeDTO like){
        likeBO.eliminarLike(like.getId());
+   }
+   public void setLike(LikeDTO like){
+       this.like = like;
+   }
+   public LikeDTO getLike(){
+       return this.like;
+   }
+   public LikeDTO obtenerLike(PostDTO post, EstudianteDTO estudiante) {
+        return likeBO.obtenerLike(post, estudiante); 
+    }
+   
+   public void registrarEstudianteLike(EstudianteLikeDTO estudianteLike){
+       this.estudianteLike= estudianteLikeBO.agregarEstudianteLike(estudianteLike);
+   }
+   public void eliminarEstudianteLike(EstudianteLikeDTO estudianteLike){
+       estudianteLikeBO.eliminarEstudianteLike(estudianteLike.getId());
+   }
+   public EstudianteLikeDTO getEstudianteLike(){
+       return this.estudianteLike;
+   }
+   public boolean verificarEstudianteLike(EstudianteDTO estudianteActual, EstudianteDTO origen){
+       return estudianteLikeBO.existeEstudianteLike(estudianteActual, origen);
    }
            
    

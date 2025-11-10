@@ -51,17 +51,17 @@ private EstudianteDTO estudiante;
         panelContenido = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JButton();
 
-        setMaximumSize(new java.awt.Dimension(586, 508));
-        setMinimumSize(new java.awt.Dimension(586, 508));
-        setPreferredSize(new java.awt.Dimension(586, 508));
+        setMaximumSize(new java.awt.Dimension(604, 508));
+        setMinimumSize(new java.awt.Dimension(604, 508));
+        setPreferredSize(new java.awt.Dimension(604, 508));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelFeed.setMaximumSize(new java.awt.Dimension(560, 460));
-        panelFeed.setMinimumSize(new java.awt.Dimension(560, 460));
+        panelFeed.setMaximumSize(new java.awt.Dimension(580, 420));
+        panelFeed.setMinimumSize(new java.awt.Dimension(580, 420));
         panelFeed.setPreferredSize(new java.awt.Dimension(580, 440));
         panelFeed.setViewportView(barra);
 
-        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, -4, 580, 440));
+        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 16, 580, 420));
 
         panelContenido.setMaximumSize(new java.awt.Dimension(548, 440));
         panelContenido.setMinimumSize(new java.awt.Dimension(548, 440));
@@ -71,14 +71,14 @@ private EstudianteDTO estudiante;
         panelContenido.setLayout(panelContenidoLayout);
         panelContenidoLayout.setHorizontalGroup(
             panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 548, Short.MAX_VALUE)
+            .addGap(0, 570, Short.MAX_VALUE)
         );
         panelContenidoLayout.setVerticalGroup(
             panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 440, Short.MAX_VALUE)
         );
 
-        add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, 100));
+        add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 570, 410));
 
         btnCancelar.setBackground(new java.awt.Color(0, 0, 0));
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -154,7 +154,7 @@ public void scrollFeed(){
  public void cargarFeed(){
         panelContenido.setLayout(new BoxLayout(panelContenido, BoxLayout.Y_AXIS));
         panelContenido.removeAll();
-        panelContenido.setPreferredSize(new Dimension(560, control.cargarPostEstudiante(this.estudiante).size()*(450+10)));
+        panelContenido.setPreferredSize(new Dimension(548, control.cargarPostEstudiante(this.estudiante).size()*(440+10)));
         for(PostDTO post: control.cargarPostEstudiante(this.estudiante)){
             System.out.println(post.toString());
             PublicacionesEstudiante publicacion = new PublicacionesEstudiante(control, post);   

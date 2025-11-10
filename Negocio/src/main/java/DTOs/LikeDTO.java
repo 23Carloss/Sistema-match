@@ -13,6 +13,7 @@ public class LikeDTO {
     private Long id;
     private EstudianteDTO estudianteOrigen;
     private EstudianteDTO estudianteDestino;
+    private PostDTO post;
     private Instant fechaHora;
 
     public LikeDTO() {
@@ -51,8 +52,18 @@ public class LikeDTO {
         
     }
 
+    public PostDTO getPost() {
+        return post;
+    }
+
+    public void setPost(PostDTO post) {
+        this.post = post;
+    }
+
     @Override
     public String toString() {
-        return "LikeDTO{" + "id=" + id + ", estudianteOrigen=" + estudianteOrigen + ", estudianteDestino=" + estudianteDestino + ", fechaHora=" + fechaHora + '}';
+        return "LikeDTO{" + "id=" + id + ", estudianteOrigen=" + estudianteOrigen + ", estudianteDestino=" + estudianteDestino + ", post=" + post + ", fechaHora=" + fechaHora + '}';
     }
+
+    
 }

@@ -16,11 +16,12 @@ public class EstudianteLikeDAO implements IEstudianteLikeDAO {
     }
 
     @Override
-    public void agregar(EstudianteLike entity) throws PersistenciaException {
+    public EstudianteLike agregar(EstudianteLike entity) throws PersistenciaException {
         try {
             em.getTransaction().begin();
             em.persist(entity);
             em.getTransaction().commit();
+            return entity;
         } catch (Exception e) {
             em.getTransaction().rollback();
             throw new PersistenciaException("Error al agregar relación Estudiante-Like", e);
@@ -74,4 +75,19 @@ public class EstudianteLikeDAO implements IEstudianteLikeDAO {
             throw new PersistenciaException("Error al buscar relación por id", e);
         }
     }
+    @Override
+    public boolean existeEstudianteLike(long idOrigen, long idDestino) throws PersistenciaException {
+        try {
+            TypedQuery<EstudianteLike> query = em.createQuery(
+                "SELECT el FROM EstudianteLike el WHERE el.estudianteOrigen.id = :idOrigen AND el.estudianteDestino.id = :idDestino",
+                EstudianteLike.class
+            );
+            query.setParameter("idOrigen", idOrigen);
+            query.setParameter("idDestino", idDestino);
+            return !query.getResultList().isEmpty();
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al verificar EstudianteLike", e);
+        }
+    }   
+
 }

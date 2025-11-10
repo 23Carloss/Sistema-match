@@ -6,6 +6,7 @@
 package Aplicacion;
 
 import DTOs.EstudianteDTO;
+import DTOs.EstudianteLikeDTO;
 import DTOs.LikeDTO;
 import DTOs.PostDTO;
 import Implementacion.AdministracionEstudiantes;
@@ -178,6 +179,27 @@ public class Control {
         moduloEstudiantes.eliminarLike(like);
     }
     
+    public LikeDTO getLike(){
+        return moduloEstudiantes.getLike();
+    }
+    public PostDTO getPost(){
+        return moduloEstudiantes.getPost();
+    }
+    public LikeDTO obtenerLike(PostDTO post, EstudianteDTO estudiante) {
+        return moduloEstudiantes.obtenerLike(post, estudiante); 
+    }
+    public void registrarEstudianteLike(EstudianteLikeDTO estudianteLike){
+        moduloEstudiantes.registrarEstudianteLike(estudianteLike);
+    }
+    public void eliminarEstudianteLike(EstudianteLikeDTO estudianteLike){
+        moduloEstudiantes.registrarEstudianteLike(estudianteLike);
+    }
+    public EstudianteLikeDTO getEstudianteLike(){
+        return moduloEstudiantes.getEstudianteLike();
+    }
+    public boolean verificarEstudianteLike(){
+        return moduloEstudiantes.verificarEstudianteLike(getEstudiante(), getEstudianteBuscado());
+    }
     
     
 }

@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.util.List;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
@@ -51,9 +52,10 @@ private Control control;
         barra = new javax.swing.JScrollBar();
         panelContenido = new javax.swing.JPanel();
 
-        setMinimumSize(new java.awt.Dimension(600, 480));
+        setMaximumSize(new java.awt.Dimension(660, 541));
+        setMinimumSize(new java.awt.Dimension(660, 541));
         setName(""); // NOI18N
-        setPreferredSize(new java.awt.Dimension(600, 480));
+        setPreferredSize(new java.awt.Dimension(660, 541));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnHome.setText("Home");
@@ -62,10 +64,10 @@ private Control control;
                 btnHomeMouseClicked(evt);
             }
         });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 432, -1, -1));
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, -1, -1));
 
         btnMensajes.setText("Mensajes");
-        add(btnMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
+        add(btnMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, -1, -1));
 
         btnPerfil.setText("Mi perifl");
         btnPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -73,7 +75,7 @@ private Control control;
                 btnPerfilMouseClicked(evt);
             }
         });
-        add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, -1, -1));
+        add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 490, -1, -1));
 
         btnBuscar.setText("Buscar");
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -81,31 +83,22 @@ private Control control;
                 btnBuscarMouseClicked(evt);
             }
         });
-        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, -1, -1));
+        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 490, -1, -1));
 
-        panelFeed.setMaximumSize(new java.awt.Dimension(540, 480));
-        panelFeed.setMinimumSize(new java.awt.Dimension(540, 480));
-        panelFeed.setPreferredSize(new java.awt.Dimension(540, 480));
+        panelFeed.setMaximumSize(new java.awt.Dimension(550, 440));
+        panelFeed.setMinimumSize(new java.awt.Dimension(550, 440));
+        panelFeed.setPreferredSize(new java.awt.Dimension(550, 440));
 
-        barra.setPreferredSize(new java.awt.Dimension(540, 450));
+        barra.setMaximumSize(new java.awt.Dimension(580, 100));
+        barra.setPreferredSize(new java.awt.Dimension(580, 420));
         panelFeed.setViewportView(barra);
 
-        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 480, 390));
+        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 550, 440));
 
-        panelContenido.setMaximumSize(new java.awt.Dimension(540, 4000));
-        panelContenido.setPreferredSize(new java.awt.Dimension(540, 450));
-
-        javax.swing.GroupLayout panelContenidoLayout = new javax.swing.GroupLayout(panelContenido);
-        panelContenido.setLayout(panelContenidoLayout);
-        panelContenidoLayout.setHorizontalGroup(
-            panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
-        );
-        panelContenidoLayout.setVerticalGroup(
-            panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
-        );
-
+        panelContenido.setMaximumSize(new java.awt.Dimension(550, 4000));
+        panelContenido.setMinimumSize(new java.awt.Dimension(550, 440));
+        panelContenido.setPreferredSize(new java.awt.Dimension(550, 440));
+        panelContenido.setLayout(new javax.swing.BoxLayout(panelContenido, javax.swing.BoxLayout.Y_AXIS));
         add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 480, 390));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,14 +129,16 @@ private Control control;
     // End of variables declaration//GEN-END:variables
 
     public void cargarFeed(){
-        panelContenido.setLayout(new BoxLayout(panelContenido, BoxLayout.Y_AXIS));
+        
         panelContenido.removeAll();
-        panelContenido.setPreferredSize(new Dimension(540, control.cargarPostFeed().size()*(450+10)));
-        for(PostDTO post: control.cargarPostFeed()){
-            System.out.println(post.toString());
-            PanelPost publicacion = new PanelPost(control, post);   
+        panelContenido.setLayout(new BoxLayout(panelContenido, BoxLayout.Y_AXIS));
+        List<PostDTO> posts = control.cargarPostFeed();
+        panelContenido.setPreferredSize(new Dimension(600, posts.size() * (440 + 10)));
 
-            panelContenido.add(publicacion);         
+        for (PostDTO post : posts) {
+            boolean likeado = control.verificarLikeEstudiante(post);
+            PanelPost publicacion = new PanelPost(control, post, likeado);
+            panelContenido.add(publicacion);
             panelContenido.add(Box.createVerticalStrut(10));
         }
             panelContenido.revalidate();
