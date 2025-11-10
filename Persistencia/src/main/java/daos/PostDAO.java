@@ -69,13 +69,9 @@ public class PostDAO implements IPostDAO {
     @Override
     public List<Post> obtenerPostPorEstudiante(long idEstudiante) throws PersistenciaException {
         try {
-            System.out.println("id q llega a la DAO:  " + idEstudiante);
             TypedQuery<Post> query = em.createQuery(
                     "SELECT p FROM Post p WHERE p.estudiante.id = :idEstudiante", Post.class);
             query.setParameter("idEstudiante", idEstudiante);
-            for (Post post : query.getResultList()) {
-                System.out.println("Post q vienen desde la DB - DAO:  " + post.toString());
-            }
             return query.getResultList();
         } catch (Exception e) {
             throw new PersistenciaException("Error al buscar post por estudiantes", e);
@@ -89,6 +85,30 @@ public class PostDAO implements IPostDAO {
             return query.getResultList();
         } catch (Exception e) {
             throw new PersistenciaException("Error al obtener post", e);
+        }
+    }
+    
+@Override
+    public Post actulizarReaccion(Post post)throws PersistenciaException{
+        try{
+            em.getTransaction().begin();
+            em.merge(post);
+            em.getTransaction().commit();
+            return post;
+        }catch(Exception e){
+            throw new PersistenciaException("Error al actulizar reaccion del post", e);
+        }
+    }
+    
+    @Override
+    public boolean verificarReaccionEstudiante(Post post, long idEstudiante)throws PersistenciaException{
+        try{
+            TypedQuery<Post> query = em.createQuery("SELECT p FROM Post p WHERE p.estudiante.id = :idEstudiante AND p.id = :idPost", Post.class);
+            query.setParameter("idEstudiante", idEstudiante);
+            query.setParameter("idPost", post.getId());
+            return query.getResultList().isEmpty();
+        }catch(Exception e){
+            throw new PersistenciaException("Error al actulizar reaccion del post", e);
         }
     }
 

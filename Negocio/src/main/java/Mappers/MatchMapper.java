@@ -1,3 +1,4 @@
+
 package Mappers;
 
 import DTOs.MatchDTO;
@@ -11,30 +12,13 @@ import java.util.List;
  * @author brand
  */
 public class MatchMapper {
-
-    private final EstudianteMapper estudianteMapper;
+   
+    private final EstudianteMapper mapper;
 
     public MatchMapper() {
-        this.estudianteMapper = new EstudianteMapper();
+        mapper = new EstudianteMapper();
     }
 
-    public MatchDTO convertirADto(Matches match) {
-        MatchDTO dto = new MatchDTO();
-        dto.setId(match.getId());
-        dto.setEstudiante1(estudianteMapper.ConvertirADto(match.getEstudiante1()));
-        dto.setEstudiante2(estudianteMapper.ConvertirADto(match.getEstudiante2()));
-        dto.setFechaHoraMatch(match.getFechaHoraMatch());
-        return dto;
-    }
-
-    public Matches convertirAEntity(MatchDTO dto) {
-        Matches match = new Matches();
-        match.setId(dto.getId());
-        match.setEstudiante1(estudianteMapper.ConvertirAEntity(dto.getEstudiante1()));
-        match.setEstudiante2(estudianteMapper.ConvertirAEntity(dto.getEstudiante2()));
-        match.setFechaHoraMatch(dto.getFechaHoraMatch());
-        return match;
-    }
 
     public List<MatchDTO> convertirListaADto(List<Matches> listaEntity) {
         List<MatchDTO> listaDTO = new ArrayList<>();
@@ -43,4 +27,28 @@ public class MatchMapper {
         }
         return listaDTO;
     }
+
+    public MatchDTO convertirADto(Matches match){
+        EstudianteDTO estudianteOrigen = mapper.ConvertirADto(match.getEstudianteOrigen());
+        EstudianteDTO estudianteLikeado = mapper.ConvertirADto(match.getEstudianteLikeado());
+        
+        MatchDTO matchDto = new MatchDTO();
+        matchDto.setId(match.getId());
+        matchDto.setEstudianteOrigen(estudianteOrigen);
+        matchDto.setEstudianteLikeado(estudianteLikeado);
+        matchDto.setFechaHoraMatch(match.getFechaHoraMatch());
+        return matchDto;
+    }
+    public Matches convertirAEntity(MatchDTO matchdto){
+        Estudiante estudianteOrigen = mapper.ConvertirAEntity(matchdto.getEstudianteOrigen());
+        Estudiante estudianteLikeado = mapper.ConvertirAEntity(matchdto.getEstudianteLikeado());
+        
+        Matches match = new Matches();
+        match.setId(matchdto.getId());
+        match.setEstudianteOrigen(estudianteOrigen);
+        match.setEstudianteLikeado(estudianteLikeado);
+        match.setFechaHoraMatch(matchdto.getFechaHoraMatch());
+        return match;
+    }
+
 }

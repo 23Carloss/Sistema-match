@@ -1,6 +1,7 @@
 package DTOs;
 
 import DTOs.EstudianteDTO;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 /**
@@ -10,9 +11,9 @@ import java.time.LocalDateTime;
 public class MatchDTO {
 
     private Long id;
-    private EstudianteDTO estudiante1;
-    private EstudianteDTO estudiante2;
-    private LocalDateTime fechaHoraMatch;
+    private EstudianteDTO estudianteOrigen;
+    private EstudianteDTO estudianteLikeado;
+    private Instant fechaHoraMatch;
 
     public MatchDTO() {
     }
@@ -25,27 +26,27 @@ public class MatchDTO {
         this.id = id;
     }
 
-    public EstudianteDTO getEstudiante1() {
-        return estudiante1;
+    public EstudianteDTO getEstudianteOrigen() {
+        return estudianteOrigen;
     }
 
-    public void setEstudiante1(EstudianteDTO estudiante1) {
-        this.estudiante1 = estudiante1;
+    public void setEstudianteOrigen(EstudianteDTO estudianteOrigen) {
+        this.estudianteOrigen = estudianteOrigen;
     }
 
-    public EstudianteDTO getEstudiante2() {
-        return estudiante2;
+    public EstudianteDTO getEstudianteLikeado() {
+        return estudianteLikeado;
     }
 
-    public void setEstudiante2(EstudianteDTO estudiante2) {
-        this.estudiante2 = estudiante2;
+    public void setEstudianteLikeado(EstudianteDTO estudianteLikeado) {
+        this.estudianteLikeado = estudianteLikeado;
     }
 
-    public LocalDateTime getFechaHoraMatch() {
+    public Instant getFechaHoraMatch() {
         return fechaHoraMatch;
     }
 
-    public void setFechaHoraMatch(LocalDateTime fechaHoraMatch) {
+    public void setFechaHoraMatch(Instant fechaHoraMatch) {
         this.fechaHoraMatch = fechaHoraMatch;
     }
 }

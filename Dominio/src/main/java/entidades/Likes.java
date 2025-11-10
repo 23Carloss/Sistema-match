@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Likes implements Serializable {
     @Column
     private Estudiante estudianteDestino;
     @Column
-    private LocalDateTime fechaHora;
+    private Instant fechaHora;
     
     @OneToMany(mappedBy= "like")
     private List<EstudianteLike> likes;  
@@ -65,13 +66,20 @@ public class Likes implements Serializable {
         this.estudianteDestino = estudianteDestino;
     }
 
-    public LocalDateTime getFechaHora() {
+    public Instant getFechaHora() {
         return fechaHora;
     }
 
-    public void setFechaHora(LocalDateTime fechaHora) {
+    public void setFechaHora(Instant fechaHora) {
         this.fechaHora = fechaHora;
     }
+
+    @Override
+    public String toString() {
+        return "Likes{" + "id=" + id + ", estudianteOrigen=" + estudianteOrigen + ", estudianteDestino=" + estudianteDestino + ", fechaHora=" + fechaHora + ", likes=" + likes + '}';
+    }
+    
+    
     
     
     

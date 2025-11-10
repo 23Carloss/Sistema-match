@@ -23,4 +23,6 @@ public interface IPostBO {
     public List<PostDTO> obtenerPostPorEstudiante(EstudianteDTO estudiante);
 
     public List<PostDTO> obtenerPostFeed();
+    public PostDTO actualizarReacciones(PostDTO post);
+    public boolean verificarReaccionEstudiante(PostDTO post, long idEstudiante);
 }

@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 
@@ -23,19 +24,19 @@ public class Matches implements Serializable{
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private Long id;
     @Column
-    private Estudiante estudiante1;
+    private Estudiante estudianteOrigen;
     @Column
-    private Estudiante estudiante2;
+    private Estudiante estudianteLikeado;
     @Column
-    private LocalDateTime fechaHoraMatch;
+    private Instant fechaHoraMatch;
 
     public Matches() {
         
     }
 
     public Matches(Estudiante estudiante1, Estudiante estudiante2) {
-        this.estudiante1 = estudiante1;
-        this.estudiante2 = estudiante2;
+        this.estudianteOrigen = estudiante1;
+        this.estudianteLikeado = estudiante2;
     }
 
     public Long getId() {
@@ -46,27 +47,27 @@ public class Matches implements Serializable{
         this.id = id;
     }
 
-    public Estudiante getEstudiante1() {
-        return estudiante1;
+    public Estudiante getEstudianteOrigen() {
+        return estudianteOrigen;
     }
 
-    public void setEstudiante1(Estudiante estudiante1) {
-        this.estudiante1 = estudiante1;
+    public void setEstudianteOrigen(Estudiante estudianteOrigen) {
+        this.estudianteOrigen = estudianteOrigen;
     }
 
-    public Estudiante getEstudiante2() {
-        return estudiante2;
+    public Estudiante getEstudianteLikeado() {
+        return estudianteLikeado;
     }
 
-    public void setEstudiante2(Estudiante estudiante2) {
-        this.estudiante2 = estudiante2;
+    public void setEstudianteLikeado(Estudiante estudianteLikeado) {
+        this.estudianteLikeado = estudianteLikeado;
     }
 
-    public LocalDateTime getFechaHoraMatch() {
+    public Instant getFechaHoraMatch() {
         return fechaHoraMatch;
     }
 
-    public void setFechaHoraMatch(LocalDateTime fechaHoraMatch) {
+    public void setFechaHoraMatch(Instant fechaHoraMatch) {
         this.fechaHoraMatch = fechaHoraMatch;
     }  
     

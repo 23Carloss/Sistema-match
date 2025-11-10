@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Vistas;
+package Vistas.Post;
 
 import Aplicacion.Control;
 import DTOs.PostDTO;
+import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
@@ -41,7 +42,6 @@ private PostDTO postActual;
         jLabel1 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
         labelReacciones = new javax.swing.JLabel();
         campoTexto = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
@@ -82,30 +82,22 @@ private PostDTO postActual;
         });
         add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
 
-        btnCancelar.setBackground(new java.awt.Color(0, 0, 0));
-        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseClicked(evt);
-            }
-        });
-        add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 140, 40));
-
         labelReacciones.setText("reacciones");
         add(labelReacciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 80, 30));
         add(campoTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 510, 120));
 
         btnConfirmar.setText("Confirmar cambios");
+        btnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConfirmarMouseClicked(evt);
+            }
+        });
         add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 150, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
         // TODO add your handling code here:
         modoEditar();
-        control.actulizarPost(postActual);
-        control.mostrarPublicacionesEstudiante();
     }//GEN-LAST:event_btnEditarMouseClicked
 
     private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
@@ -114,14 +106,15 @@ private PostDTO postActual;
         control.mostrarPublicacionesEstudiante();
     }//GEN-LAST:event_btnEliminarMouseClicked
 
-    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+    private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
         // TODO add your handling code here:
-        control.mostrarPerfil();
-    }//GEN-LAST:event_btnCancelarMouseClicked
+        actualizarPost();
+        control.actulizarPost(postActual);
+        control.mostrarPublicacionesEstudiante();
+    }//GEN-LAST:event_btnConfirmarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
@@ -133,6 +126,11 @@ private PostDTO postActual;
     private javax.swing.JLabel labelUsuario;
     // End of variables declaration//GEN-END:variables
 
+    private void actualizarPost(){
+       postActual.setCreadoEn(Instant.now());
+       postActual.setMensaje(campoTexto.getText());
+       
+    }
 
     private void modoEditar(){
         labelMensaje.setEnabled(false);

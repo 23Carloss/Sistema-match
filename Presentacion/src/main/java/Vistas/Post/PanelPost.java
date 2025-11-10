@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Vistas;
+package Vistas.Post;
 
 import Aplicacion.Control;
 import DTOs.PostDTO;
@@ -51,37 +51,53 @@ private PostDTO postActual;
 
         labelMensaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelMensaje.setText("texto post");
-        add(labelMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 60, 490, 320));
+        add(labelMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 90, 490, 260));
 
         labelUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelUsuario.setText("nombre usuario");
         add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        btnMeGusta.setText("me gusta");
+        btnMeGusta.setText("like");
         btnMeGusta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMeGustaMouseClicked(evt);
             }
         });
-        add(btnMeGusta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
+        add(btnMeGusta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 60, 40));
 
         labelCreadoEn.setText("hora creacion");
         add(labelCreadoEn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 120, -1));
 
         labelReacciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelReacciones.setText("0");
-        add(labelReacciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 50, -1));
+        add(labelReacciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 50, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMeGustaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMeGustaMouseClicked
         // TODO add your handling code here:
-        if(postActual.isLikeado()){
+        boolean reaccion = control.verificarLikeEstudiante(postActual);
+        
+        if(reaccion){
+            
             btnMeGusta.setBackground(Color.red);
             postActual.setNumeroReacciones(postActual.getNumeroReacciones() + 1);
             postActual.setLikeado(true);
-        }else{
-           btnMeGusta.setBackground(Color.GRAY);
+            System.out.println("Post cundo le ds like : " + postActual.toString());
+            actualizarReacciones();
+            cargarPost(); 
+        }else{            
+            btnMeGusta.setBackground(Color.GRAY);
+            postActual.setNumeroReacciones(postActual.getNumeroReacciones() - 1);
+            postActual.setLikeado(false);
+            this.postActual  = actualizarReacciones();
+            cargarPost();btnMeGusta.setBackground(Color.GRAY);
+            postActual.setNumeroReacciones(postActual.getNumeroReacciones() - 1);
+            postActual.setLikeado(false);
+            this.postActual  = actualizarReacciones();
+            cargarPost();
+            // est logic un no es necesria, falta hacer una DAO para la reaccion
         }
+
     }//GEN-LAST:event_btnMeGustaMouseClicked
 
 
@@ -103,4 +119,9 @@ private PostDTO postActual;
         labelReacciones.setText(postActual.getNumeroReacciones()+ "");
         
     }
+    
+    public PostDTO actualizarReacciones(){
+        return control.actualizarReacciones(postActual);
+    }
+    
 }

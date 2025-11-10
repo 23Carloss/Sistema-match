@@ -10,16 +10,19 @@ import java.util.List;
  */
 public interface ILikeDAO {
 
-    void agregar(Likes like) throws PersistenciaException;
+    public void agregar(Likes like) throws PersistenciaException;
 
-    void eliminar(Long id) throws PersistenciaException;
+    public void eliminar(Long id) throws PersistenciaException;
 
-    void actualizar(Likes like) throws PersistenciaException;
+    public void actualizar(Likes like) throws PersistenciaException;
 
-    Likes obtenerPorId(Long id) throws PersistenciaException;
+    public Likes obtenerPorId(Long id) throws PersistenciaException;
 
     List<Likes> listar(int limite) throws PersistenciaException;
 
     boolean existeLike(Long idOrigen, Long idDestino) throws PersistenciaException;
+
+
+    public List<Likes> obtenerTodos() throws PersistenciaException;
 
 }

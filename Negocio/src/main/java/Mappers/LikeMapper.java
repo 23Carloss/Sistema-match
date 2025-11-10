@@ -1,3 +1,4 @@
+
 package Mappers;
 
 import DTOs.LikeDTO;
@@ -7,40 +8,40 @@ import entidades.Estudiante;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * @author brand
+ *
+ * @author $Luis Carlos Manjarrez Gonzalez
  */
 public class LikeMapper {
-
-    private final EstudianteMapper estudianteMapper;
-
+    
+    private EstudianteMapper mapper;
+    
     public LikeMapper() {
-        this.estudianteMapper = new EstudianteMapper();
+        mapper = new EstudianteMapper();
     }
-
-    public LikeDTO convertirADto(Likes like) {
-        LikeDTO dto = new LikeDTO();
-        dto.setId(like.getIdLike());
-        dto.setEstudianteOrigen(estudianteMapper.ConvertirADto(like.getEstudianteOrigen()));
-        dto.setEstudianteDestino(estudianteMapper.ConvertirADto(like.getEstudianteDestino()));
-        dto.setFechaHora(like.getFechaHora());
-        return dto;
+    
+    public LikeDTO convertirADto(Likes like){
+        LikeDTO likedto = new  LikeDTO();
+        EstudianteDTO estudianteOrigen = mapper.ConvertirADto(like.getEstudianteOrigen());
+        EstudianteDTO estudianteLikeado = mapper.ConvertirADto(like.getEstudianteDestino());
+        likedto.setEstudianteOrigen(estudianteOrigen);
+        likedto.setEstudianteDestino(estudianteLikeado);
+        likedto.setFechaHora(like.getFechaHora());
+        likedto.setId(like.getIdLike());
+        return likedto;
+        
     }
-
-    public Likes convertirAEntity(LikeDTO dto) {
-        Likes like = new Likes();
-        like.setIdLike(dto.getId());
-        like.setEstudianteOrigen(estudianteMapper.ConvertirAEntity(dto.getEstudianteOrigen()));
-        like.setEstudianteDestino(estudianteMapper.ConvertirAEntity(dto.getEstudianteDestino()));
-        like.setFechaHora(dto.getFechaHora());
-        return like;
+    public Likes convertirAEntity(LikeDTO likedto){
+        Likes likes = new  Likes();
+        Estudiante estudianteOrigen = mapper.ConvertirAEntity(likedto.getEstudianteOrigen());
+        Estudiante estudianteLikeado = mapper.ConvertirAEntity(likedto.getEstudianteDestino());
+        likes.setEstudianteOrigen(estudianteOrigen);
+        likes.setEstudianteDestino(estudianteLikeado);
+        likes.setFechaHora(likedto.getFechaHora());
+        likes.setIdLike(likedto.getId());
+        return likes;
+        
     }
-
-    public List<LikeDTO> convertirListaADto(List<Likes> listaEntity) {
-        List<LikeDTO> listaDTO = new ArrayList<>();
-        for (Likes like : listaEntity) {
-            listaDTO.add(convertirADto(like));
-        }
-        return listaDTO;
-    }
+    
 }

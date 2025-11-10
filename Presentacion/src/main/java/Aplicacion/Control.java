@@ -6,17 +6,20 @@
 package Aplicacion;
 
 import DTOs.EstudianteDTO;
+import DTOs.LikeDTO;
 import DTOs.PostDTO;
 import Implementacion.AdministracionEstudiantes;
-import Vistas.CrearPost;
+import Vistas.BuscarEstudiante;
+import Vistas.Post.CrearPost;
 import Vistas.FeedPrincipal;
 import Vistas.FramePrincipal;
-import Vistas.PanelEditarPerfil;
+import Vistas.Perfil.PanelEditarPerfil;
 import Vistas.PanelLogIn;
-import Vistas.PanelPublicaciones;
+import Vistas.Post.PanelPublicaciones;
 import Vistas.PanelRegistroDatosPersonales;
 import Vistas.PanelRegistroInfoGeneral;
-import Vistas.PerfilUsuario;
+import Vistas.Perfil.PanelEstudiante;
+import Vistas.Perfil.PerfilUsuario;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -38,6 +41,8 @@ public class Control {
     private PanelEditarPerfil editarPerfil;
     private CrearPost crearPost;
     private PanelPublicaciones publicacionesEstudiante;
+    private BuscarEstudiante buscarEstudiante;
+    private PanelEstudiante panelEstudiante;
 
     public Control() {
         frame = new FramePrincipal();
@@ -84,9 +89,15 @@ public class Control {
     }
     public void mostrarPublicacionesEstudiante(){
         publicacionesEstudiante = new PanelPublicaciones(this);
-        cambiarPantalla(publicacionesEstudiante);
-        // aqui falta el panel que implementara la creacion de los Paneles de las publicaciones para mostrarlos 1 uno por 1
-        
+        cambiarPantalla(publicacionesEstudiante); 
+    }
+    public void mostrarBuscarEstudiante(){
+        buscarEstudiante = new BuscarEstudiante(this);
+        cambiarPantalla(buscarEstudiante); 
+    }
+    public void mostrarPerfilEstudiante(){
+        panelEstudiante = new PanelEstudiante(this, getEstudianteBuscado());
+        cambiarPantalla(panelEstudiante); 
     }
     
     private void cambiarPantalla(JPanel nuevaPantalla) {
@@ -122,16 +133,22 @@ public class Control {
     public void setEstudiante(EstudianteDTO estudiante){
         moduloEstudiantes.setEstudiante(estudiante);
     }
+    public void setEstudianteBuscado(EstudianteDTO estudiante){
+        moduloEstudiantes.setEstudianteBuscado(estudiante);
+    }
     public EstudianteDTO getEstudiante(){
         return moduloEstudiantes.getEstudiante();
+    }
+    public EstudianteDTO getEstudianteBuscado(){
+        return moduloEstudiantes.getEstudianteBuscado();
     }
     
     public List<PostDTO> cargarPostFeed(){
        return moduloEstudiantes.cargarPublicaciones();
     }
     
-    public List<PostDTO> cargarPostEstudiante(){
-        return moduloEstudiantes.cargarPublicacionesEstudiante();
+    public List<PostDTO> cargarPostEstudiante(EstudianteDTO estudiante){
+        return moduloEstudiantes.cargarPublicacionesEstudiante(estudiante);
     }
     
     public void publicarPost(PostDTO post){
@@ -143,5 +160,24 @@ public class Control {
     public void eliminarPost(PostDTO post){
         moduloEstudiantes.eliminarPost(post);
     }
+    public PostDTO actualizarReacciones(PostDTO post){
+        return moduloEstudiantes.actualizarReaccion(post);
+    }
+    public boolean verificarLikeEstudiante(PostDTO post){
+        return moduloEstudiantes.verificarReaccionEstudiante(post, getEstudiante());
+    }       
+    
+    public List<EstudianteDTO> cargarEstudiantesPorNombre(String nombre){
+        return moduloEstudiantes.buscarEstudiantePorNombre(nombre);
+    }
+    
+    public void registrarLike(LikeDTO like){
+        moduloEstudiantes.guardarLike(like);
+    }
+    public void eliminarLike(LikeDTO like){
+        moduloEstudiantes.eliminarLike(like);
+    }
+    
+    
     
 }

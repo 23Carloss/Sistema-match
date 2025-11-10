@@ -39,9 +39,9 @@ public class LikeService implements ILikeService {
             if (like.getEstudianteOrigen().getId().equals(like.getEstudianteDestino().getId())) {
                 throw new NegocioException("Un estudiante no puede darse like a sí mismo.");
             }
-            if (like.getFechaHora() == null || like.getFechaHora().isAfter(java.time.LocalDateTime.now())) {
-                throw new NegocioException("La fecha del like no puede ser futura.");
-            }
+//            if (like.getFechaHora() == null || like.getFechaHora().isAfter(java.time.LocalDateTime.now())) {
+//                throw new NegocioException("La fecha del like no puede ser futura.");
+//            }
 
             // No duplicar likes
             List<Likes> existentes = likeDAO.listar(100);
@@ -62,13 +62,13 @@ public class LikeService implements ILikeService {
 
             if (reciproco) {
                 // Validaciones opcionales de que no exista el MATCH previamente
-                // Crear el match
-                MatchDTO nuevoMatch = new MatchDTO();
-                nuevoMatch.setEstudiante1(like.getEstudianteOrigen());
-                nuevoMatch.setEstudiante2(like.getEstudianteDestino());
-                nuevoMatch.setFechaHoraMatch(java.time.LocalDateTime.now());
+//                // Crear el match
+//                MatchDTO nuevoMatch = new MatchDTO();
+//                nuevoMatch.setEstudiante1(like.getEstudianteOrigen());
+//                nuevoMatch.setEstudiante2(like.getEstudianteDestino());
+//                nuevoMatch.setFechaHoraMatch(java.time.LocalDateTime.now());
 
-                matchService.crear(nuevoMatch); // Llama al servicio y crea el match
+//                matchService.crear(nuevoMatch); // Llama al servicio y crea el match
             }
         } catch (PersistenciaException e) {
             throw new NegocioException("Error en persistencia: " + e.getMessage(), e);
@@ -94,17 +94,18 @@ public class LikeService implements ILikeService {
 
     @Override
     public List<LikeDTO> listar(int limite) throws NegocioException {
-        try {
+//        try {
             if (limite <= 0) {
                 throw new NegocioException("El límite debe ser mayor que cero.");
             }
             if (limite > 100) {
                 throw new NegocioException("El límite máximo permitido es 100.");
             }
-            return mapper.convertirListaADto(likeDAO.listar(limite));
-        } catch (PersistenciaException e) {
-            throw new NegocioException("Error en persistencia: " + e.getMessage(), e);
-        }
+//            return mapper.convertirListaADto(likeDAO.listar(limite));
+return null;
+//        } catch (PersistenciaException e) {
+//            throw new NegocioException("Error en persistencia: " + e.getMessage(), e);
+//        }
     }
 
     @Override

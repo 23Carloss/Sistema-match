@@ -28,6 +28,6 @@ public interface IEstudianteBO {
 
     public EstudianteDTO BuscarPorId(Long id);
 //
-//    public EstudianteDTO autenticar(String correo, String contrasenia);
+    public EstudianteDTO autenticar(String correo, String contrasenia);
 
 }

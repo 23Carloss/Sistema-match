@@ -25,6 +25,7 @@ public class LikeDAO implements ILikeDAO {
             em.getTransaction().begin();
             em.persist(like);
             em.getTransaction().commit();
+            
         } catch (Exception e) {
             em.getTransaction().rollback();
             throw new PersistenciaException("Error al agregar el Like.", e);
@@ -94,6 +95,11 @@ public class LikeDAO implements ILikeDAO {
         } catch (Exception e) {
             throw new PersistenciaException("Error al buscar like entre estudiantes.", e);
         }
+    }
+
+    @Override
+    public List<Likes> obtenerTodos() throws PersistenciaException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

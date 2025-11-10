@@ -10,13 +10,13 @@ import java.util.List;
  */
 public interface IMatchDAO {
 
-    void agregar(Matches match) throws PersistenciaException;
+    public void agregar(Matches match) throws PersistenciaException;
 
-    void eliminar(Long id) throws PersistenciaException;
+    public void eliminar(Long id) throws PersistenciaException;
 
-    void actualizar(Matches match) throws PersistenciaException;
+    public void actualizar(Matches match) throws PersistenciaException;
 
-    Matches obtenerPorId(Long id) throws PersistenciaException;
+    public Matches obtenerPorId(Long id) throws PersistenciaException;
 
-    List<Matches> listar(int limite) throws PersistenciaException;
+    public List<Matches> listar(int limite) throws PersistenciaException;
 }

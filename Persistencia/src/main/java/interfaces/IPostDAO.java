@@ -23,5 +23,6 @@ public interface IPostDAO {
     public List<Post> obtenerPostPorEstudiante(long idEstudiante) throws PersistenciaException;
 
     public List<Post> obtenerPostFeed() throws PersistenciaException;
-
+    public Post actulizarReaccion(Post post)throws PersistenciaException;
+    public boolean verificarReaccionEstudiante(Post post, long idEstudiante)throws PersistenciaException;
 }

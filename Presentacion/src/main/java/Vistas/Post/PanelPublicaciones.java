@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Vistas;
+package Vistas.Post;
 
+import Vistas.Post.PublicacionesEstudiante;
 import Aplicacion.Control;
 import DTOs.EstudianteDTO;
 import DTOs.PostDTO;
@@ -48,17 +49,19 @@ private EstudianteDTO estudiante;
         panelFeed = new javax.swing.JScrollPane();
         barra = new javax.swing.JScrollBar();
         panelContenido = new javax.swing.JPanel();
+        btnCancelar = new javax.swing.JButton();
 
-        setMaximumSize(new java.awt.Dimension(548, 440));
-        setMinimumSize(new java.awt.Dimension(548, 440));
+        setMaximumSize(new java.awt.Dimension(586, 508));
+        setMinimumSize(new java.awt.Dimension(586, 508));
+        setPreferredSize(new java.awt.Dimension(586, 508));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelFeed.setMaximumSize(new java.awt.Dimension(548, 440));
-        panelFeed.setMinimumSize(new java.awt.Dimension(548, 440));
-        panelFeed.setPreferredSize(new java.awt.Dimension(548, 440));
+        panelFeed.setMaximumSize(new java.awt.Dimension(560, 460));
+        panelFeed.setMinimumSize(new java.awt.Dimension(560, 460));
+        panelFeed.setPreferredSize(new java.awt.Dimension(580, 440));
         panelFeed.setViewportView(barra);
 
-        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, -4, 540, 440));
+        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, -4, 580, 440));
 
         panelContenido.setMaximumSize(new java.awt.Dimension(548, 440));
         panelContenido.setMinimumSize(new java.awt.Dimension(548, 440));
@@ -76,11 +79,27 @@ private EstudianteDTO estudiante;
         );
 
         add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, 100));
+
+        btnCancelar.setBackground(new java.awt.Color(0, 0, 0));
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseClicked(evt);
+            }
+        });
+        add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 120, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+        // TODO add your handling code here:
+        control.mostrarPerfil();
+    }//GEN-LAST:event_btnCancelarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollBar barra;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JPanel panelContenido;
     private javax.swing.JScrollPane panelFeed;
     // End of variables declaration//GEN-END:variables
@@ -135,8 +154,8 @@ public void scrollFeed(){
  public void cargarFeed(){
         panelContenido.setLayout(new BoxLayout(panelContenido, BoxLayout.Y_AXIS));
         panelContenido.removeAll();
-        panelContenido.setPreferredSize(new Dimension(600, control.cargarPostEstudiante().size()*(450+10)));
-        for(PostDTO post: control.cargarPostEstudiante()){
+        panelContenido.setPreferredSize(new Dimension(560, control.cargarPostEstudiante(this.estudiante).size()*(450+10)));
+        for(PostDTO post: control.cargarPostEstudiante(this.estudiante)){
             System.out.println(post.toString());
             PublicacionesEstudiante publicacion = new PublicacionesEstudiante(control, post);   
 

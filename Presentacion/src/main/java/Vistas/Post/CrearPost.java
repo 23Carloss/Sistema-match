@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Vistas;
+package Vistas.Post;
 
 import Aplicacion.Control;
 import DTOs.PostDTO;
@@ -37,9 +37,10 @@ private PostDTO postCreado;
         btnDescartar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setMaximumSize(new java.awt.Dimension(540, 450));
+        setMaximumSize(new java.awt.Dimension(563, 470));
+        setPreferredSize(new java.awt.Dimension(563, 470));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(campoMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 487, 330));
+        add(campoMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 487, 280));
 
         btnPublicar.setBackground(new java.awt.Color(0, 0, 0));
         btnPublicar.setForeground(new java.awt.Color(255, 255, 255));
@@ -61,7 +62,7 @@ private PostDTO postCreado;
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Crear Publicacion");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 160, 30));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 160, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPublicarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPublicarMouseClicked
@@ -90,9 +91,6 @@ private PostDTO postCreado;
         postCreado.setMensaje(campoMensaje.getText());
         postCreado.setCreadoEn(Instant.now());
         postCreado.setEstudiante(control.getEstudiante());
-       
-        System.out.println("Estudiante que llega a CrearPost: Presentacion:  " + control.getEstudiante().toString());
-        System.out.println("Post creado : " + postCreado.toString());
-        
+   
     }
 }

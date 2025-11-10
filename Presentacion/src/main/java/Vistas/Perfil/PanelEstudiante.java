@@ -2,16 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Vistas;
+package Vistas.Perfil;
 
-import Vistas.Post.PanelPost;
 import Aplicacion.Control;
+import DTOs.EstudianteDTO;
+import DTOs.LikeDTO;
 import DTOs.PostDTO;
+import Vistas.Post.PanelPost;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.time.Instant;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
@@ -21,17 +24,23 @@ import javax.swing.Timer;
  *
  * @author HP
  */
-public class FeedPrincipal extends javax.swing.JPanel {
+public class PanelEstudiante extends javax.swing.JPanel {
 private Control control;
+private EstudianteDTO estudiante;
+private LikeDTO like;
+
     /**
-     * Creates new form FeedPrincipal
+     * Creates new form PanelEstudiante
      */
-    public FeedPrincipal(Control control) {
+    public PanelEstudiante(Control control, EstudianteDTO estudiante) {
         this.control = control;
-       
+        this.estudiante = estudiante;
+        this.like = new LikeDTO();
         initComponents();
         cargarFeed();
         scrollFeed();
+        valoresDefault();
+        
     }
 
     /**
@@ -43,18 +52,26 @@ private Control control;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnHome = new javax.swing.JButton();
-        btnMensajes = new javax.swing.JButton();
-        btnPerfil = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
         panelFeed = new javax.swing.JScrollPane();
         barra = new javax.swing.JScrollBar();
+        btnHome = new javax.swing.JButton();
+        btnLike = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         panelContenido = new javax.swing.JPanel();
+        btnDisLike = new javax.swing.JButton();
 
-        setMinimumSize(new java.awt.Dimension(600, 480));
-        setName(""); // NOI18N
-        setPreferredSize(new java.awt.Dimension(600, 480));
+        setMaximumSize(new java.awt.Dimension(664, 550));
+        setMinimumSize(new java.awt.Dimension(664, 550));
+        setPreferredSize(new java.awt.Dimension(664, 550));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelFeed.setMaximumSize(new java.awt.Dimension(480, 390));
+        panelFeed.setPreferredSize(new java.awt.Dimension(480, 390));
+
+        barra.setPreferredSize(new java.awt.Dimension(540, 450));
+        panelFeed.setViewportView(barra);
+
+        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 460, 370));
 
         btnHome.setText("Home");
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -62,84 +79,105 @@ private Control control;
                 btnHomeMouseClicked(evt);
             }
         });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 432, -1, -1));
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 510, -1, -1));
 
-        btnMensajes.setText("Mensajes");
-        add(btnMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
-
-        btnPerfil.setText("Mi perifl");
-        btnPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnLike.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\corazon.png")); // NOI18N
+        btnLike.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPerfilMouseClicked(evt);
+                btnLikeMouseClicked(evt);
             }
         });
-        add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, -1, -1));
+        add(btnLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 50, 30));
 
-        btnBuscar.setText("Buscar");
-        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseClicked(evt);
-            }
-        });
-        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("nombre estudinte");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        panelFeed.setMaximumSize(new java.awt.Dimension(540, 480));
-        panelFeed.setMinimumSize(new java.awt.Dimension(540, 480));
-        panelFeed.setPreferredSize(new java.awt.Dimension(540, 480));
-
-        barra.setPreferredSize(new java.awt.Dimension(540, 450));
-        panelFeed.setViewportView(barra);
-
-        add(panelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 480, 390));
-
-        panelContenido.setMaximumSize(new java.awt.Dimension(540, 4000));
-        panelContenido.setPreferredSize(new java.awt.Dimension(540, 450));
+        panelContenido.setMaximumSize(new java.awt.Dimension(540, 32767));
+        panelContenido.setMinimumSize(new java.awt.Dimension(540, 450));
 
         javax.swing.GroupLayout panelContenidoLayout = new javax.swing.GroupLayout(panelContenido);
         panelContenido.setLayout(panelContenidoLayout);
         panelContenidoLayout.setHorizontalGroup(
             panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
         panelContenidoLayout.setVerticalGroup(
             panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
 
-        add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 480, 390));
-    }// </editor-fold>//GEN-END:initComponents
+        add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 460, 370));
 
-    private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
-        // TODO add your handling code here:
-        control.mostrarPerfil();
-    }//GEN-LAST:event_btnPerfilMouseClicked
+        btnDisLike.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\ITSON\\Clases5Semestre\\BDA2.0\\Java´s\\Repositorio Proyecto02\\Sistema-match\\Imagenes\\corazon (1).png")); // NOI18N
+        btnDisLike.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDisLikeMouseClicked(evt);
+            }
+        });
+        add(btnDisLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 460, 40, 30));
+    }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
         // TODO add your handling code here:
-        cargarFeed();
+        control.mostrarMenuPrincipal();
     }//GEN-LAST:event_btnHomeMouseClicked
 
-    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+    private void btnLikeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLikeMouseClicked
         // TODO add your handling code here:
-        control.mostrarBuscarEstudiante();
-    }//GEN-LAST:event_btnBuscarMouseClicked
+        crearLike();
+        btnLike.setEnabled(false);
+        btnLike.setVisible(false);
+        btnDisLike.setVisible(true);
+        btnDisLike.setEnabled(true);
+    }//GEN-LAST:event_btnLikeMouseClicked
+
+    private void btnDisLikeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDisLikeMouseClicked
+        // TODO add your handling code here:
+        btnLike.setEnabled(true);
+        btnLike.setVisible(true);
+        btnDisLike.setVisible(false);
+        btnDisLike.setEnabled(false);
+        eliminarLike();
+    }//GEN-LAST:event_btnDisLikeMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollBar barra;
-    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnDisLike;
     private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnMensajes;
-    private javax.swing.JButton btnPerfil;
+    private javax.swing.JButton btnLike;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel panelContenido;
     private javax.swing.JScrollPane panelFeed;
     // End of variables declaration//GEN-END:variables
 
+
+    public void crearLike(){
+        like.setEstudianteDestino(control.getEstudianteBuscado());
+        like.setEstudianteOrigen(control.getEstudiante());
+        like.setFechaHora(Instant.now());
+        System.out.println("Like antes de registrar:  " + like.toString());
+        control.registrarLike(like);
+        
+        
+        
+    }
+    public void valoresDefault(){
+        btnDisLike.setVisible(false);
+        btnDisLike.setEnabled(false);
+    }
+    
+    public void eliminarLike(){
+        
+        control.eliminarLike(like);
+        
+    }
     public void cargarFeed(){
         panelContenido.setLayout(new BoxLayout(panelContenido, BoxLayout.Y_AXIS));
         panelContenido.removeAll();
-        panelContenido.setPreferredSize(new Dimension(540, control.cargarPostFeed().size()*(450+10)));
-        for(PostDTO post: control.cargarPostFeed()){
+        panelContenido.setPreferredSize(new Dimension(540, control.cargarPostEstudiante(this.estudiante).size()*(450+10)));
+        for(PostDTO post: control.cargarPostEstudiante(this.estudiante)){
             System.out.println(post.toString());
             PanelPost publicacion = new PanelPost(control, post);   
 
@@ -199,6 +237,5 @@ private Control control;
              }
          }));  
      }
-  
 
 }

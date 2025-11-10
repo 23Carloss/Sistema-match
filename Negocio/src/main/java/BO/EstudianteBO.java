@@ -15,6 +15,8 @@ import entidades.Hobby;
 import exception.PersistenciaException;
 import interfaces.IEstudianteDAO;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -108,15 +110,22 @@ public class EstudianteBO implements IEstudianteBO {
         }
 
     }
-//
-//    @Override
-//    public EstudianteDTO autenticar(String correo, String contrasenia) {
-//        Estudiante estudiante = estudianteDAO.autenticar(correo, contrasenia);
-//        if(estudiante == null){
-//            return null;
-//        }
-//        return mapper.ConvertirADto(estudianteDAO.autenticar(correo, contrasenia));
-//    }
+
+    @Override
+    public EstudianteDTO autenticar(String correo, String contrasenia) {
+        try {
+            Estudiante estudiante = estudianteDAO.autenticar(correo, contrasenia);
+            if(estudiante == null){
+                return null;
+            }
+            return mapper.ConvertirADto(estudianteDAO.autenticar(correo, contrasenia));
+        } catch (PersistenciaException ex) {
+            JOptionPane.showMessageDialog(null,"Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
+
+   
 
     
 }
