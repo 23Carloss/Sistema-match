@@ -87,36 +87,36 @@ public class EstudianteBO implements IEstudianteBO {
         }
     }
     
+//    @Override
+//    public List<EstudianteDTO> ObtenerTodos(){
+//        try {
+//            return mapper.ConvertirListaADto(estudianteDAO.obtenerTodos());
+//        } catch (PersistenciaException ex) {
+//            JOptionPane msj = new JOptionPane("Error al buscar los usuarios", JOptionPane.ERROR_MESSAGE);
+//            return null;
+//        }
+//        
+//    }
+//    
     @Override
-    public List<EstudianteDTO> ObtenerTodos(){
-        try {
-            return mapper.ConvertirListaADto(estudianteDAO.obtenerTodos());
-        } catch (PersistenciaException ex) {
-            JOptionPane msj = new JOptionPane("Error al buscar los usuarios", JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
-        
-    }
-    
-    @Override
-    public List<EstudianteDTO> BuscarPorHobby(Hobby hobby){
+    public List<EstudianteDTO> BuscarPorHobby(Hobby hobby) {
         try {
             return mapper.ConvertirListaADto(estudianteDAO.buscarPorHobby(hobby));
         } catch (PersistenciaException ex) {
             JOptionPane msj = new JOptionPane("Error al buscar los usuarios", JOptionPane.ERROR_MESSAGE);
             return null;
         }
-        
-    }
 
-    @Override
-    public EstudianteDTO autenticar(String correo, String contrasenia) {
-        Estudiante estudiante = estudianteDAO.autenticar(correo, contrasenia);
-        if(estudiante == null){
-            return null;
-        }
-        return mapper.ConvertirADto(estudianteDAO.autenticar(correo, contrasenia));
     }
+//
+//    @Override
+//    public EstudianteDTO autenticar(String correo, String contrasenia) {
+//        Estudiante estudiante = estudianteDAO.autenticar(correo, contrasenia);
+//        if(estudiante == null){
+//            return null;
+//        }
+//        return mapper.ConvertirADto(estudianteDAO.autenticar(correo, contrasenia));
+//    }
 
     
 }

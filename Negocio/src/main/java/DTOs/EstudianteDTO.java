@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * 
+ *
  * @author brand
  */
 public class EstudianteDTO {
@@ -135,10 +135,7 @@ public class EstudianteDTO {
 
     @Override
     public String toString() {
-        return "EstudianteDTO{" + "id=" + id + ", nombre=" + nombre + ", apellidoMaterno=" + apellidoMaterno + ", apellidoPaterno=" + apellidoPaterno + ", correo=" + correo + ", contrasenia=" + contrasenia + ", carrera=" + carrera + ", hobbies=" + hobbies +  "likesDados=" + likesDados + ", likesRecibidos=" + likesRecibidos + ", matches1=" + matches1 + ", matches2=" + matches2 + '}';
+        return "EstudianteDTO{" + "id=" + id + ", nombre=" + nombre + ", apellidoMaterno=" + apellidoMaterno + ", apellidoPaterno=" + apellidoPaterno + ", correo=" + correo + ", contrasenia=" + contrasenia + ", carrera=" + carrera + ", hobbies=" + hobbies + "likesDados=" + likesDados + ", likesRecibidos=" + likesRecibidos + ", matches1=" + matches1 + ", matches2=" + matches2 + '}';
     }
-    
 
-   
-    
 }

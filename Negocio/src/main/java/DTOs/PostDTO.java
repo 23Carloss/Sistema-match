@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package DTOs;
 
 import java.time.Instant;
@@ -73,10 +72,7 @@ public class PostDTO {
 
     @Override
     public String toString() {
-        return "PostDTO{" + "id=" + id + ", mensaje=" + mensaje + ", creadoEn=" + creadoEn + ", numeroReacciones=" + numeroReacciones + ", likeado=" + likeado + ", estudiante=" + estudiante.getId()+ '}';
+        return "PostDTO{" + "id=" + id + ", mensaje=" + mensaje + ", creadoEn=" + creadoEn + ", numeroReacciones=" + numeroReacciones + ", likeado=" + likeado + ", estudiante=" + estudiante.getId() + '}';
     }
-    
-   
-    
-    
+
 }
