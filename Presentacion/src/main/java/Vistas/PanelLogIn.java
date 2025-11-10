@@ -4,16 +4,20 @@
  */
 package Vistas;
 
+import Aplicacion.Control;
+
 /**
  *
  * @author HP
  */
 public class PanelLogIn extends javax.swing.JPanel {
-
+    
+private Control control;
     /**
      * Creates new form PanelLogIn
      */
-    public PanelLogIn() {
+    public PanelLogIn(Control control) {
+        this.control = control;
         initComponents();
     }
 
@@ -76,10 +80,15 @@ public class PanelLogIn extends javax.swing.JPanel {
 
     private void BtnLogInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLogInMouseClicked
         // TODO add your handling code here:
+        if(autenticacion()){
+            control.mostrarMenuPrincipal();
+        }
     }//GEN-LAST:event_BtnLogInMouseClicked
 
     private void BtnRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnRegistroMouseClicked
         // TODO add your handling code here:
+        
+       control.mostrarRegistroDatosPersonales();
     }//GEN-LAST:event_BtnRegistroMouseClicked
 
 
@@ -92,4 +101,8 @@ public class PanelLogIn extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
+
+    private boolean autenticacion(){
+        return control.iniciarSesion(campoUsuario.getText(), campoPassword.getText());
+    }
 }

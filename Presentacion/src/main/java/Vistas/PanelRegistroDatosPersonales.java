@@ -4,16 +4,21 @@
  */
 package Vistas;
 
+import Aplicacion.Control;
+import DTOs.EstudianteDTO;
+
 /**
  *
  * @author HP
  */
 public class PanelRegistroDatosPersonales extends javax.swing.JPanel {
-
+private Control control;
+private EstudianteDTO estudianteaRegistrar;
     /**
      * Creates new form PanelRegistroDatosPersonales
      */
-    public PanelRegistroDatosPersonales() {
+    public PanelRegistroDatosPersonales(Control control) {
+        this.control = control;
         initComponents();
     }
 
@@ -35,10 +40,12 @@ public class PanelRegistroDatosPersonales extends javax.swing.JPanel {
         campoConfirmarContrasenhia = new javax.swing.JTextField();
         campoContrasenhia = new javax.swing.JTextField();
         campoCorreoE = new javax.swing.JTextField();
-        campoApellido = new javax.swing.JTextField();
+        campoApellidoP = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         BtnCancelar = new javax.swing.JButton();
         BtnContiuar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        campoApellidoM = new javax.swing.JTextField();
 
         setMaximumSize(new java.awt.Dimension(520, 650));
         setMinimumSize(new java.awt.Dimension(520, 650));
@@ -47,42 +54,42 @@ public class PanelRegistroDatosPersonales extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Confirmar contrasenhia:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Nombre(s):");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 127, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Apellido(s):");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
+        jLabel3.setText("Apellido Paterno:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Correo electronico:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Contrasenhia:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
 
         campoNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 330, 40));
+        add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 330, 40));
 
         campoConfirmarContrasenhia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        add(campoConfirmarContrasenhia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 330, 40));
+        add(campoConfirmarContrasenhia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 330, 40));
 
         campoContrasenhia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        add(campoContrasenhia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 330, 40));
+        add(campoContrasenhia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 330, 40));
 
         campoCorreoE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        add(campoCorreoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 330, 40));
+        add(campoCorreoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 330, 40));
 
-        campoApellido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        add(campoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 330, 40));
+        campoApellidoP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        add(campoApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 330, 40));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setText("Registro");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 90, 50));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 90, 50));
 
         BtnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         BtnCancelar.setText("Cancelar");
@@ -91,7 +98,7 @@ public class PanelRegistroDatosPersonales extends javax.swing.JPanel {
                 BtnCancelarMouseClicked(evt);
             }
         });
-        add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 150, 40));
+        add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, 150, 40));
 
         BtnContiuar.setBackground(new java.awt.Color(0, 0, 0));
         BtnContiuar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -102,22 +109,37 @@ public class PanelRegistroDatosPersonales extends javax.swing.JPanel {
                 BtnContiuarMouseClicked(evt);
             }
         });
-        add(BtnContiuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 570, 150, 40));
+        add(BtnContiuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 590, 150, 40));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setText("Apellido Materno:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+
+        campoApellidoM.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        add(campoApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 330, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnContiuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnContiuarMouseClicked
         // TODO add your handling code here:
+        
+        if(campoContrasenhia.getText().equals(campoConfirmarContrasenhia.getText())){
+            crearEstudiante();
+            control.setEstudiante(estudianteaRegistrar);
+            control.mostrarRegistroInfoGeneral();
+        }
     }//GEN-LAST:event_BtnContiuarMouseClicked
 
     private void BtnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCancelarMouseClicked
         // TODO add your handling code here:
+        control.mostrarLogIn();
     }//GEN-LAST:event_BtnCancelarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnContiuar;
-    private javax.swing.JTextField campoApellido;
+    private javax.swing.JTextField campoApellidoM;
+    private javax.swing.JTextField campoApellidoP;
     private javax.swing.JTextField campoConfirmarContrasenhia;
     private javax.swing.JTextField campoContrasenhia;
     private javax.swing.JTextField campoCorreoE;
@@ -128,5 +150,19 @@ public class PanelRegistroDatosPersonales extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
+
+    public void crearEstudiante(){
+        estudianteaRegistrar = new EstudianteDTO();
+        estudianteaRegistrar.setCorreo(campoCorreoE.getText());
+        estudianteaRegistrar.setContrasenia(campoContrasenhia.getText());
+        estudianteaRegistrar.setNombre(campoNombre.getText());
+        estudianteaRegistrar.setApellidoPaterno(campoApellidoP.getText());
+        estudianteaRegistrar.setApellidoMaterno(campoApellidoM.getText());
+    }
+
+
+
+
 }

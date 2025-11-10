@@ -38,13 +38,15 @@ public class Estudiante implements Serializable{
     @Column
     private String correo;
     @Column
-    private String constrasenia;
+    private String contrasenia;
     @Column
     private String carrera;
     // relacion de likes
     @OneToMany(mappedBy= "estudiante")
     private List<EstudianteLike> EstudiantesLikeados;
     
+    @OneToMany(mappedBy = "estudiante")
+    private List<Post> publicaciones;
     
     @ElementCollection(targetClass = Hobby.class)
     @CollectionTable(name = "hobbys_Estudiante", joinColumns = @JoinColumn(name= "idEstudiante"))
@@ -71,7 +73,7 @@ private List<Matches> matches1 = new ArrayList<>();
         this.apellidoMaterno = apellidoMaterno;
         this.apellidoPaterno = apellidoPaterno;
         this.correo = correo;
-        this.constrasenia = constrasenia;
+        this.contrasenia = constrasenia;
         this.carrera = carrera;
         this.EstudiantesLikeados = EstudiantesLikeados;
         this.hobby = hobby;
@@ -117,12 +119,12 @@ private List<Matches> matches1 = new ArrayList<>();
         this.correo = correo;
     }
 
-    public String getConstrasenia() {
-        return constrasenia;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setConstrasenia(String constrasenia) {
-        this.constrasenia = constrasenia;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public String getCarrera() {
@@ -172,6 +174,18 @@ private List<Matches> matches1 = new ArrayList<>();
     public void setMatches2(List matches2) {
         this.matches2 = matches2;
     }
- 
- 
+
+    public List<Post> getPublicaciones() {
+        return publicaciones;
+    }
+
+    public void setPublicaciones(List<Post> publicaciones) {
+        this.publicaciones = publicaciones;
+    }
+
+    @Override
+    public String toString() {
+        return "Estudiante{" + "id=" + id + ", nombre=" + nombre + ", apellidoMaterno=" + apellidoMaterno + ", apellidoPaterno=" + apellidoPaterno + ", correo=" + correo + ", contrasenia=" + contrasenia + ", carrera=" + carrera + ", EstudiantesLikeados=" + EstudiantesLikeados + ", publicaciones=" + publicaciones.size() + ", hobby=" + hobby + ", likesDados=" + likesDados + ", likesRecibidos=" + likesRecibidos + ", matches1=" + matches1 + ", matches2=" + matches2 + '}';
+    }
+    
 }

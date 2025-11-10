@@ -61,6 +61,11 @@ public class EstudianteLike implements Serializable{
     public void setLike(Likes like) {
         this.like = like;
     }
+
+    @Override
+    public String toString() {
+        return "EstudianteLike{" + "id=" + id + ", estudiante=" + estudiante + ", like=" + like + '}';
+    }
     
     
     

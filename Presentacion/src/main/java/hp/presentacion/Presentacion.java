@@ -4,13 +4,20 @@
 
 package hp.presentacion;
 
+import Aplicacion.Control;
+
 /**
  *
  * @author HP
  */
 public class Presentacion {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Control control = new Control();
+        control.iniciar();
     }
 }

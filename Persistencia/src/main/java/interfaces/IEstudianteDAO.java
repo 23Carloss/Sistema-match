@@ -11,17 +11,22 @@ import java.util.List;
  */
 public interface IEstudianteDAO {
 
-    void agregar(Estudiante estudiante) throws PersistenciaException;
+    public void agregar(Estudiante estudiante) throws PersistenciaException;
 
-    void eliminar(Long id) throws PersistenciaException;
+    public void eliminar(Long id) throws PersistenciaException;
 
-    void actualizar(Estudiante estudiante) throws PersistenciaException;
+    public void actualizar(Estudiante estudiante) throws PersistenciaException;
 
-    Estudiante obtenerPorId(Long id) throws PersistenciaException;
+    public Estudiante obtenerPorId(Long id) throws PersistenciaException;
 
     List<Estudiante> listar(int limite) throws PersistenciaException;
+    public List<Estudiante> obtenerTodos() throws PersistenciaException;
 
-    List<Estudiante> buscarPorNombre(String nombre) throws PersistenciaException;
+    public List<Estudiante> buscarPorNombre(String nombre) throws PersistenciaException;
 
     List<Estudiante> buscarPorHobby(Hobby hobby) throws PersistenciaException;
+}
+    public List<Estudiante> buscarPorHobby(Hobby hobby) throws PersistenciaException;
+    
+    public Estudiante autenticar(String correo,String contrasenia);
 }
