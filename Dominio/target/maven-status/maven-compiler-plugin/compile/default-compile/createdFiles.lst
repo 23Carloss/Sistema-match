@@ -1,5 +1,6 @@
 entidades\EstudianteLike.class
 entidades\Hobby.class
+entidades\Post.class
 entidades\Estudiante.class
 entidades\Likes.class
 entidades\Matches.class

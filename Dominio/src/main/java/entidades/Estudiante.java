@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entidades;
 
 import jakarta.persistence.CollectionTable;
@@ -35,12 +31,13 @@ public class Estudiante implements Serializable{
     private String apellidoMaterno; 
     @Column
     private String apellidoPaterno;
-    @Column
+    @Column (nullable = false, unique = true)
     private String correo;
-    @Column
+    @Column (nullable = false)
     private String contrasenia;
     @Column
     private String carrera;
+    
     // relacion de likes
     @OneToMany(mappedBy= "estudiante")
     private List<EstudianteLike> EstudiantesLikeados;
@@ -67,13 +64,13 @@ private List<Matches> matches1 = new ArrayList<>();
     }
 
     
-    public Estudiante(Long id, String nombre, String apellidoMaterno, String apellidoPaterno, String correo, String constrasenia, String carrera, List<EstudianteLike> EstudiantesLikeados, List<Hobby> hobby) {
+    public Estudiante(Long id, String nombre, String apellidoMaterno, String apellidoPaterno, String correo, String contrasenia, String carrera, List<EstudianteLike> EstudiantesLikeados, List<Hobby> hobby) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoMaterno = apellidoMaterno;
         this.apellidoPaterno = apellidoPaterno;
         this.correo = correo;
-        this.contrasenia = constrasenia;
+        this.contrasenia = contrasenia;
         this.carrera = carrera;
         this.EstudiantesLikeados = EstudiantesLikeados;
         this.hobby = hobby;
