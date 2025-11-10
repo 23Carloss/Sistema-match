@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package daos;
 
 import entidades.Post;
@@ -17,21 +16,22 @@ import java.util.List;
  * @author $Luis Carlos Manjarrez Gonzalez
  */
 public class PostDAO implements IPostDAO {
-    
-private EntityManager em;
 
-    public PostDAO(EntityManager em){
+    private EntityManager em;
+
+    public PostDAO(EntityManager em) {
         this.em = em;
-        
+
     }
+
     @Override
     public void agregarPost(Post post) throws PersistenciaException {
-        try{
+        try {
             em.getTransaction().begin();
             em.persist(post);
             em.getTransaction().commit();
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             em.getTransaction().rollback();
             throw new PersistenciaException("Error al publicar post");
         }
@@ -39,43 +39,41 @@ private EntityManager em;
 
     @Override
     public Post actualizarPost(Post post) throws PersistenciaException {
-        try{
+        try {
             em.getTransaction().begin();
             em.merge(post);
             em.getTransaction().commit();
             return post;
-        }catch(Exception e){
+        } catch (Exception e) {
             em.getTransaction().rollback();
             throw new PersistenciaException("Error al actualizar post");
         }
     }
-    
 
     @Override
     public void eliminarPost(long id) throws PersistenciaException {
-        
-        try{
+
+        try {
             em.getTransaction().begin();
             Post post = em.find(Post.class, id);
             if (post != null) {
                 em.remove(post);
             }
-        em.getTransaction().commit();
-        }catch(Exception e){
+            em.getTransaction().commit();
+        } catch (Exception e) {
             em.getTransaction().rollback();
             throw new PersistenciaException("Error al eliminar post");
         }
     }
-    
 
     @Override
     public List<Post> obtenerPostPorEstudiante(long idEstudiante) throws PersistenciaException {
         try {
             System.out.println("id q llega a la DAO:  " + idEstudiante);
             TypedQuery<Post> query = em.createQuery(
-                    "SELECT p FROM Post p WHERE p.estudiante.id = :idEstudiante", Post.class); 
+                    "SELECT p FROM Post p WHERE p.estudiante.id = :idEstudiante", Post.class);
             query.setParameter("idEstudiante", idEstudiante);
-            for(Post post:query.getResultList() ){
+            for (Post post : query.getResultList()) {
                 System.out.println("Post q vienen desde la DB - DAO:  " + post.toString());
             }
             return query.getResultList();
@@ -86,8 +84,8 @@ private EntityManager em;
 
     @Override
     public List<Post> obtenerPostFeed() throws PersistenciaException {
-      try {
-            TypedQuery<Post> query = em.createQuery("SELECT p FROM Post p", Post.class); 
+        try {
+            TypedQuery<Post> query = em.createQuery("SELECT p FROM Post p", Post.class);
             return query.getResultList();
         } catch (Exception e) {
             throw new PersistenciaException("Error al obtener post", e);

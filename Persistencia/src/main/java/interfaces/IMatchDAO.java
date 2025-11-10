@@ -18,5 +18,5 @@ public interface IMatchDAO {
 
     Matches obtenerPorId(Long id) throws PersistenciaException;
 
-    List<Matches> obtenerTodos() throws PersistenciaException;
+    List<Matches> listar(int limite) throws PersistenciaException;
 }

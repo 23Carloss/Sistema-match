@@ -110,36 +110,30 @@ public class EstudianteDAO implements IEstudianteDAO {
     }
 
     @Override
-    public Estudiante autenticar(String correo, String contrasenia) {
-        Estudiante estudianteEncontrado;
+    public Estudiante autenticar(String correo, String contrasenia) throws PersistenciaException {
         try {
-            estudianteEncontrado = buscarPorCorreo(correo);
-            if(estudianteEncontrado == null){
-                JOptionPane.showMessageDialog(null,"Estudiante no encontrado","Error" ,JOptionPane.ERROR_MESSAGE);
+            TypedQuery<Estudiante> query = em.createQuery("SELECT e FROM Estudiante e WHERE e.correo = :correo AND e.contrasenia = :contrasenia", Estudiante.class);
+            query.setParameter("correo", correo);
+            query.setParameter("contrasenia", contrasenia);
+            List<Estudiante> resultados = query.getResultList();
+            if (resultados.isEmpty()) {
                 return null;
             }
-            
-            if(estudianteEncontrado.getCorreo().equals(correo) && estudianteEncontrado.getContrasenia().equals(contrasenia)){    
-                return estudianteEncontrado;
-            }else{
-                JOptionPane.showMessageDialog(null,"Error en las credenciales","Error" ,JOptionPane.ERROR_MESSAGE);
-            }
+            return resultados.get(0);
+        } catch (Exception e) {
+            throw new PersistenciaException("Error en autenticación", e);
         }
-         catch (PersistenciaException ex) {
-            JOptionPane.showMessageDialog(null,ex.getMessage(),"Error" ,JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
-        return null;
     }
-    
+
     private Estudiante buscarPorCorreo(String correo) throws PersistenciaException {
         try {
-            return em.createQuery("Select e from Estudiante e where e.correo = :correo", Estudiante.class)
-                    .setParameter("correo", correo)
-                    .getSingleResult();
+            TypedQuery<Estudiante> query = em.createQuery("Select e from Estudiante e where e.correo = :correo", Estudiante.class)
+                    .setParameter("correo", correo);
+            List<Estudiante> resultados = query.getResultList();
+            return resultados.isEmpty() ? null : resultados.get(0);
         } catch (Exception e) {
             throw new PersistenciaException("Correo no encontrado", e);
-            
         }
     }
+
 }

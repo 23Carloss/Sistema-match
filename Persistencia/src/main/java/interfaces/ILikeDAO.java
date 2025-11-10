@@ -18,5 +18,8 @@ public interface ILikeDAO {
 
     Likes obtenerPorId(Long id) throws PersistenciaException;
 
-    List<Likes> obtenerTodos() throws PersistenciaException;
+    List<Likes> listar(int limite) throws PersistenciaException;
+
+    boolean existeLike(Long idOrigen, Long idDestino) throws PersistenciaException;
+
 }

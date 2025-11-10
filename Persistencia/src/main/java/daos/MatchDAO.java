@@ -68,12 +68,16 @@ public class MatchDAO implements IMatchDAO {
     }
 
     @Override
-    public List<Matches> obtenerTodos() throws PersistenciaException {
+    public List<Matches> listar(int limite) throws PersistenciaException {
+        if (limite > 100) {
+            throw new PersistenciaException("El límite máximo es 100 para listar");
+        }
         try {
-            TypedQuery<Matches> query = em.createQuery("SELECT m FROM Match m", Matches.class);
+            TypedQuery<Matches> query = em.createQuery("SELECT m FROM Matches m", Matches.class);
+            query.setMaxResults(limite);
             return query.getResultList();
         } catch (Exception e) {
-            throw new PersistenciaException("Error al obtener todos los Matches.", e);
+            throw new PersistenciaException("Error al listar los matches.", e);
         }
     }
 }

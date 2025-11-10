@@ -68,12 +68,32 @@ public class LikeDAO implements ILikeDAO {
     }
 
     @Override
-    public List<Likes> obtenerTodos() throws PersistenciaException {
+    public List<Likes> listar(int limite) throws PersistenciaException {
+        if (limite > 100) {
+            throw new PersistenciaException("El límite máximo es 100 para listar");
+        }
         try {
-            TypedQuery<Likes> query = em.createQuery("SELECT l FROM Like l", Likes.class);
+            TypedQuery<Likes> query = em.createQuery("SELECT l FROM Likes l", Likes.class);
+            query.setMaxResults(limite);
             return query.getResultList();
         } catch (Exception e) {
-            throw new PersistenciaException("Error al obtener todos los Likes.", e);
+            throw new PersistenciaException("Error al listar los Likes.", e);
         }
     }
+
+    @Override
+    public boolean existeLike(Long idOrigen, Long idDestino) throws PersistenciaException {
+        try {
+            TypedQuery<Long> query = em.createQuery(
+                    "SELECT COUNT(l) FROM Likes l WHERE l.estudianteOrigen.id = :idOrigen AND l.estudianteDestino.id = :idDestino",
+                    Long.class);
+            query.setParameter("idOrigen", idOrigen);
+            query.setParameter("idDestino", idDestino);
+            Long count = query.getSingleResult();
+            return count != null && count > 0;
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al buscar like entre estudiantes.", e);
+        }
+    }
+
 }
