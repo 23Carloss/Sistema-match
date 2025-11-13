@@ -1,0 +1,61 @@
+create database sistema_match;
+
+use sistema_Match;
+
+create table Estudiantes(
+	idEstudiante int primary key auto_increment,
+    nombre varchar(50),
+    apellidoMaterno varchar(75),
+    apellidoPaterno varchar(75) ,
+    correo varchar(75) not null,
+    contrasenha varchar(75) not null,
+    carrera varchar(50)
+);
+
+create table Hobby_Estudiante
+(
+	idEstudiante int not null,
+    hobby enum('BAILE','COCINA','DEPORTES','FOTOGRAFIA','LIBROS','MUSICA','PELICULAS','TECNOLOGIA','VIAJES'),
+	foreign key (idEstudiante) references Estudiantes(idEstudiante)
+	
+);
+
+create table Post(
+	idPost  int primary key auto_increment,
+    mensaje varchar(200) not null,
+    creadoEn datetime not null,
+    numeroReacciones int,
+    id_Estudiante int not null,
+	foreign key (id_Estudiante) references Estudiantes(idEstudiante)
+);
+create table Likes
+(
+	idLike int primary key auto_increment,
+    estudiante_destino_id int not null,
+    estudiante_origen_id int not null,
+    fecha datetime not null,
+    post_id int,
+    foreign key (id_EstudianteDestino) references Estudiantes(idEstudiante),
+    foreign key (post_id) references Post(idPost),
+	foreign key (id_EstudianteOrigen) references Estudiantes(idEstudiante)
+	
+);
+create table EstudianteLike
+(
+	idEstudianteLike int primary key auto_increment,
+	id_EstudianteOrigen int not null,
+    id_EstudianteDestino int not null,
+	creadoEn datetime not null,
+    foreign key (id_EstudianteDestino) references Estudiantes(idEstudiante),
+	foreign key (id_EstudianteOrigen) references Estudiantes(idEstudiante)
+);
+create table Matchs
+(
+	idMatch int primary key auto_increment,
+	estudiante_destino_id int not null,
+    estudiante_origen_id int not null,
+    foreign key (estudiante_destino_id) references Estudiantes(idEstudiante),
+	foreign key (estudiante_origen_id) references Estudiantes(idEstudiante)
+);
+
+
