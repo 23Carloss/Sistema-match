@@ -1,0 +1,1 @@
+Para ejecutar la aplicaciones abriremos el proyecto "Presentacion" y ubicaremos dentro de la carpeta Source Package el package "hp.Presentacion" el cual contiene la clase main llamada "Presentacion. java" ejecutar esta clase te permitira abrir la aplicacion.
